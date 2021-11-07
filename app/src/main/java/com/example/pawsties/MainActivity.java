@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.nav_profiles:
                     selectFragment = new ProfilesFragment();
                     break;
+                case R.id.nav_favorities:
+                    selectFragment = new FavoritiesFragment();
+                    break;
             }
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, selectFragment).commit();
