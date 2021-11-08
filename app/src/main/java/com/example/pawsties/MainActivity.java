@@ -1,23 +1,24 @@
 package com.example.pawsties;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 
 public class MainActivity extends AppCompatActivity {
+    BottomNavigationView navigationBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigationBar = findViewById(R.id.bottom_navigation_bar);
+        navigationBar = findViewById(R.id.bottom_navigation_bar);
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
@@ -30,10 +31,14 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()){
                 case R.id.nav_profiles:
+                    //getSupportFragmentManager().beginTransaction().remove(selectFragment).commit();
                     selectFragment = new ProfilesFragment();
                     break;
                 case R.id.nav_favorities:
                     selectFragment = new FavoritiesFragment();
+                    break;
+                case R.id.nav_account:
+                    selectFragment = new AccountFragment();
                     break;
             }
 
@@ -41,4 +46,5 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
 }
