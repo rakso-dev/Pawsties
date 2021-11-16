@@ -1,5 +1,7 @@
 package com.example.pawsties;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -10,7 +12,10 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 
+import java.security.Permission;
+
 public class MainActivity extends AppCompatActivity {
+    public static final int REQUEST_CODE_LOCATION = 1001;
     BottomNavigationView navigationBar;
 
     @Override
@@ -22,6 +27,18 @@ public class MainActivity extends AppCompatActivity {
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //pedir permiso de ubicacion
+        int permision = checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION);
+        if (permision != PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_LOCATION);
+            return;
+        }
     }
 
     private OnNavigationItemSelectedListener navigationListener = new BottomNavigationView.OnNavigationItemSelectedListener(){
