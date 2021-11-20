@@ -6,19 +6,19 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/ivPetPic"
+        android:id="@+id/ivFavPetPic"
         android:layout_marginLeft="10dp"
         android:layout_width="100dp"
         android:layout_height="100dp" />
 
     <TextView
-        android:id="@+id/tvPetName"
+        android:id="@+id/tvFavPetName"
         android:textAlignment="center"
         android:gravity="center_horizontal|center_vertical"
         android:layout_marginStart="10dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_toEndOf="@id/ivPetPic"
+        android:layout_toEndOf="@id/ivFavPetPic"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
 </LinearLayout>

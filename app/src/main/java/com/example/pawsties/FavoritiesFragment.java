@@ -1,6 +1,7 @@
 package com.example.pawsties;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,26 +31,29 @@ public class FavoritiesFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         activity = getActivity();
         if (activity == null)
             return;
 
-        loadPets();;
+        loadPets();
     }
 
     private void loadPets(){
+        ArrayList<Pet> pets = new ArrayList<>();
+        //en esta funcion darle valores al array list en base a la informacion obtenida de una BD
+
         recyclerView = activity.findViewById (R.id.rvFavorities);
         recyclerView.setLayoutManager (new LinearLayoutManager(activity));
         recyclerView.addItemDecoration (new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
         recyclerView.setItemAnimator (new DefaultItemAnimator());
 
-//        FavsAdapter adapter = new FavsAdapter (activity);
-//        adapter.setOnPlanetSelectedListener (listener);
-//
-//        recyclerView.setAdapter (adapter);
+        FavsAdapter adapter = new FavsAdapter (this.getContext(), pets);
+        //adapter.setOnPlanetSelectedListener (listener);
+
+        recyclerView.setAdapter (adapter);
     }
 
 }

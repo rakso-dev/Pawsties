@@ -1,42 +1,45 @@
 package com.example.pawsties;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class FavsAdapter extends RecyclerView.Adapter<FavsList> {
+class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
     private Context context;
-    private ArrayList<ImageView> images;
+    private Pet pet = new Pet();
+    private ArrayList<Pet> pets;
 
-    public FavsAdapter (Context context, ArrayList<ImageView> images) {
+    FavsAdapter (Context context, ArrayList<Pet> pets) {
         this.context = context;
-        this.images = images;
+        this.pets = pets;
     }
 
     @NonNull
     @Override
-    public FavsList onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavsListVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.item_favorite, parent, false);
-        return new FavsList(view);
+        return new FavsListVH(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavsList holder, int position) {
-        ImageView image = images.get(position);
-        //holder.bind(image.getDrawingCache());
+    public void onBindViewHolder(@NonNull FavsListVH holder, int position) {
+        Log.i("VH_item", "OnBindVH");
+        pet = pets.get(position);
+        holder.bind(pet.pic, pet.name);
     }
 
     @Override
     public int getItemCount() {
-        return images.size();
+        return pets.size();
     }
 }
 
