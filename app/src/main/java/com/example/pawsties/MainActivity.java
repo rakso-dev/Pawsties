@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         navigationBar = findViewById(R.id.bottom_navigation_bar);
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
 
-        Toast.makeText(this, "Hola puta tqm", Toast.LENGTH_LONG).show();
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
     }
 
