@@ -1,4 +1,4 @@
-package com.example.pawsties;
+package com.pawsties.android;
 
 import org.junit.Test;
 

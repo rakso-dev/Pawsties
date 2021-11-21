@@ -1,4 +1,4 @@
-package com.example.pawsties;
+package com.pawsties.android;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

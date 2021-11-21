@@ -1,4 +1,4 @@
-package com.example.pawsties;
+package com.pawsties.android;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.pawsties", appContext.getPackageName());
+        assertEquals("com.example.android", appContext.getPackageName());
     }
 }
