@@ -54,5 +54,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/btnChat"
+            android:src="@drawable/ic_baseline_chat_24"
+            tools:src="@drawable/ic_baseline_chat_24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
     </LinearLayout>
 </LinearLayout>

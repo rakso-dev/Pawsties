@@ -2,6 +2,7 @@ package com.pawsties.android;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -11,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
+
+//        ProfilesFragment.btnChat = findViewById(R.id.btnChat);
+//        ProfilesFragment.btnChat.setOnClickListener (view -> {
+//            Intent intent = new Intent (getBaseContext (), ChatActivity.class);
+////            intent.putExtra(NAME, edtName.getText().toString());
+////            intent.putExtra(LASTNAME, edtLastname.getText().toString());
+////            intent.putExtra(AGE, edtAge.getText().toString());
+////            intent.putExtra(ADDRESS, edtAddress.getText().toString());
+//            startActivity (intent);
+//        });
     }
 
     @Override
