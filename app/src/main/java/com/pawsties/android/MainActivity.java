@@ -29,6 +29,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_LOCATION = 1001;
     BottomNavigationView navigationBar;
+    ImageButton btnChat;
     double latitude, longitude;
     LocationListener locationListener;
     LocationManager locationManager;
@@ -43,15 +44,17 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
 
-//        ProfilesFragment.btnChat = findViewById(R.id.btnChat);
-//        ProfilesFragment.btnChat.setOnClickListener (view -> {
-//            Intent intent = new Intent (getBaseContext (), ChatActivity.class);
+        btnChat = findViewById(R.id.btnChat);
+        //ProfilesFragment.btnChat.setOnClickListener (view -> {
+          //  Fragment chat = new ChatFragment();
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, chat).commit();
+//            Intent intent = new Intent (getBaseContext (), ChatFragment.class);
 ////            intent.putExtra(NAME, edtName.getText().toString());
 ////            intent.putExtra(LASTNAME, edtLastname.getText().toString());
 ////            intent.putExtra(AGE, edtAge.getText().toString());
 ////            intent.putExtra(ADDRESS, edtAddress.getText().toString());
 //            startActivity (intent);
-//        });
+        //});
     }
 
     @Override
