@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     locationManager.removeUpdates(locationListener);
     }
 
-    class MyLocationListener implements LocationListener {
+    class MyLocationListener implements LocationListener { //esto es una pesima practica, separarla en una clase aparte
 
         @Override
         public void onLocationChanged(@NonNull Location location) {
