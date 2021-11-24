@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_profiles"
+        android:icon="@drawable/ic_baseline_pets_24"
+        android:title="Perfiles"/>
+
+    <item
+        android:id="@+id/nav_favorities"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="Favoritos"/>
+
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:title="Cuenta" />
+
+</menu>
