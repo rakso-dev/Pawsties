@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_LOCATION = 1001;
     BottomNavigationView navigationBar;
     ImageButton btnChat;
-    double latitude, longitude;
     LocationListener locationListener;
     LocationManager locationManager;
 
@@ -134,45 +133,4 @@ public class MainActivity extends AppCompatActivity {
     locationManager.removeUpdates(locationListener);
     }
 
-    class MyLocationListener implements LocationListener { //esto es una pesima practica, separarla en una clase aparte
-
-        @Override
-        public void onLocationChanged(@NonNull Location location) {
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-            //Toast.makeText (getBaseContext (), "Latitud: " + latitude + "\nLongitud: " + longitude, Toast.LENGTH_LONG).show ();
-
-            Geocoder geocoder = new Geocoder (getBaseContext(), Locale.getDefault ());
-            List<Address> addresses;
-            String city = "";
-
-            try {
-                addresses = geocoder.getFromLocation (location.getLatitude(), location.getLongitude(), 1);
-                if (addresses.size () > 0) {
-                    //Log.i ("GEO", addresses.get (0).getLocality ());
-                    city = addresses.get (0).getLocality();
-                    Toast.makeText(getBaseContext(), "Mostrando perfiles cerca de: "+city, Toast.LENGTH_LONG).show();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace ();
-            }
-
-            Log.i ("GEO", "City: " + city);
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(@NonNull String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(@NonNull String provider) {
-
-        }
-    }
 }
