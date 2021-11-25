@@ -1,22 +1,26 @@
 package com.pawsties.android;
 
+import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class MyLocationListener extends AppCompatActivity implements LocationListener {
+public class MyLocationListener implements LocationListener {
     double latitude, longitude;
+    Context context;
+
+    public MyLocationListener(Context baseContext){
+        context = baseContext;
+    }
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
@@ -24,7 +28,7 @@ public class MyLocationListener extends AppCompatActivity implements LocationLis
         longitude = location.getLongitude();
         //Toast.makeText (getBaseContext (), "Latitud: " + latitude + "\nLongitud: " + longitude, Toast.LENGTH_LONG).show ();
 
-        Geocoder geocoder = new Geocoder (getBaseContext(), Locale.getDefault ());
+        Geocoder geocoder = new Geocoder (context, Locale.getDefault ());
         List<Address> addresses;
         String city = "";
 
@@ -33,13 +37,13 @@ public class MyLocationListener extends AppCompatActivity implements LocationLis
             if (addresses.size () > 0) {
                 //Log.i ("GEO", addresses.get (0).getLocality ());
                 city = addresses.get (0).getLocality();
-                Toast.makeText(getBaseContext(), "Mostrando perfiles cerca de: "+city, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Mostrando perfiles cerca de: "+city, Toast.LENGTH_LONG).show();
             }
         } catch (IOException ex) {
             ex.printStackTrace ();
         }
 
-        Log.i ("GEO", "City: " + city);
+        //Log.i ("GEO", "City: " + city);
     }
 
     @Override

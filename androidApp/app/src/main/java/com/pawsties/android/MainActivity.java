@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("MissingPermission")
     private void getLocation () {
-        locationListener = new MyLocationListener ();
+        locationListener = new MyLocationListener(getBaseContext());
         locationManager = (LocationManager) getSystemService (LOCATION_SERVICE);
         locationManager.requestLocationUpdates (LocationManager.GPS_PROVIDER,
                 5000,
@@ -132,5 +132,4 @@ public class MainActivity extends AppCompatActivity {
 
     locationManager.removeUpdates(locationListener);
     }
-
 }
