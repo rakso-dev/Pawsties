@@ -2,6 +2,7 @@ package com.pawsties.android;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -10,12 +11,14 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton btnChat;
     LocationListener locationListener;
     LocationManager locationManager;
+    AlertDialog gpsAlert = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadProfiles() {
         getLocation();
-        //code requiere de localizacion GPS
     }
 
 
@@ -83,6 +86,18 @@ public class MainActivity extends AppCompatActivity {
     private void getLocation () {
         locationListener = new MyLocationListener(getBaseContext());
         locationManager = (LocationManager) getSystemService (LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+            alertBuilder.setMessage("Debe activar el GPS para obtener los perfiles cercanos")
+                    .setCancelable(true)
+                    .setPositiveButton("Ok", (dialog, which) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
+                    .setNegativeButton("No", (dialog, which) -> {
+                        dialog.cancel();
+                        Toast.makeText(getBaseContext(), "Se necesita acceder a la ubicacion para poder mostrar los perfiles", Toast.LENGTH_LONG).show();
+                    });
+            gpsAlert = alertBuilder.create();
+            gpsAlert.show();
+        }
         locationManager.requestLocationUpdates (LocationManager.GPS_PROVIDER,
                 5000,
                 10,
@@ -131,5 +146,13 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
     locationManager.removeUpdates(locationListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (gpsAlert != null)
+            gpsAlert.dismiss();
     }
 }
