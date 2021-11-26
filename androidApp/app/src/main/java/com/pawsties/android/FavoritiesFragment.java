@@ -1,6 +1,8 @@
 package com.pawsties.android;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,14 +19,38 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class FavoritiesFragment extends Fragment {
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private FavsAdapter adapter;
+    Context baseContext;
+    ArrayList<Pet> pets;
     Activity activity;
+
+    public FavoritiesFragment(Context baseContext){
+        this.baseContext = baseContext;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
-        return inflater.inflate(R.layout.fragment_favorities, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorities, container, false);
+        recyclerView = view.findViewById(R.id.rvFavorities);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager (new LinearLayoutManager(activity));
+        recyclerView.setItemAnimator (new DefaultItemAnimator());
+
+        //ELEMENTO MASCOTA DE PRUEBA (borrar cuando se obtengan de la BD)
+        Pet pet = new Pet();
+        pet.name = "user";
+        pet.pic = null;
+
+        pets = new ArrayList<>();
+
+        pets.add(pet);
+
+        loadPets();
+
+        return view;
     }
 
     @Override
@@ -34,20 +60,11 @@ public class FavoritiesFragment extends Fragment {
         activity = getActivity();
         if (activity == null)
             return;
-
-        loadPets();
     }
 
     private void loadPets(){
-        ArrayList<Pet> pets = new ArrayList<>();
-        //en esta funcion darle valores al array list en base a la informacion obtenida de una BD
 
-        recyclerView = activity.findViewById (R.id.rvFavorities);
-        recyclerView.setLayoutManager (new LinearLayoutManager(activity));
-        recyclerView.addItemDecoration (new DividerItemDecoration(activity, DividerItemDecoration.VERTICAL));
-        recyclerView.setItemAnimator (new DefaultItemAnimator());
-
-        FavsAdapter adapter = new FavsAdapter (this.getContext(), pets);
+        adapter = new FavsAdapter (this.getContext(), baseContext, pets);
         //adapter.setOnPlanetSelectedListener (listener);
 
         recyclerView.setAdapter (adapter);

@@ -19,7 +19,8 @@ class FavsListVH extends RecyclerView.ViewHolder {
     }
 
     void bind(Bitmap pic, String name) {
-        ivFavPetPic.setImageBitmap(pic);
+        //ivFavPetPic.setImageBitmap(pic);
+        ivFavPetPic.setImageResource(R.mipmap.ic_launcher_round);//quitar cuando se obtengan de la BD
         tvFavPetName.setText(name);
     }
 }
