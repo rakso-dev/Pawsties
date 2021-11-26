@@ -1,6 +1,7 @@
 package com.pawsties.android;
 
 //comentario prueba xdddddd
+//ahora probaras hacer el full, golfa
 
 import android.Manifest;
 import android.annotation.SuppressLint;
