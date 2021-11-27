@@ -20,8 +20,8 @@ public class ChatActivivty extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         toolbar = findViewById(R.id.toolbar_chat);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        //setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Chat");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(v -> finish());
 

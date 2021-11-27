@@ -2,6 +2,7 @@ package com.pawsties.android;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getSupportActionBar().setTitle("Perfiles cercanos");
 
         navigationBar = findViewById(R.id.bottom_navigation_bar);
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
@@ -111,12 +114,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.nav_profiles:
                 //getSupportFragmentManager().beginTransaction().remove(selectFragment).commit();
                 selectFragment = new ProfilesFragment();
+                getSupportActionBar().setTitle("Perfiles cercanos");
                 break;
             case R.id.nav_favorities:
                 selectFragment = new FavoritiesFragment(getBaseContext());
+                getSupportActionBar().setTitle("Favoritos y chats");
                 break;
             case R.id.nav_account:
                 selectFragment = new AccountFragment();
+                getSupportActionBar().setTitle("Cuenta y ajustes");
                 break;
         }
 

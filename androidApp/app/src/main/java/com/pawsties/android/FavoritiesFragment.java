@@ -64,8 +64,12 @@ public class FavoritiesFragment extends Fragment {
 
     private void loadPets(){
 
-        adapter = new FavsAdapter (this.getContext(), baseContext, pets);
+        adapter = new FavsAdapter (getContext(), baseContext, pets);
         //adapter.setOnPlanetSelectedListener (listener);
+
+        /**
+         * aqui se tienen que cargar los datos de los perfiles de la bd en azure
+         * */
 
         recyclerView.setAdapter (adapter);
     }
