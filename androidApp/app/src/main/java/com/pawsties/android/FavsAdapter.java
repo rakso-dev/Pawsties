@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
-    private Context context, baseContext;
+    private Context context;
     private ArrayList<Pet> pets;
 
-    FavsAdapter (Context mcontext, Context baseContext, ArrayList<Pet> pets) {
-        this.context = mcontext;
-        this.baseContext = baseContext;
+    FavsAdapter (Context context, ArrayList<Pet> pets) {
+        this.context = context;
         this.pets = pets;
     }
 
@@ -37,8 +36,6 @@ class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
         final Pet pet = pets.get(position);
         holder.bind(pet.pic, pet.name);
 
-        //HAY PROBLEMITAS AL LANZAR EL CHAT ACTIVITY!!!
-        //El problema se encuentra en el toolbar del chat activity
         holder.itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, ChatActivivty.class);
                 intent.putExtra("username", "username");

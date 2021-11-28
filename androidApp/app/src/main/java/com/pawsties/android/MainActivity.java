@@ -33,7 +33,6 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_LOCATION = 1001;
     BottomNavigationView navigationBar;
-    ImageButton btnChat;
     LocationListener locationListener;
     LocationManager locationManager;
     AlertDialog gpsAlert = null;
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
 
-        btnChat = findViewById(R.id.btnChat);
+        //btnChat = findViewById(R.id.btnChat);
         //ProfilesFragment.btnChat.setOnClickListener (view -> {
           //  Fragment chat = new ChatFragment();
             //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, chat).commit();
@@ -91,10 +90,10 @@ public class MainActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService (LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-            alertBuilder.setMessage("Debe activar el GPS para obtener los perfiles cercanos")
+            alertBuilder.setMessage("Debes activar el GPS para obtener los perfiles cercanos")
                     .setCancelable(true)
                     .setPositiveButton("Ok", (dialog, which) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
-                    .setNegativeButton("No", (dialog, which) -> {
+                    .setNegativeButton("cancelar", (dialog, which) -> {
                         dialog.cancel();
                         Toast.makeText(getBaseContext(), "Se necesita acceder a la ubicacion para poder mostrar los perfiles", Toast.LENGTH_LONG).show();
                     });
@@ -102,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             gpsAlert.show();
         }
         locationManager.requestLocationUpdates (LocationManager.GPS_PROVIDER,
-                5000,
+                10000,
                 10,
                 locationListener);
     }
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 getSupportActionBar().setTitle("Perfiles cercanos");
                 break;
             case R.id.nav_favorities:
-                selectFragment = new FavoritiesFragment(getBaseContext());
+                selectFragment = new FavoritiesFragment();
                 getSupportActionBar().setTitle("Favoritos y chats");
                 break;
             case R.id.nav_account:

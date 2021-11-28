@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/pet_pic"
+        android:layout_width="match_parent"
+        android:layout_height="402dp"
+        android:src="@drawable/ic_baseline_pets_24" />
+
+    <TextView
+        android:id="@+id/pet_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre de la mascota" />
+
+    <TextView
+        android:id="@+id/pet_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descripcion del perfil" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="90dp"
+        android:layout_marginEnd="90dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:src="@drawable/ic_round_arrow_back_24"
+            tools:src="@drawable/ic_round_arrow_back_24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/btnNext"
+            android:src="@drawable/ic_round_arrow_forward_24"
+            tools:src="@drawable/ic_round_arrow_forward_24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/btnLike"
+            android:src="@drawable/ic_round_favorite_border_24"
+            tools:src="@drawable/ic_round_favorite_border_24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>
