@@ -39,7 +39,6 @@ class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
 
         //HAY PROBLEMITAS AL LANZAR EL CHAT ACTIVITY!!!
         //El problema se encuentra en el toolbar del chat activity
-        Toast.makeText(context, "listo para seleccionar chat", Toast.LENGTH_LONG).show();
         holder.itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, ChatActivivty.class);
                 intent.putExtra("username", "username");
