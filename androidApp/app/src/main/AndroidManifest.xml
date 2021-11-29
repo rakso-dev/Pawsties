@@ -17,9 +17,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pawsties">
         <activity
-            android:name=".ChatActivivty"
-            android:exported="true" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="fullUser">
@@ -29,6 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ChatActivivty"
+            android:exported="true" />
     </application>
 
 </manifest>

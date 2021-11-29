@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
-    private Context context, baseContext;
+    private Context context;
     private ArrayList<Pet> pets;
 
-    FavsAdapter (Context context, Context baseContext, ArrayList<Pet> pets) {
+    FavsAdapter (Context context, ArrayList<Pet> pets) {
         this.context = context;
-        this.baseContext = baseContext;
         this.pets = pets;
     }
 
@@ -33,24 +32,17 @@ class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
 
     @Override
     public void onBindViewHolder(@NonNull FavsListVH holder, int position) {
-        Log.i("VH_item", "OnBindVH");
-        Toast.makeText(baseContext, "OnViewHolder", Toast.LENGTH_LONG).show();
 
         final Pet pet = pets.get(position);
         holder.bind(pet.pic, pet.name);
 
-        //HAY PROBLEMITAS AL LANZAR EL CHAT ACTIVITY!!!
-        Toast.makeText(baseContext, "listo para seleccionar chat", Toast.LENGTH_LONG).show();
         holder.itemView.setOnClickListener(v -> {
-            try {
-                Intent intent = new Intent(baseContext, ChatActivivty.class);
+                Intent intent = new Intent(context, ChatActivivty.class);
                 intent.putExtra("username", "username");
-                Toast.makeText(baseContext, "lanzando intent", Toast.LENGTH_LONG).show();
-                baseContext.startActivity(intent);
-            }catch (Exception e){
-                Toast.makeText(baseContext, "error: "+e, Toast.LENGTH_LONG).show();
-            }
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
         });
+
     }
 
     @Override

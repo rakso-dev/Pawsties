@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class MyLocationListener implements LocationListener {
-    double latitude, longitude;
+    double latitude, longitude, altitude;
     Context context;
 
     public MyLocationListener(Context baseContext){
@@ -26,7 +26,8 @@ public class MyLocationListener implements LocationListener {
     public void onLocationChanged(@NonNull Location location) {
         latitude = location.getLatitude();
         longitude = location.getLongitude();
-        //Toast.makeText (getBaseContext (), "Latitud: " + latitude + "\nLongitud: " + longitude, Toast.LENGTH_LONG).show ();
+        altitude = location.getAltitude();
+        //Toast.makeText (context, "Latitud: " + latitude + "\nLongitud: " + longitude+"\nAltitud: "+altitude, Toast.LENGTH_LONG).show ();
 
         Geocoder geocoder = new Geocoder (context, Locale.getDefault ());
         List<Address> addresses;
@@ -37,7 +38,7 @@ public class MyLocationListener implements LocationListener {
             if (addresses.size () > 0) {
                 //Log.i ("GEO", addresses.get (0).getLocality ());
                 city = addresses.get (0).getLocality();
-                Toast.makeText(context, "Mostrando perfiles cerca de: "+city, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Perfiles cerca de: "+city, Toast.LENGTH_LONG).show();
             }
         } catch (IOException ex) {
             ex.printStackTrace ();
