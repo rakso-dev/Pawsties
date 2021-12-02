@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     LocationManager locationManager;
     AlertDialog gpsAlert = null;
     //line test
+    //line 2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
