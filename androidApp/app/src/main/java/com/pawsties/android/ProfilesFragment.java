@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class ProfilesFragment extends Fragment {
     private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
     private ProfilesAdapter adapter;
     ArrayList<Pet> profiles;
     Activity activity;
@@ -29,17 +30,25 @@ public class ProfilesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorities, container, false);
         recyclerView = view.findViewById(R.id.rvFavorities);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager (new LinearLayoutManager(activity));
+        //recyclerView.setLayoutManager (new LinearLayoutManager(activity));
         recyclerView.setItemAnimator (new DefaultItemAnimator());
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
         profiles = new ArrayList<>();
 
         //ELEMENTO MASCOTA DE PRUEBA (borrar cuando se obtengan de la BD)
         Pet profile = new Pet();
+        Pet profile2 = new Pet();
         profile.name = "michi";
         profile.description = "gato xd";
         profile.pic = null;
         profiles.add(profile);
+        profile2.name = "firulais";
+        profile2.description = "perrito";
+        profile2.pic = null;
+        profiles.add(profile2);
         //=========================================================================
 
         loadProfiles();

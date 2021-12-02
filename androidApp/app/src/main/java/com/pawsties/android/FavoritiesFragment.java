@@ -20,6 +20,8 @@ import java.util.ArrayList;
 
 public class FavoritiesFragment extends Fragment {
     private RecyclerView recyclerView;
+    LinearLayoutManager linearLayoutManager;
+    DividerItemDecoration dividerItemDecoration;
     private FavsAdapter adapter;
     ArrayList<Pet> pets;
     Activity activity;
@@ -31,8 +33,12 @@ public class FavoritiesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_favorities, container, false);
         recyclerView = view.findViewById(R.id.rvFavorities);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager (new LinearLayoutManager(activity));
+        //recyclerView.setLayoutManager (new LinearLayoutManager(activity));
         recyclerView.setItemAnimator (new DefaultItemAnimator());
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        dividerItemDecoration = new DividerItemDecoration(getContext(), linearLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         pets = new ArrayList<>();//***
 

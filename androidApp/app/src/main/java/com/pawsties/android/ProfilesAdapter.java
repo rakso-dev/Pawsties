@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesVH> {
     private Context context;
@@ -31,14 +32,12 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesVH> {
     @Override
     public void onBindViewHolder(@NonNull ProfilesVH holder, int position) {
         final Pet profile = profiles.get(position);
-        holder.bind(profile.pic, profile.name, profile.description);
-
-//        holder.itemView.setOnClickListener(v -> {
-//            Intent intent = new Intent(context, ChatActivivty.class);
-//            intent.putExtra("username", "username");
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(intent);
-//        });
+        AtomicInteger flag;//el atomic era para cambiar con el boton pero no funciono, pero tampoco trono la app ggg
+        flag = holder.bind(profile.pic, profile.name, profile.description);
+        if (flag.equals(1))
+            position++;
+        if (flag.equals(-1))
+            onBindViewHolder(holder, position--);//esto tampoco sirvio
     }
 
     @Override

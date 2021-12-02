@@ -29,6 +29,8 @@
         <activity
             android:name=".ChatActivivty"
             android:exported="true" />
+        <activity android:name=".LoginActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
