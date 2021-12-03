@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     AlertDialog gpsAlert = null;
     //line test
     //line 2
+    //line write on linux lite
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
