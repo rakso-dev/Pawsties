@@ -85,7 +85,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\MARINA\Downloads\2.png" />
+                                                <entry key="imagePath" value="C:\Users\MARINA\Downloads\Pawsties-centered\1.png" />
                                                 <entry key="scalingPercent" value="120" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
@@ -121,7 +121,6 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="56ddc0" />
-                                      <entry key="outputName" value="org_logo" />
                                     </map>
                                   </option>
                                 </PersistentState>

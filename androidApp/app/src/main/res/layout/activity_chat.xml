@@ -40,36 +40,36 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMessages"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rvMessages"
-        android:layout_below="@id/barlayout_chat"
-        android:layout_above="@id/rlMessage"/>
+        android:layout_above="@id/rlMessage"
+        android:layout_below="@id/barlayout_chat" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/rlMessage"
-        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
         android:background="#FFF"
-        android:layout_alignParentBottom="true">
+        android:padding="5dp">
 
         <EditText
+            android:id="@+id/etMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="Escribe tu mensaje"
-            android:id="@+id/etMessage"
+            android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/btnSend"
-            android:layout_centerVertical="true"/>
+            android:background="@android:color/transparent"
+            android:hint="Escribe tu mensaje" />
 
         <ImageButton
+            android:id="@+id/btnSend"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/btnSend"
-            android:background="@drawable/ic_action_name"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_action_name" />
 
     </RelativeLayout>
 

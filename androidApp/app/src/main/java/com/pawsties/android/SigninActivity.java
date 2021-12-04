@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SigninActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
-    Button ingresar, registrarse;
+    Button ingresar;
     String email, password;
 
     @Override
@@ -26,7 +26,6 @@ public class SigninActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.email_signin);
         etPassword = findViewById(R.id.password_signin);
         ingresar = findViewById(R.id.btnOkSignin);
-        registrarse = findViewById(R.id.btnRegistrarseSignin);
 
         ingresar.setOnClickListener(v -> {
             email = etEmail.getText().toString();

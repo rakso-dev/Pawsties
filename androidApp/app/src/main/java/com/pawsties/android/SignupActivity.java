@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SignupActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
-    Button ingresar, registrarse;
-    String email, password;
+    Button registrarse;
+    String email="", password="";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -22,27 +22,22 @@ public class SignupActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Registro");
 
-        /** LLAMAR LOS ELEMENTOS DEL LAYOUT ACTIVITY SIGN UP*/
-        etEmail = findViewById(R.id.email_signin);
-        etPassword = findViewById(R.id.password_signin);
-        ingresar = findViewById(R.id.btnOkSignin);
-        registrarse = findViewById(R.id.btnRegistrarseSignin);
+        /** LLAMAR A TODS LOS ELEMENTOS DEL LAYOUT ACTIVITY SIGN UP PARA OBTENER LOS DATOS*/
+        registrarse = findViewById(R.id.btnOkSignup);
 
-        ingresar.setOnClickListener(v -> {
-            email = etEmail.getText().toString();
-            password = etPassword.getText().toString();
-
-            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
-                Toast.makeText(SignupActivity.this, "Debes llenar todos los campos antes de continuar!!!", Toast.LENGTH_LONG).show();
-            else if (password.length() < 8)
-                Toast.makeText(SignupActivity.this, "La contraseña debe ser de almenos 8 caracteres", Toast.LENGTH_LONG).show();
-            else
+        registrarse.setOnClickListener(v -> {
+            /**descomentar despues para hacer las validaciones*/
+//            email = etEmail.getText().toString();
+//            password = etPassword.getText().toString();
+//
+//            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
+//                Toast.makeText(SignupActivity.this, "Debes llenar todos los campos antes de continuar!!!", Toast.LENGTH_LONG).show();
+//            else if (password.length() < 8)
+//                Toast.makeText(SignupActivity.this, "La contraseña debe ser de almenos 8 caracteres", Toast.LENGTH_LONG).show();
+//            else
                 registro(email, password);
         });
 
-        registrarse.setOnClickListener(v -> {
-            Intent intent;//lanzar activity signin
-        });
     }
 
     public void registro(String correo, String contrasena){
