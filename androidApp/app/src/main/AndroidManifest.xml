@@ -17,20 +17,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pawsties">
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:screenOrientation="fullUser">
+            android:name=".LoginActivity"
+            android:screenOrientation="locked"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SigninActivity"
+            android:screenOrientation="locked"
+            android:parentActivityName=".LoginActivity"
+            android:exported="true"/>
+        <activity android:name=".SignupActivity"
+            android:screenOrientation="locked"
+            android:parentActivityName=".LoginActivity"
+            android:exported="true"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="fullUser"
+            android:exported="true"/>
         <activity
             android:name=".ChatActivivty"
+            android:screenOrientation="locked"
+            android:parentActivityName=".MainActivity"
             android:exported="true" />
-        <activity android:name=".LoginActivity"
-            android:exported="true"/>
     </application>
 
 </manifest>
