@@ -1,26 +1,34 @@
 package com.pawsties.android;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.widget.ImageView;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Objects;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
+public class LoginActivity extends AppCompatActivity {
+    Button sigin, signup;
 
-public class LoginActivity extends Activity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signin_form);
+
+        sigin = findViewById(R.id.btnSignin);
+        signup = findViewById(R.id.btnSignup);
+
+        sigin.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SigninActivity.class);
+            startActivity(intent);
+        });
+
+        signup.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(intent);
+        });
+    }
+
     /*public static final int FILE_CHOOSER_REQUEST_CODE = 4001;
     ImageView ivCanvas;
 
