@@ -18,30 +18,38 @@
         android:theme="@style/Theme.Pawsties">
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="locked"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SigninActivity"
-            android:screenOrientation="locked"
+        <activity
+            android:name=".SigninActivity"
+            android:exported="true"
             android:parentActivityName=".LoginActivity"
-            android:exported="true"/>
-        <activity android:name=".SignupActivity"
-            android:screenOrientation="locked"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".SignupActivity"
+            android:exported="true"
             android:parentActivityName=".LoginActivity"
-            android:exported="true"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="fullUser"
-            android:exported="true"/>
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="fullUser" />
         <activity
             android:name=".ChatActivivty"
-            android:screenOrientation="locked"
+            android:exported="true"
             android:parentActivityName=".MainActivity"
-            android:exported="true" />
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".AddPetActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="locked"/>
     </application>
 
 </manifest>

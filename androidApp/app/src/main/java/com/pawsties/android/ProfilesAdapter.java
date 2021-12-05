@@ -1,7 +1,6 @@
 package com.pawsties.android;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesVH> {
     private Context context;
-    private ArrayList<Pet> profiles;
+    private ArrayList<PetModel> profiles;
 
-    public ProfilesAdapter(Context context, ArrayList<Pet> profiles){
+    public ProfilesAdapter(Context context, ArrayList<PetModel> profiles){
         this.context = context;
         this.profiles = profiles;
     }
@@ -31,7 +30,7 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesVH> {
 
     @Override
     public void onBindViewHolder(@NonNull ProfilesVH holder, int position) {
-        final Pet profile = profiles.get(position);
+        final PetModel profile = profiles.get(position);
         AtomicInteger flag;//el atomic era para cambiar con el boton pero no funciono, pero tampoco trono la app ggg
         flag = holder.bind(profile.pic, profile.name, profile.description);
         if (flag.equals(1))

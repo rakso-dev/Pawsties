@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,7 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ChatActivivty extends AppCompatActivity {
     Toolbar toolbar;
@@ -33,6 +31,7 @@ public class ChatActivivty extends AppCompatActivity {
     ArrayList<Message> messages;
     MessageAdapter msgAdapter;
     RecyclerView rvDisplayMessages;
+    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,19 +55,20 @@ public class ChatActivivty extends AppCompatActivity {
         btn_send = findViewById(R.id.btnSend);
         et_message = findViewById(R.id.etMessage);
 
+        //aqui se van a recibir los datos proveidos de la BD
+        Intent intent = getIntent();
+        user = intent.getStringExtra("username");
+        username.setText(user);
+        profile_pic.setImageResource(R.mipmap.ic_launcher_round);
+
         btn_send.setOnClickListener(v -> {
             String message = et_message.getText().toString();
             if (!message.equals(""))
-                sendMessage("sender", "receiver", message);/**aqui se le deben de pasar usuarios de la BD*/
+                sendMessage("sender", user, message);/**aqui se le deben de pasar usuarios de la BD*/
             et_message.setText("");
         });
 
-        //aqui se van a recibir los datos proveidos de la BD
-        Intent intent = getIntent();
-        username.setText(intent.getStringExtra("username"));
-        profile_pic.setImageResource(R.mipmap.ic_launcher_round);
-
-        loadMessages("sender", "receiver");//parametros de prueba
+        loadMessages("sender", user);//parametros de prueba
     }
 
     private void sendMessage(String sender, String receiver, String message){

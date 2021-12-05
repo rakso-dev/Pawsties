@@ -32,22 +32,33 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_LOCATION = 1001;
+    public static final String ADOPTANTE = "A";
+    public static final String RESCATISTA = "R";
     BottomNavigationView navigationBar;
     LocationListener locationListener;
     LocationManager locationManager;
     AlertDialog gpsAlert = null;
+    String typeUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().setTitle("Perfiles cercanos");
-
         navigationBar = findViewById(R.id.bottom_navigation_bar);
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
+        /** SE VA A DETERMINAR QUE TIPO DE USUARIO ES EN BASE A LA BD PARA CARGAR LA VISTA ADECUADA */
+        //PRUEBAS
+        typeUser = "A";
+        if (typeUser.equals(ADOPTANTE)){
+            getSupportActionBar().setTitle("Perfiles cercanos");
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
+        }
+        if (typeUser.equals(RESCATISTA)) {
+            getSupportActionBar().setTitle("Mis mascotas");
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new PetsRescatistaFragment()).commit();
+        }
 
         //btnChat = findViewById(R.id.btnChat);
         //ProfilesFragment.btnChat.setOnClickListener (view -> {
@@ -90,12 +101,12 @@ public class MainActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService (LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
             final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
-            alertBuilder.setMessage("Debes activar el GPS para obtener los perfiles cercanos")
+            alertBuilder.setMessage("Es necesario activar el GPS para ciertas funciones")
                     .setCancelable(true)
                     .setPositiveButton("Ok", (dialog, which) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
                     .setNegativeButton("cancelar", (dialog, which) -> {
                         dialog.cancel();
-                        Toast.makeText(getBaseContext(), "Se necesita acceder a la ubicacion para poder mostrar los perfiles", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "Se necesita acceder a la ubicacion para una mejor experiencia", Toast.LENGTH_LONG).show();
                     });
             gpsAlert = alertBuilder.create();
             gpsAlert.show();
@@ -112,8 +123,14 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.nav_profiles:
                 //getSupportFragmentManager().beginTransaction().remove(selectFragment).commit();
-                selectFragment = new ProfilesFragment();
-                getSupportActionBar().setTitle("Perfiles cercanos");
+                if (typeUser.equals(ADOPTANTE)){
+                    selectFragment = new ProfilesFragment();
+                    getSupportActionBar().setTitle("Perfiles cercanos");
+                }
+                if (typeUser.equals(RESCATISTA)){
+                    selectFragment = new PetsRescatistaFragment();
+                    getSupportActionBar().setTitle("Mis mascotas");
+                }
                 break;
             case R.id.nav_favorities:
                 selectFragment = new FavoritiesFragment();
