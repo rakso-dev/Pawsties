@@ -1,19 +1,25 @@
-﻿<Properties StartupConfiguration="{F5AEF393-E0BF-437C-8A9E-DF08DF98F1FF}|Default">
-  <MonoDevelop.Ide.Workbench>
+﻿<Properties StartupConfiguration="{A4285629-3896-400D-9F8F-0AE65DF6879E}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Startup.cs">
+    <Files>
+      <File FileName="PawstiesAPI/Program.cs" Line="1" Column="1" />
+      <File FileName="PawstiesAPI/Startup.cs" Line="1" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="PawstiesAPI" expanded="True" selected="True">
+          <Node name="PawstiesAPI" expanded="True">
             <Node name="PawstiesAPI" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Properties" expanded="True" />
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.PawstiesAPI FirstBuild="True" PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.PawstiesAPI PreferredExecutionTarget="/Applications/Firefox.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
