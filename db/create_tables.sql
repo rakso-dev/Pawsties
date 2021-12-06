@@ -1,10 +1,5 @@
-create type locate as (
-	latitude decimal,
-	longitude decimal
-);
-
 create table usuario(
-	loc locate,
+	ort greography(point),
 	image text,
 	mail varchar(320),
 	telephone char(13)
