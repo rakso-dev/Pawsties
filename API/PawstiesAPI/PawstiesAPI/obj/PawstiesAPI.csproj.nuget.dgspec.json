@@ -14,7 +14,7 @@
         "outputPath": "/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/oskarbeltranmagana/.nuget/NuGet/NuGet.Config"
+          "/Users/oskarbeltranmagana/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -49,6 +49,10 @@
               "version": "[5.0.10, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite": {
               "target": "Package",
               "version": "[5.0.10, )"
             },

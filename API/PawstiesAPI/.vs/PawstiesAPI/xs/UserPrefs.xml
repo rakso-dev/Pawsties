@@ -1,26 +1,29 @@
 ﻿<Properties StartupConfiguration="{2BEA7A0A-EF1D-4D21-81E9-3CA02222E457}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Controllers/RescatistaController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Startup.cs">
     <Files>
-      <File FileName="PawstiesAPI/Models/Rescatistum.cs" Line="1" Column="1" />
-      <File FileName="PawstiesAPI/Controllers/RescatistaController.cs" Line="1" Column="1" />
+      <File FileName="PawstiesAPI/Models/pawstiesContext.cs" Line="280" Column="1" />
+      <File FileName="PawstiesAPI/Startup.cs" Line="40" Column="128" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="PawstiesAPI" expanded="True">
             <Node name="PawstiesAPI" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="RescatistaController.cs" selected="True" />
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
               </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+              <Node name="Startup.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.PawstiesAPI FirstBuild="True" PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.ItemProperties.PawstiesAPI PreferredExecutionTarget="/Applications/Firefox.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

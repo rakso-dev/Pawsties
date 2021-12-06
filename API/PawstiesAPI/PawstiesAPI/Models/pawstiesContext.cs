@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Npgsql;
+using Npgsql.NetTopologySuite;
 
 #nullable disable
 
@@ -31,11 +33,12 @@ namespace PawstiesAPI.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            optionsBuilder.UseNpgsql("Host=localhost;Database=pawsties;Username=postgres;Password=sqlserver", o => o.UseNetTopologySuite());
+            /*if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseNpgsql("Host=localhost;Database=pawsties;Username=postgres;Password=sqlserver");
-            }
+            }*/
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -136,6 +139,8 @@ namespace PawstiesAPI.Models
                     .HasColumnName("petid")
                     .HasDefaultValueSql("nextval('mascota_petid_seq'::regclass)");
 
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+
                 entity.Property(e => e.RColor).HasColumnName("r_color");
 
                 entity.Property(e => e.RRescatista).HasColumnName("r_rescatista");
@@ -155,6 +160,10 @@ namespace PawstiesAPI.Models
                 entity.ToTable("mascota");
 
                 entity.Property(e => e.Petid).HasColumnName("petid");
+
+                entity.Property(e => e.Nombre)
+                    .HasMaxLength(50)
+                    .HasColumnName("nombre");
 
                 entity.Property(e => e.Discapacitado).HasColumnName("discapacitado");
 
@@ -214,6 +223,8 @@ namespace PawstiesAPI.Models
                     .HasColumnName("petid")
                     .HasDefaultValueSql("nextval('mascota_petid_seq'::regclass)");
 
+                entity.Property(e => e.Nombre).HasColumnName("nombre");
+
                 entity.Property(e => e.RColor).HasColumnName("r_color");
 
                 entity.Property(e => e.RRescatista).HasColumnName("r_rescatista");
@@ -263,6 +274,10 @@ namespace PawstiesAPI.Models
 
                 entity.Property(e => e.Longitude).HasColumnName("longitude");
 
+                entity.Property(e => e.Ort)
+                .HasColumnType("geography(point)")
+                .HasColumnName("ort");
+
                 entity.Property(e => e.Mail)
                     .HasMaxLength(320)
                     .HasColumnName("mail");
@@ -272,7 +287,7 @@ namespace PawstiesAPI.Models
                     .HasColumnName("nombre_ent");
 
                 entity.Property(e => e.Rfc)
-                    .HasMaxLength(10)
+                    .HasMaxLength(13)
                     .HasColumnName("rfc");
 
                 entity.Property(e => e.Telephone)

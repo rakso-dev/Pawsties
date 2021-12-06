@@ -8,6 +8,7 @@ namespace PawstiesAPI.Models
     public partial class Perro
     {
         public int Petid { get; set; }
+        public string Nombre { get; set; }
         public bool? Sexo { get; set; }
         public DateTime Edad { get; set; }
         public int RColor { get; set; }

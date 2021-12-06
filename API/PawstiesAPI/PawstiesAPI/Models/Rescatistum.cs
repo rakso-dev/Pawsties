@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using NetTopologySuite.Geometries;
+using Npgsql.NetTopologySuite;
 
 #nullable disable
 
@@ -20,6 +23,8 @@ namespace PawstiesAPI.Models
         public string Rfc { get; set; }
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
+        [Column(TypeName="geography")]
+        public Point Ort { get; set; }
 
         public virtual ICollection<Mascotum> Mascota { get; set; }
     }

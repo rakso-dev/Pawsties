@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+//using PawstiesAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace PawstiesAPI
 {
@@ -30,6 +33,12 @@ namespace PawstiesAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PawstiesAPI", Version = "v1" });
+            });
+
+            services.AddDbContext<PawstiesAPI.Models.pawstiesContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("pawstiesConnectionString"), o => o.UseNetTopologySuite());
+
             });
         }
 

@@ -1,6 +1,5 @@
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/appsettings.Development.json
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/appsettings.json
-/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/PawstiesAPI
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/PawstiesAPI.deps.json
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/PawstiesAPI.runtimeconfig.json
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/PawstiesAPI.runtimeconfig.dev.json
@@ -35,3 +34,8 @@
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/ref/PawstiesAPI.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.pdb
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.genruntimeconfig.cache
+/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/NetTopologySuite.dll
+/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/NetTopologySuite.IO.PostGis.dll
+/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Npgsql.NetTopologySuite.dll
+/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite.dll
+/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/EFCoreNpgsqlNetTopologySuite.cs
