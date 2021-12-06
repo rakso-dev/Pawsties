@@ -1,8 +1,12 @@
-﻿<Properties StartupConfiguration="{A4285629-3896-400D-9F8F-0AE65DF6879E}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Startup.cs">
+﻿<Properties StartupConfiguration="{C0DC23BF-17C3-428B-9601-CC5E01AD05EF}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Controllers/RestatistaController.cs">
     <Files>
-      <File FileName="PawstiesAPI/Program.cs" Line="1" Column="1" />
-      <File FileName="PawstiesAPI/Startup.cs" Line="1" Column="1" />
+      <File FileName="PawstiesAPI/Models/Usuario.cs" Line="18" Column="16" />
+      <File FileName="PawstiesAPI/Program.cs" Line="27" Column="2" />
+      <File FileName="PawstiesAPI/Models/pawstiesContext.cs" Line="315" Column="19" />
+      <File FileName="PawstiesAPI/Controllers/RestatistaController.cs" Line="8" Column="10" />
+      <File FileName="PawstiesAPI/Startup.cs" Line="37" Column="10" />
+      <File FileName="PawstiesAPI/Controllers/WeatherForecastController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,14 +16,18 @@
               <Node name="Dependencies" expanded="True">
                 <Node name="PackageDependencies" expanded="True" />
               </Node>
-              <Node name="Startup.cs" selected="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="RestatistaController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.PawstiesAPI PreferredExecutionTarget="/Applications/Firefox.app" />
+  <MonoDevelop.Ide.ItemProperties.PawstiesAPI FirstBuild="True" PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
