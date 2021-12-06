@@ -1,8 +1,6 @@
 package com.pawsties.android;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +21,7 @@ public class FavoritiesFragment extends Fragment {
     LinearLayoutManager linearLayoutManager;
     DividerItemDecoration dividerItemDecoration;
     private FavsAdapter adapter;
-    ArrayList<Pet> pets;
+    public static ArrayList<PetModel> pets = new ArrayList<>();
     Activity activity;
 
     @Nullable
@@ -39,15 +37,6 @@ public class FavoritiesFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         dividerItemDecoration = new DividerItemDecoration(getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
-
-        pets = new ArrayList<>();//***
-
-        //ELEMENTO MASCOTA DE PRUEBA (borrar cuando se obtengan de la BD)
-        Pet pet = new Pet();
-        pet.name = "user";
-        pet.pic = null;
-        pets.add(pet);
-        //=========================================================================
 
         loadPets();
 
@@ -66,10 +55,9 @@ public class FavoritiesFragment extends Fragment {
     private void loadPets(){
 
         adapter = new FavsAdapter (getContext(), pets);
-        //adapter.setOnPlanetSelectedListener (listener);
 
         /**
-         * aqui se tienen que cargar los datos de los perfiles de la bd en azure
+         * aqui se tienen que cargar los datos de los perfiles FAVORITOS de la bd en azure
          * */
 
         recyclerView.setAdapter (adapter);

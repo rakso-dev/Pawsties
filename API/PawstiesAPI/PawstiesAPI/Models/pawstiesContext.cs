@@ -299,6 +299,8 @@ namespace PawstiesAPI.Models
 
                 entity.ToTable("usuario");
 
+                //entity.Property(e => e.Ort).HasColumnName("ort"); //prueba ggg
+
                 entity.Property(e => e.Image).HasColumnName("image");
 
                 entity.Property(e => e.Mail)
@@ -309,6 +311,8 @@ namespace PawstiesAPI.Models
                     .HasMaxLength(13)
                     .HasColumnName("telephone")
                     .IsFixedLength(true);
+
+                //entity.Property(e => e.Ort)
             });
 
             OnModelCreatingPartial(modelBuilder);

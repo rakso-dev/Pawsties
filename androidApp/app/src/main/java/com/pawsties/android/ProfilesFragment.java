@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.app.Activity;
 
 import androidx.annotation.NonNull;
@@ -20,7 +19,7 @@ public class ProfilesFragment extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private ProfilesAdapter adapter;
-    ArrayList<Pet> profiles;
+    ArrayList<PetModel> profiles;
     Activity activity;
 
     @Nullable
@@ -39,8 +38,8 @@ public class ProfilesFragment extends Fragment {
         profiles = new ArrayList<>();
 
         //ELEMENTO MASCOTA DE PRUEBA (borrar cuando se obtengan de la BD)
-        Pet profile = new Pet();
-        Pet profile2 = new Pet();
+        PetModel profile = new PetModel();
+        PetModel profile2 = new PetModel();
         profile.name = "michi";
         profile.description = "gato xd";
         profile.pic = null;

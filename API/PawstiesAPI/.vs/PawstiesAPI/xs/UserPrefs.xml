@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{C0DC23BF-17C3-428B-9601-CC5E01AD05EF}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Controllers/RestatistaController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Models/pawstiesContext.cs">
     <Files>
-      <File FileName="PawstiesAPI/Models/Usuario.cs" Line="18" Column="16" />
+      <File FileName="PawstiesAPI/Models/Usuario.cs" Line="16" Column="11" />
       <File FileName="PawstiesAPI/Program.cs" Line="27" Column="2" />
       <File FileName="PawstiesAPI/Models/pawstiesContext.cs" Line="315" Column="19" />
       <File FileName="PawstiesAPI/Controllers/RestatistaController.cs" Line="8" Column="10" />
-      <File FileName="PawstiesAPI/Startup.cs" Line="37" Column="10" />
+      <File FileName="PawstiesAPI/Startup.cs" Line="13" Column="3" />
       <File FileName="PawstiesAPI/Controllers/WeatherForecastController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
@@ -16,10 +16,10 @@
               <Node name="Dependencies" expanded="True">
                 <Node name="PackageDependencies" expanded="True" />
               </Node>
-              <Node name="Controllers" expanded="True">
-                <Node name="RestatistaController.cs" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="pawstiesContext.cs" selected="True" />
               </Node>
-              <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
             </Node>
           </Node>

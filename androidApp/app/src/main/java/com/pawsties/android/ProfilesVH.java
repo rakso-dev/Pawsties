@@ -17,6 +17,7 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
     TextView petName;
     TextView petDescription;
     ImageButton btnBack, btnNext, btnFav;
+    PetModel petToChat = new PetModel();
 
     public ProfilesVH(@NonNull View itemView) {
         super(itemView);
@@ -36,8 +37,11 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
         petName.setText(name);
         petDescription.setText(description);
 
-        btnFav.setOnClickListener(/**agregar a la BD el favorito de este VH*/ v -> {/** SI FUNCIONO XD*/
+        btnFav.setOnClickListener(v -> {
+            petToChat.name = name;
+            FavoritiesFragment.pets.add(petToChat);
             Toast.makeText(v.getContext(), "Agregado a favoritos!!!", Toast.LENGTH_LONG).show();
+            /**agregar a la BD el favorito de este VH para que persistan los datos */
         });
         btnNext.setOnClickListener(v -> {
             flag.set(1);
