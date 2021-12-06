@@ -1,9 +1,9 @@
 ﻿using System;
 namespace PawstiesAPI.Controllers
 {
-    public class RestatistaController
+    public class RescatistaController
     {
-        public RestatistaController()
+        public RescatistaController()
         {
         }
     }

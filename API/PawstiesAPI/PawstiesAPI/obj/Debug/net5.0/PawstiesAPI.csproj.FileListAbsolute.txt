@@ -14,11 +14,8 @@
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.Relational.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Microsoft.Extensions.DependencyInjection.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Microsoft.OpenApi.dll
-/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/NetTopologySuite.dll
-/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/NetTopologySuite.IO.PostGis.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Npgsql.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
-/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Npgsql.NetTopologySuite.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Swashbuckle.AspNetCore.SwaggerUI.dll

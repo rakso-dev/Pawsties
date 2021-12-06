@@ -34,7 +34,7 @@ namespace PawstiesAPI.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=pawsties;Username=postgres;Password=sqlserver;");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=pawsties;Username=postgres;Password=sqlserver");
             }
         }
 
@@ -138,6 +138,8 @@ namespace PawstiesAPI.Models
 
                 entity.Property(e => e.RColor).HasColumnName("r_color");
 
+                entity.Property(e => e.RRescatista).HasColumnName("r_rescatista");
+
                 entity.Property(e => e.RTemper).HasColumnName("r_temper");
 
                 entity.Property(e => e.Sexo).HasColumnName("sexo");
@@ -166,6 +168,8 @@ namespace PawstiesAPI.Models
 
                 entity.Property(e => e.RColor).HasColumnName("r_color");
 
+                entity.Property(e => e.RRescatista).HasColumnName("r_rescatista");
+
                 entity.Property(e => e.RTemper).HasColumnName("r_temper");
 
                 entity.Property(e => e.Sexo).HasColumnName("sexo");
@@ -177,6 +181,12 @@ namespace PawstiesAPI.Models
                     .HasForeignKey(d => d.RColor)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("mascota_r_color_fkey");
+
+                entity.HasOne(d => d.RRescatistaNavigation)
+                    .WithMany(p => p.Mascota)
+                    .HasForeignKey(d => d.RRescatista)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("rescatista_fk");
 
                 entity.HasOne(d => d.RTemperNavigation)
                     .WithMany(p => p.Mascota)
@@ -205,6 +215,8 @@ namespace PawstiesAPI.Models
                     .HasDefaultValueSql("nextval('mascota_petid_seq'::regclass)");
 
                 entity.Property(e => e.RColor).HasColumnName("r_color");
+
+                entity.Property(e => e.RRescatista).HasColumnName("r_rescatista");
 
                 entity.Property(e => e.RTalla).HasColumnName("r_talla");
 
@@ -246,6 +258,10 @@ namespace PawstiesAPI.Models
                 entity.Property(e => e.Rescatistaid).HasColumnName("rescatistaid");
 
                 entity.Property(e => e.Image).HasColumnName("image");
+
+                entity.Property(e => e.Latitude).HasColumnName("latitude");
+
+                entity.Property(e => e.Longitude).HasColumnName("longitude");
 
                 entity.Property(e => e.Mail)
                     .HasMaxLength(320)
@@ -299,8 +315,6 @@ namespace PawstiesAPI.Models
 
                 entity.ToTable("usuario");
 
-                //entity.Property(e => e.Ort).HasColumnName("ort"); //prueba ggg
-
                 entity.Property(e => e.Image).HasColumnName("image");
 
                 entity.Property(e => e.Mail)
@@ -311,8 +325,6 @@ namespace PawstiesAPI.Models
                     .HasMaxLength(13)
                     .HasColumnName("telephone")
                     .IsFixedLength(true);
-
-                //entity.Property(e => e.Ort)
             });
 
             OnModelCreatingPartial(modelBuilder);

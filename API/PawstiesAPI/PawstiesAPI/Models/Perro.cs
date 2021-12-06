@@ -17,6 +17,7 @@ namespace PawstiesAPI.Models
         public bool? Esterilizado { get; set; }
         public bool? Discapacitado { get; set; }
         public int? RTalla { get; set; }
+        public int RRescatista { get; set; }
 
         public virtual Talla RTallaNavigation { get; set; }
     }

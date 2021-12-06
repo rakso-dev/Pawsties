@@ -16,8 +16,10 @@ namespace PawstiesAPI.Models
         public bool? Pelaje { get; set; }
         public bool? Esterilizado { get; set; }
         public bool? Discapacitado { get; set; }
+        public int RRescatista { get; set; }
 
         public virtual Color RColorNavigation { get; set; }
+        public virtual Rescatistum RRescatistaNavigation { get; set; }
         public virtual Temper RTemperNavigation { get; set; }
     }
 }

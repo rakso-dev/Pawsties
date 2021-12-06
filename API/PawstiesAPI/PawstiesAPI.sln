@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.810.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawstiesAPI", "PawstiesAPI\PawstiesAPI.csproj", "{C0DC23BF-17C3-428B-9601-CC5E01AD05EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawstiesAPI", "PawstiesAPI\PawstiesAPI.csproj", "{2BEA7A0A-EF1D-4D21-81E9-3CA02222E457}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C0DC23BF-17C3-428B-9601-CC5E01AD05EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0DC23BF-17C3-428B-9601-CC5E01AD05EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0DC23BF-17C3-428B-9601-CC5E01AD05EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0DC23BF-17C3-428B-9601-CC5E01AD05EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BEA7A0A-EF1D-4D21-81E9-3CA02222E457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BEA7A0A-EF1D-4D21-81E9-3CA02222E457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BEA7A0A-EF1D-4D21-81E9-3CA02222E457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BEA7A0A-EF1D-4D21-81E9-3CA02222E457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E48B6C16-299C-4FAB-9602-2588B23C9654}
+		SolutionGuid = {C3A8620A-9782-41B9-B5B7-D8743B69300B}
 	EndGlobalSection
 EndGlobal

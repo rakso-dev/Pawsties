@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+Sw/kONNWL9h2tXFFKRBMykXP5n26SYyLZ9TM1qNtBZKurwns6ecree6szrENbki/0qsmsLShhJXKhy31kFKdQ==",
+  "dgSpecHash": "io281TqvKboyhIu/ZI4kblD6E6SEo1EM6O7L6btNJnkSHGq3wblJ8966HdZTK0Hg67wQLfjLK2McOMnZbI5LhA==",
   "success": true,
   "projectFilePath": "/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/PawstiesAPI.csproj",
   "expectedPackageFiles": [
@@ -22,11 +22,8 @@
     "/Users/oskarbeltranmagana/.nuget/packages/microsoft.extensions.options/5.0.0/microsoft.extensions.options.5.0.0.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/microsoft.extensions.primitives/5.0.0/microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
-    "/Users/oskarbeltranmagana/.nuget/packages/nettopologysuite/2.0.0/nettopologysuite.2.0.0.nupkg.sha512",
-    "/Users/oskarbeltranmagana/.nuget/packages/nettopologysuite.io.postgis/2.1.0/nettopologysuite.io.postgis.2.1.0.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/npgsql/5.0.10/npgsql.5.0.10.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/npgsql.entityframeworkcore.postgresql/5.0.10/npgsql.entityframeworkcore.postgresql.5.0.10.nupkg.sha512",
-    "/Users/oskarbeltranmagana/.nuget/packages/npgsql.nettopologysuite/5.0.10/npgsql.nettopologysuite.5.0.10.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/swashbuckle.aspnetcore.swaggergen/5.6.3/swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
@@ -34,7 +31,6 @@
     "/Users/oskarbeltranmagana/.nuget/packages/system.collections.immutable/5.0.0/system.collections.immutable.5.0.0.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/system.componentmodel.annotations/5.0.0/system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/system.diagnostics.diagnosticsource/5.0.1/system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",
-    "/Users/oskarbeltranmagana/.nuget/packages/system.memory/4.5.3/system.memory.4.5.3.nupkg.sha512",
     "/Users/oskarbeltranmagana/.nuget/packages/system.runtime.compilerservices.unsafe/4.6.0/system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
   ],
   "logs": []
