@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PawstiesAPI.Models;
+using System;
 
 namespace PawstiesAPI.Controllers
 {
@@ -36,6 +37,23 @@ namespace PawstiesAPI.Controllers
             _logger.LogInformation($"Calling method GetMascota with petID {petID}", null);
             var mascota = _context.Mascota.Where(e => e.Petid == petID).FirstOrDefault();
             return Ok(mascota);
+        }
+
+        [HttpPost ("pawstiesAPI/mascota/save")]
+        [ProducesResponseType (StatusCodes.Status200OK)]
+
+        public IActionResult SaveMascota (Mascotum mascota)
+        {
+            try
+            { 
+                _context.Mascota.Add(mascota);
+                _context.SaveChanges();
+                return Ok(); 
+            } catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error during insertion Mascota {mascota.Petid}");
+                throw;
+            }
         }
     }
 }
