@@ -21,6 +21,7 @@ namespace PawstiesAPI.Models
         public int? RTalla { get; set; }
         public int RRescatista { get; set; }
         public string Nombre { get; set; }
+        public string Descripcion { get; set; }
 
         public virtual Talla RTallaNavigation { get; set; }
     }

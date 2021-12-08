@@ -13,7 +13,6 @@ namespace PawstiesAPI.Models
         public int Adoptanteid { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
-        public char? Sexo { get; set; }
         public DateTime? FechaDeNac { get; set; }
     }
 }

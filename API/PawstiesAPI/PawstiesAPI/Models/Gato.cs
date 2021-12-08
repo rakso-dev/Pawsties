@@ -20,5 +20,6 @@ namespace PawstiesAPI.Models
         public bool? Discapacitado { get; set; }
         public int RRescatista { get; set; }
         public string Nombre { get; set; }
+        public string Descripcion { get; set; }
     }
 }

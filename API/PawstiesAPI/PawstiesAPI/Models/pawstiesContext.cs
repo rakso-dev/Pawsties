@@ -92,10 +92,6 @@ namespace PawstiesAPI.Models
                     .HasMaxLength(50)
                     .HasColumnName("nombre");
 
-                entity.Property(e => e.Sexo)
-                    .HasMaxLength(1)
-                    .HasColumnName("sexo");
-
                 entity.Property(e => e.Telephone)
                     .HasMaxLength(13)
                     .HasColumnName("telephone")
@@ -147,6 +143,8 @@ namespace PawstiesAPI.Models
                 entity.Property(e => e.Sexo).HasColumnName("sexo");
 
                 entity.Property(e => e.Vaxxed).HasColumnName("vaxxed");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
             });
 
             modelBuilder.Entity<Mascotum>(entity =>
@@ -181,6 +179,8 @@ namespace PawstiesAPI.Models
                 entity.Property(e => e.Sexo).HasColumnName("sexo");
 
                 entity.Property(e => e.Vaxxed).HasColumnName("vaxxed");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.HasOne(d => d.RColorNavigation)
                     .WithMany(p => p.Mascota)
@@ -233,6 +233,8 @@ namespace PawstiesAPI.Models
                 entity.Property(e => e.Sexo).HasColumnName("sexo");
 
                 entity.Property(e => e.Vaxxed).HasColumnName("vaxxed");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.HasOne(d => d.RTallaNavigation)
                     .WithMany()
