@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace PawstiesAPI.Models
 {
     public partial class Perro
     {
+        [Key]
         public int Petid { get; set; }
         public bool? Sexo { get; set; }
         public DateTime Edad { get; set; }

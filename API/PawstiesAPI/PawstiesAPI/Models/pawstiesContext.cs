@@ -204,7 +204,7 @@ namespace PawstiesAPI.Models
 
             modelBuilder.Entity<Perro>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
 
                 entity.ToTable("perro");
 
