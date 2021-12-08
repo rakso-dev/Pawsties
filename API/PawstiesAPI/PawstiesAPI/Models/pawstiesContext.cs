@@ -118,8 +118,6 @@ namespace PawstiesAPI.Models
 
             modelBuilder.Entity<Gato>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("gato");
 
                 entity.Property(e => e.Discapacitado).HasColumnName("discapacitado");
@@ -204,8 +202,6 @@ namespace PawstiesAPI.Models
 
             modelBuilder.Entity<Perro>(entity =>
             {
-                //entity.HasNoKey();
-
                 entity.ToTable("perro");
 
                 entity.Property(e => e.Discapacitado).HasColumnName("discapacitado");
