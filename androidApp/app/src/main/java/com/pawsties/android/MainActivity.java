@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        loadProfiles();
+        loadProfiles();//los perfiles se estan obteniendo en el fragment, por lo que tal vez no sea necesario este metodo pero si la obtencion de la ubicacion
     }
 
     private void loadProfiles() {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates (LocationManager.GPS_PROVIDER,
                 10000,
-                10,
+                100,
                 locationListener);
     }
 

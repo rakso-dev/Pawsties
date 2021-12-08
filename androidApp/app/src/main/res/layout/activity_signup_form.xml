@@ -6,11 +6,22 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="12dp"
+        android:text="¿Qué quieres ser?"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewxd"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
         android:id="@+id/textViewxd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="73dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="74dp"
         android:text="Ingresa tus datos"
         android:textAlignment="center"
@@ -23,25 +34,12 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etNombreSU"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewxd"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
         android:id="@+id/etApellidosSU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Apellidos"
+        android:hint="Apellidos (solo adoptante)"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -52,22 +50,23 @@
         android:id="@+id/etEmailSU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Correo"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etTelefonoSU"
+        app:layout_constraintTop_toBottomOf="@+id/etRFC"
         tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/etFechaSU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Fecha de nacimiento"
+        android:hint="Fecha de nacimiento (adoptante)"
         android:inputType="date"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -78,14 +77,14 @@
         android:id="@+id/etTelefonoSU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Telefono"
         android:inputType="phone"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaSU"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -97,6 +96,7 @@
         android:hint="Contraseña"
         android:inputType="textPassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/etEmailSU"
         tools:ignore="MissingConstraints" />
@@ -105,7 +105,7 @@
         android:id="@+id/btnOkSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="48dp"
         android:text="REGISTRAR"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.513"
@@ -131,45 +131,59 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_begin="353dp" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup"
+    <EditText
+        android:id="@+id/etRFC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="30dp"
+        android:ems="10"
+        android:hint="RFC (rescatista)"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaSU"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/etTelefonoSU"
+        tools:ignore="MissingConstraints" />
+
+    <RadioGroup
+        android:id="@+id/rgTipoUsuario"
+        android:layout_width="266dp"
+        android:layout_height="53dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         tools:ignore="MissingConstraints">
 
         <RadioButton
-            android:id="@+id/rbAdoptante"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Adoptante"
-            tools:layout_editor_absoluteX="206dp"
-            tools:layout_editor_absoluteY="341dp" />
+            android:id="@+id/rbRescatista"
+            android:layout_width="107dp"
+            android:layout_height="47dp"
+            android:text="Rescatista"
+            app:layout_constraintStart_toEndOf="@+id/rbAdoptante"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:ignore="MissingConstraints" />
 
         <RadioButton
-            android:id="@+id/rbRescatista"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rescatista"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="342dp" />
+            android:id="@+id/rbAdoptante"
+            android:layout_width="113dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="44dp"
+            android:text="Adoptante"
+            tools:ignore="MissingConstraints" />
 
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/textView2"
+    <EditText
+        android:id="@+id/etNombreSU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="52dp"
-        android:text="¿Qué quieres ser?"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Nombre u organizacion"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaSU"
+        app:layout_constraintTop_toBottomOf="@+id/rgTipoUsuario"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
