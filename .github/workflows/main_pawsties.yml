@@ -54,4 +54,4 @@ jobs:
           app-name: 'pawsties'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EA1FC6EFC5C844E5B2271B037A3AC6D7 }}
-          package: API
+          package: API/PawstiesAPI
