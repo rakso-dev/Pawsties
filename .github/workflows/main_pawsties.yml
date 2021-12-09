@@ -6,7 +6,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - pawsties
 on:
   push:
     branches:
-      - main
+      - main/API/PawstiesAPI/PawstiesAPI
   workflow_dispatch:
 
 jobs:
@@ -54,4 +54,4 @@ jobs:
           app-name: 'pawsties'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EA1FC6EFC5C844E5B2271B037A3AC6D7 }}
-          package: API/PawstiesAPI/PawstiesAPI
+          package: .
