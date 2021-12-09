@@ -19,14 +19,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.sql.Date;
+
 public class SignupActivity extends AppCompatActivity {
     EditText etName, etLastname, etTelefono, etNacimiento, etEmail, etPassword, etRFC;
     RadioButton rbAdoptante, rbRescatista;
     RadioGroup rgType;
     Button registrarse;
-    long telefono;
-    String name="", lastname="",  email="", password="", typeUser="", city="", sexo="", rfc="";
-    long nacimiento;
+    String telefono;
+    String name="", lastname="",  email="", password="", typeUser="", rfc="";
+    Date nacimiento;
     LocationListener locationListener;
     LocationManager locationManager;
     AlertDialog gpsAlert = null;
@@ -71,21 +73,21 @@ public class SignupActivity extends AppCompatActivity {
         registrarse.setOnClickListener(v -> {
             getLocation();
             name = etName.getText().toString();
-            telefono = Long.parseLong(etTelefono.getText().toString());//NO DEBE DE ESTAR VACIO ESTE CAMPO
+            telefono = etTelefono.getText().toString();//NO DEBE DE ESTAR VACIO ESTE CAMPO
             email = etEmail.getText().toString();
             password = etPassword.getText().toString();
             if (rgType.getCheckedRadioButtonId() != -1){
                 if (rgType.getCheckedRadioButtonId() == rbAdoptante.getId()) {
                     typeUser = "A";
                     lastname = etLastname.getText().toString();
-                    nacimiento = Long.parseLong(etNacimiento.getText().toString());
-                    adoptante = new Adoptante(telefono, typeUser, email, password, latitud, longitud, city, name, lastname, nacimiento);
+                    nacimiento = Date.valueOf(etNacimiento.getText().toString());
+                    adoptante = new Adoptante(telefono, typeUser, email, password, latitud, longitud, name, lastname, nacimiento);
                     registro(adoptante);
                 }
                 if (rgType.getCheckedRadioButtonId() == rbRescatista.getId()) {
                     rfc = etRFC.getText().toString();
                     typeUser = "R";
-                    rescatista = new Rescatista(telefono, typeUser, email, password, latitud, longitud, city, name, rfc);
+                    rescatista = new Rescatista(telefono, typeUser, email, password, latitud, longitud, name, rfc);
                     registro(rescatista);
                 }
             }else {
@@ -140,7 +142,6 @@ public class SignupActivity extends AppCompatActivity {
 
         latitud = MyLocationListener.latitude;
         longitud = MyLocationListener.longitude;
-        city = MyLocationListener.city;
     }
 
     public void registro(Adoptante adoptante){

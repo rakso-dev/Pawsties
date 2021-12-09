@@ -38,11 +38,13 @@
         android:id="@+id/etApellidosEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Apellidos (solo adoptante)"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/etNombreEP"
         tools:ignore="MissingConstraints" />
@@ -68,11 +70,12 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Fecha de nacimiento (adoptante)"
-        android:inputType="date"
+        android:inputType="datetime"
+        android:editable="false"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/etApellidosEP"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="Deprecated,MissingConstraints" />
 
     <EditText
         android:id="@+id/etTelefonoEP"
@@ -145,6 +148,19 @@
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textViewxd"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/btnSetDate"
+        android:layout_width="42dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/etFechaEP"
+        app:layout_constraintTop_toBottomOf="@+id/etApellidosEP"
+        app:srcCompat="@drawable/ic_baseline_date_range_24"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
