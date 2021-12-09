@@ -40,6 +40,7 @@ namespace PawstiesAPI.Controllers
 
         [HttpPost ("pawstiesAPI/perro")]
         [ProducesResponseType (StatusCodes.Status200OK)]
+        [ProducesResponseType (StatusCodes.Status500InternalServerError)]
         public IActionResult SavePerro([FromBody] Perro perro)
         {
             try
@@ -50,6 +51,42 @@ namespace PawstiesAPI.Controllers
             } catch(Exception ex)
             {
                 _logger.LogError(ex, $"Error during insertion of Perro {perro.Petid}");
+                throw;
+            }
+        }
+
+        [HttpPost ("pawstiesAPI/perro/{petid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Update([FromBody] Perro perro, int petid)
+        {
+            try
+            {
+                Perro dog = _context.Perros.Where(e => e.Petid == petid).FirstOrDefault();
+                if (dog == null)
+                {
+                    return BadRequest();
+                }
+                dog.Nombre = perro.Nombre;
+                dog.Sexo = perro.Sexo;
+                dog.Edad = perro.Edad;
+                dog.RColor = perro.RColor;
+                dog.Vaxxed = perro.Vaxxed;
+                dog.RTemper = perro.RTemper;
+                dog.Pelaje = perro.Pelaje;
+                dog.Esterilizado = perro.Esterilizado;
+                dog.Discapacitado = perro.Discapacitado;
+                dog.RRescatista = perro.RRescatista;
+                dog.Nombre = perro.Nombre;
+                dog.Descripcion = perro.Descripcion;
+                dog.RTalla = perro.RTalla;
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error during Perro update with petid = {petid}");
                 throw;
             }
         }

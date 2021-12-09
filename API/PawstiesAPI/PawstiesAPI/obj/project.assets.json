@@ -294,15 +294,6 @@
           "lib/netstandard2.0/Npgsql.NetTopologySuite.dll": {}
         }
       },
-      "Serilog/2.10.0": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.1/Serilog.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.1/Serilog.dll": {}
-        }
-      },
       "Swashbuckle.AspNetCore/5.6.3": {
         "type": "package",
         "dependencies": {
@@ -884,30 +875,6 @@
         "postgresql.png"
       ]
     },
-    "Serilog/2.10.0": {
-      "sha512": "+QX0hmf37a0/OZLxM3wL7V6/ADvC1XihXN4Kq/p6d8lCPfgkRdiuhbWlMaFjR9Av0dy5F0+MBeDmDdRZN/YwQA==",
-      "type": "package",
-      "path": "serilog/2.10.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "icon.png",
-        "lib/net45/Serilog.dll",
-        "lib/net45/Serilog.xml",
-        "lib/net46/Serilog.dll",
-        "lib/net46/Serilog.xml",
-        "lib/netstandard1.0/Serilog.dll",
-        "lib/netstandard1.0/Serilog.xml",
-        "lib/netstandard1.3/Serilog.dll",
-        "lib/netstandard1.3/Serilog.xml",
-        "lib/netstandard2.0/Serilog.dll",
-        "lib/netstandard2.0/Serilog.xml",
-        "lib/netstandard2.1/Serilog.dll",
-        "lib/netstandard2.1/Serilog.xml",
-        "serilog.2.10.0.nupkg.sha512",
-        "serilog.nuspec"
-      ]
-    },
     "Swashbuckle.AspNetCore/5.6.3": {
       "sha512": "UkL9GU0mfaA+7RwYjEaBFvAzL8qNQhNqAeV5uaWUu/Z+fVgvK9FHkGCpTXBqSQeIHuZaIElzxnLDdIqGzuCnVg==",
       "type": "package",
@@ -1168,7 +1135,6 @@
       "Microsoft.EntityFrameworkCore.Design >= 5.0.10",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.10",
       "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite >= 5.0.10",
-      "Serilog >= 2.10.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
@@ -1226,10 +1192,6 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite": {
             "target": "Package",
             "version": "[5.0.10, )"
-          },
-          "Serilog": {
-            "target": "Package",
-            "version": "[2.10.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

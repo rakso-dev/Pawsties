@@ -37,7 +37,6 @@
           "Microsoft.EntityFrameworkCore.Design": "5.0.10",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "5.0.10",
           "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite": "5.0.10",
-          "Serilog": "2.10.0",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -547,17 +546,6 @@
         },
         "compile": {
           "lib/netstandard2.0/Npgsql.NetTopologySuite.dll": {}
-        }
-      },
-      "Serilog/2.10.0": {
-        "runtime": {
-          "lib/netstandard2.1/Serilog.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.10.0.0"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.1/Serilog.dll": {}
         }
       },
       "Swashbuckle.AspNetCore/5.6.3": {
@@ -2483,13 +2471,6 @@
       "sha512": "sha512-1PyTUSIfnUlghgW391osXhoTOVd9DQha/aLmK4WpwSWRj8OlSU18aPTUlb/2nRbL/ANru2suu5j4wMoi6EJtsQ==",
       "path": "npgsql.nettopologysuite/5.0.10",
       "hashPath": "npgsql.nettopologysuite.5.0.10.nupkg.sha512"
-    },
-    "Serilog/2.10.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-+QX0hmf37a0/OZLxM3wL7V6/ADvC1XihXN4Kq/p6d8lCPfgkRdiuhbWlMaFjR9Av0dy5F0+MBeDmDdRZN/YwQA==",
-      "path": "serilog/2.10.0",
-      "hashPath": "serilog.2.10.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/5.6.3": {
       "type": "package",

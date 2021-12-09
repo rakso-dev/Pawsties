@@ -60,12 +60,10 @@
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Npgsql.NetTopologySuite.dll
-/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Serilog.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/bin/Debug/net5.0/System.Diagnostics.DiagnosticSource.dll
-/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.csproj.AssemblyReference.cache
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.GeneratedMSBuildEditorConfig.editorconfig
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.AssemblyInfoInputs.cache
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.AssemblyInfo.cs

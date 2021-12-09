@@ -31,29 +31,17 @@ namespace PawstiesAPI.Controllers
 
         [HttpGet ("pawstiesAPI/mascotas/{petID}")]
         [ProducesResponseType (StatusCodes.Status200OK, Type = typeof(Mascotum))]
+        [ProducesResponseType (StatusCodes.Status400BadRequest)]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
         public IActionResult GetMascota(int petID)
         {
             _logger.LogInformation($"Calling method GetMascota with petID {petID}", null);
             var mascota = _context.Mascota.Where(e => e.Petid == petID).FirstOrDefault();
-            return Ok(mascota);
-        }
-
-        [HttpPost ("pawstiesAPI/mascota")]
-        [ProducesResponseType (StatusCodes.Status200OK)]
-        [ProducesResponseType (StatusCodes.Status500InternalServerError)]
-        public IActionResult SaveMascota (Mascotum mascota)
-        {
-            try
-            { 
-                _context.Mascota.Add(mascota);
-                _context.SaveChanges();
-                return Ok(); 
-            } catch (Exception ex)
+            if (mascota == null)
             {
-                _logger.LogError(ex, $"Error during insertion Mascota {mascota.Petid}");
-                throw;
+                return BadRequest("Unexistent petID");
             }
+            return Ok(mascota);
         }
 
         [HttpPut ("pawstiesAPI/mascota/{petid}")]
