@@ -19,7 +19,7 @@ namespace PawstiesAPI.Controllers
             _logger = logger;
         }
 
-        [HttpGet ("pawstiesAPI/gato/all")]
+        [HttpGet ("pawstiesAPI/gato")]
         [ProducesResponseType (StatusCodes.Status200OK, Type = typeof(IEnumerable<Gato>))]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
         public IActionResult GetAll()

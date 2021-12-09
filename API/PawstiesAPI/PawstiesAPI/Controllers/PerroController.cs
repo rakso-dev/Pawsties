@@ -28,7 +28,7 @@ namespace PawstiesAPI.Controllers
             return Ok(perro);
         }
 
-        [HttpGet ("pawstiesAPI/perro/all")]
+        [HttpGet ("pawstiesAPI/perro")]
         [ProducesResponseType (StatusCodes.Status200OK, Type = typeof(IEnumerable<Perro>))]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
         public IActionResult GetAll ()

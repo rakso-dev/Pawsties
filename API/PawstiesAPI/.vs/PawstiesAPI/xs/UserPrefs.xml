@@ -1,15 +1,12 @@
 ﻿<Properties StartupConfiguration="{78B94B4F-7A70-4E02-AF59-EBDB4FD47027}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Models/Perro.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Models/Adoptante.cs">
     <Files>
-      <File FileName="PawstiesAPI/Models/Rescatistum.cs" Line="26" Column="1" />
-      <File FileName="PawstiesAPI/Models/Mascotum.cs" Line="21" Column="46" />
-      <File FileName="PawstiesAPI/Controllers/MascotaController.cs" />
-      <File FileName="PawstiesAPI/Controllers/PerroController.cs" Line="43" Column="51" />
-      <File FileName="PawstiesAPI/Models/pawstiesContext.cs" Line="147" Column="82" />
-      <File FileName="PawstiesAPI/Controllers/GatoController.cs" />
-      <File FileName="PawstiesAPI/Models/Adoptante.cs" Line="16" Column="9" />
-      <File FileName="PawstiesAPI/Models/Gato.cs" Line="23" Column="46" />
-      <File FileName="PawstiesAPI/Models/Perro.cs" Line="24" Column="18" />
+      <File FileName="PawstiesAPI/Controllers/MascotaController.cs" Line="60" Column="17" />
+      <File FileName="PawstiesAPI/Controllers/GatoController.cs" Line="56" Column="29" />
+      <File FileName="PawstiesAPI/Models/Mascotum.cs" Line="20" Column="9" />
+      <File FileName="PawstiesAPI/Controllers/PerroController.cs" Line="41" Column="40" />
+      <File FileName="PawstiesAPI/Models/pawstiesContext.cs" Line="34" Column="10" />
+      <File FileName="PawstiesAPI/Models/Adoptante.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -21,7 +18,7 @@
               </Node>
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Perro.cs" selected="True" />
+                <Node name="Adoptante.cs" selected="True" />
               </Node>
               <Node name="Properties" expanded="True" />
             </Node>
