@@ -31,11 +31,6 @@ namespace PawstiesAPI.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            /*if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=pawsties;Username=postgres;Password=sqlserver", x => x.UseNetTopologySuite());
-            }*/
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -92,10 +87,6 @@ namespace PawstiesAPI.Models
                     .HasMaxLength(50)
                     .HasColumnName("nombre");
 
-                entity.Property(e => e.Sexo)
-                    .HasMaxLength(1)
-                    .HasColumnName("sexo");
-
                 entity.Property(e => e.Telephone)
                     .HasMaxLength(13)
                     .HasColumnName("telephone")
@@ -118,8 +109,6 @@ namespace PawstiesAPI.Models
 
             modelBuilder.Entity<Gato>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("gato");
 
                 entity.Property(e => e.Discapacitado).HasColumnName("discapacitado");
@@ -149,6 +138,8 @@ namespace PawstiesAPI.Models
                 entity.Property(e => e.Sexo).HasColumnName("sexo");
 
                 entity.Property(e => e.Vaxxed).HasColumnName("vaxxed");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
             });
 
             modelBuilder.Entity<Mascotum>(entity =>
@@ -184,6 +175,8 @@ namespace PawstiesAPI.Models
 
                 entity.Property(e => e.Vaxxed).HasColumnName("vaxxed");
 
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
+
                 entity.HasOne(d => d.RColorNavigation)
                     .WithMany(p => p.Mascota)
                     .HasForeignKey(d => d.RColor)
@@ -204,8 +197,6 @@ namespace PawstiesAPI.Models
 
             modelBuilder.Entity<Perro>(entity =>
             {
-                //entity.HasNoKey();
-
                 entity.ToTable("perro");
 
                 entity.Property(e => e.Discapacitado).HasColumnName("discapacitado");
@@ -237,6 +228,8 @@ namespace PawstiesAPI.Models
                 entity.Property(e => e.Sexo).HasColumnName("sexo");
 
                 entity.Property(e => e.Vaxxed).HasColumnName("vaxxed");
+
+                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.HasOne(d => d.RTallaNavigation)
                     .WithMany()

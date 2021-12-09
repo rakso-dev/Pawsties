@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +8,7 @@ namespace PawstiesAPI.Models
 {
     public partial class Gato
     {
+        [Key]
         public int Petid { get; set; }
         public bool? Sexo { get; set; }
         public DateTime Edad { get; set; }
@@ -18,5 +20,6 @@ namespace PawstiesAPI.Models
         public bool? Discapacitado { get; set; }
         public int RRescatista { get; set; }
         public string Nombre { get; set; }
+        public string Descripcion { get; set; }
     }
 }
