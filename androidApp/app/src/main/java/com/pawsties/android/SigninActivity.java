@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SigninActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button ingresar;
-    String email, password;
+    String email, password, typeUser;
+    public static Adoptante adoptante;
+    public static Rescatista rescatista;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,9 +42,14 @@ public class SigninActivity extends AppCompatActivity {
 
     public void iniciarSesion(String correo, String contrasena){
         /** INICIAR SESION CON LA INFROMACION DE LA BD DE AZURE */
+        //de acuerdo con la informacion, obtener el objeto de ese usuario
+        //almacenar en el objeto correspondiente a el TIPO de usuario que regrese la BD
+        typeUser = "A";//EJEMPLO: esto lo tiene que recibir de la BD
 
         //si todo es correcto, lanzara el main activity (poner el intento dentro de un condicional)
         Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+        intent.putExtra("typeUser", typeUser);
+        intent.putExtra("activity", "in");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

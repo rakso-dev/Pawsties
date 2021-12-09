@@ -32,7 +32,7 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesVH> {
     public void onBindViewHolder(@NonNull ProfilesVH holder, int position) {
         final PetModel profile = profiles.get(position);
         AtomicInteger flag;//el atomic era para cambiar con el boton pero no funciono, pero tampoco trono la app ggg
-        flag = holder.bind(profile.pic, profile.name, profile.description);
+        flag = holder.bind(profile);
         if (flag.equals(1))
             position++;
         if (flag.equals(-1))

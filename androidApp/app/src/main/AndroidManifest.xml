@@ -50,6 +50,11 @@
             android:exported="true"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="locked"/>
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="locked"/>
     </application>
 
 </manifest>

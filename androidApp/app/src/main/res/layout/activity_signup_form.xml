@@ -34,7 +34,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etApellidosSU"
+        android:id="@+id/etApellidosEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -43,11 +43,11 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etNombreSU"
+        app:layout_constraintTop_toBottomOf="@+id/etNombreEP"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etEmailSU"
+        android:id="@+id/etEmailEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -57,11 +57,11 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etRFC"
+        app:layout_constraintTop_toBottomOf="@+id/etRFCep"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etFechaSU"
+        android:id="@+id/etFechaEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -70,11 +70,11 @@
         android:inputType="date"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etApellidosSU"
+        app:layout_constraintTop_toBottomOf="@+id/etApellidosEP"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etTelefonoSU"
+        android:id="@+id/etTelefonoEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -84,11 +84,11 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaSU"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaEP"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etContrasenaSU"
+        android:id="@+id/etContrasenaEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -98,7 +98,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etEmailSU"
+        app:layout_constraintTop_toBottomOf="@+id/etEmailEP"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etContrasenaSU"
+        app:layout_constraintTop_toBottomOf="@+id/etContrasenaEP"
         tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -132,7 +132,7 @@
         app:layout_constraintGuide_begin="353dp" />
 
     <EditText
-        android:id="@+id/etRFC"
+        android:id="@+id/etRFCep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -141,7 +141,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etTelefonoSU"
+        app:layout_constraintTop_toBottomOf="@+id/etTelefonoEP"
         tools:ignore="MissingConstraints" />
 
     <RadioGroup
@@ -174,7 +174,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/etNombreSU"
+        android:id="@+id/etNombreEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

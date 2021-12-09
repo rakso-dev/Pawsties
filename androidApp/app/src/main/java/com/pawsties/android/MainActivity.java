@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
     LocationListener locationListener;
     LocationManager locationManager;
     AlertDialog gpsAlert = null;
-    String typeUser;
+    public static String typeUser;
+    String activity_parent;
+    Adoptante adoptante;
+    Rescatista rescatista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +51,25 @@ public class MainActivity extends AppCompatActivity {
         navigationBar = findViewById(R.id.bottom_navigation_bar);
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
 
-        /** SE VA A DETERMINAR QUE TIPO DE USUARIO ES EN BASE A LA BD PARA CARGAR LA VISTA ADECUADA */
-        //PRUEBAS
-        typeUser = "A";
+        Intent intent = getIntent();
+        typeUser = intent.getStringExtra("typeUser");
+        activity_parent = intent.getStringExtra("activity");
+
         if (typeUser.equals(ADOPTANTE)){
             getSupportActionBar().setTitle("Perfiles cercanos");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
+            if (activity_parent.equals("up"))
+                adoptante = SignupActivity.adoptante;
+            //if (activity_parent.equals("in"))
+                //adoptante = SigninActivity.adoptante;
         }
         if (typeUser.equals(RESCATISTA)) {
             getSupportActionBar().setTitle("Mis mascotas");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new PetsRescatistaFragment()).commit();
+            if (activity_parent.equals("up"))
+                rescatista = SignupActivity.rescatista;
+            //if (activity_parent.equals("in"))
+                //rescatista = SigninActivity.rescatista;
         }
 
         //btnChat = findViewById(R.id.btnChat);

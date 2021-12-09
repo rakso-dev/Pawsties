@@ -17,12 +17,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class PetsRescatistaFragment extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private ProfilesAdapter adapter;
     ArrayList<PetModel> profiles;
+    ArrayList<PerroModel> perros;
+    ArrayList<GatoModel> gatos;
     Activity activity;
     FloatingActionButton addPet;
 
@@ -45,18 +49,18 @@ public class PetsRescatistaFragment extends Fragment {
         });
 
         profiles = new ArrayList<>();
+        perros = new ArrayList<>();
+        gatos = new ArrayList<>();
 
         //ELEMENTO MASCOTA DE PRUEBA (borrar cuando se obtengan de la BD)
-        PetModel profile = new PetModel();
-        PetModel profile2 = new PetModel();
-        profile.name = "michi";
-        profile.description = "gato xd";
-        profile.pic = null;
-        profiles.add(profile);
-        profile2.name = "firulais";
-        profile2.description = "perrito";
-        profile2.pic = null;
-        profiles.add(profile2);
+        GatoModel profile = new GatoModel("michi", true, 2, 1, true, 2, false, false, false, 1, "un gato muy bonito xd");
+        PerroModel profile2 = new PerroModel("Firulais", true, 1, 3, true, 2, false, true, false, 1, "soy un perro xd", 0.5);
+        GatoModel profile3 = new GatoModel("manchas", false, 2, 2, true, 2, true, true, false, 1, "soy una gata de tejado");
+        perros.add(profile2);
+        gatos.add(profile);
+        gatos.add(profile3);
+        profiles.addAll(perros);
+        profiles.addAll(gatos);
         //=========================================================================
 
         loadProfiles();

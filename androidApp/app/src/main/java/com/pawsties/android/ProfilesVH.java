@@ -17,7 +17,7 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
     TextView petName;
     TextView petDescription;
     ImageButton btnBack, btnNext, btnFav;
-    PetModel petToChat = new PetModel();
+    PetModel petToChat;
 
     public ProfilesVH(@NonNull View itemView) {
         super(itemView);
@@ -30,15 +30,13 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
         btnFav = itemView.findViewById(R.id.btnLike);
     }
 
-    AtomicInteger bind(Bitmap pic, String name, String description){
+    AtomicInteger bind(PetModel profile){
         AtomicInteger flag = new AtomicInteger();
-        //petPic.setImageBitmap(pic);
-        //petPic.setImageResource(R.mipmap.ic_launcher_round);//quitar cuando se obtengan de la BD
-        petName.setText(name);
-        petDescription.setText(description);
+        petName.setText(profile.name);
+        petDescription.setText(profile.description);
 
         btnFav.setOnClickListener(v -> {
-            petToChat.name = name;
+            petToChat = profile;
             FavoritiesFragment.pets.add(petToChat);
             Toast.makeText(v.getContext(), "Agregado a favoritos!!!", Toast.LENGTH_LONG).show();
             /**agregar a la BD el favorito de este VH para que persistan los datos */

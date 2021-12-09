@@ -8,7 +8,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -19,8 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Date;
 
 public class SignupActivity extends AppCompatActivity {
     EditText etName, etLastname, etTelefono, etNacimiento, etEmail, etPassword, etRFC;
@@ -34,6 +31,8 @@ public class SignupActivity extends AppCompatActivity {
     LocationManager locationManager;
     AlertDialog gpsAlert = null;
     double latitud, longitud;
+    public static Adoptante adoptante;
+    public static Rescatista rescatista;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,13 +41,13 @@ public class SignupActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Registro");
 
-        etName = findViewById(R.id.etNombreSU);
-        etLastname = findViewById(R.id.etApellidosSU);
-        etTelefono = findViewById(R.id.etTelefonoSU);
-        etNacimiento = findViewById(R.id.etFechaSU);
-        etEmail = findViewById(R.id.etEmailSU);
-        etPassword = findViewById(R.id.etContrasenaSU);
-        etRFC = findViewById(R.id.etRFC);
+        etName = findViewById(R.id.etNombreEP);
+        etLastname = findViewById(R.id.etApellidosEP);
+        etTelefono = findViewById(R.id.etTelefonoEP);
+        etNacimiento = findViewById(R.id.etFechaEP);
+        etEmail = findViewById(R.id.etEmailEP);
+        etPassword = findViewById(R.id.etContrasenaEP);
+        etRFC = findViewById(R.id.etRFCep);
         rgType = findViewById(R.id.rgTipoUsuario);
         rbAdoptante = findViewById(R.id.rbAdoptante);
         rbRescatista = findViewById(R.id.rbRescatista);
@@ -80,15 +79,14 @@ public class SignupActivity extends AppCompatActivity {
                     typeUser = "A";
                     lastname = etLastname.getText().toString();
                     nacimiento = Long.parseLong(etNacimiento.getText().toString());
-                    sexo = "M";//cambiar cuando se cree un fiel propio
-                    Adoptante usuario = new Adoptante(telefono, typeUser, email, password, latitud, longitud, city, name, lastname, nacimiento, sexo);
-                    registro(usuario);
+                    adoptante = new Adoptante(telefono, typeUser, email, password, latitud, longitud, city, name, lastname, nacimiento);
+                    registro(adoptante);
                 }
                 if (rgType.getCheckedRadioButtonId() == rbRescatista.getId()) {
                     rfc = etRFC.getText().toString();
                     typeUser = "R";
-                    Rescatista usuario = new Rescatista(telefono, typeUser, email, password, latitud, longitud, city, name, rfc);
-                    registro(usuario);
+                    rescatista = new Rescatista(telefono, typeUser, email, password, latitud, longitud, city, name, rfc);
+                    registro(rescatista);
                 }
             }else {
                 Toast.makeText(SignupActivity.this, "Por favor elige un tipo de usuario", Toast.LENGTH_SHORT).show();
@@ -146,20 +144,23 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void registro(Adoptante adoptante){
-        /**aqui se va a hacer el registro en la base de Azure*/
+        /**aqui se va a hacer el registro del adoptante en la base de Azure*/
 
         //si todo es correcto, esta funcion va a lanzar el main activity
-        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
+        launchMainActivity();
     }
 
     public void registro(Rescatista rescatista){
-        /**aqui se va a hacer el registro en la base de Azure*/
+        /**aqui se va a hacer el registro del rescatista en la base de Azure*/
 
         //si todo es correcto, esta funcion va a lanzar el main activity
+        launchMainActivity();
+    }
+
+    public void launchMainActivity(){
         Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+        intent.putExtra("typeUser", typeUser);
+        intent.putExtra("activity", "up");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
