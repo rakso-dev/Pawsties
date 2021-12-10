@@ -1,15 +1,14 @@
 package com.pawsties.android;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.DatePicker;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.sql.Date;
@@ -27,6 +26,7 @@ public class EditProfileActivity extends AppCompatActivity {
     String telefono;
     String name="", lastname="",  email="", password="", rfc="";
     Date nacimiento;
+    AlertDialog inputAlert = null;
     //tal vez no sea necesario tener los objetos heredados de UserModel aqui xd
     Adoptante adoptante;
     Rescatista rescatista;
@@ -50,8 +50,16 @@ public class EditProfileActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmailEP);
         etPassword = findViewById(R.id.etContrasenaEP);
         etRFC = findViewById(R.id.etRFCep);
-        setDate = findViewById(R.id.btnSetDate);
+        setDate = findViewById(R.id.btnSetDateEP);
         btnDone = findViewById(R.id.fbDoneEP);
+
+        /** RECIBIR EL OBJETO JSON DEL USUARIO A EDITAR */
+        //los datos recibidos del json seran establecidos en los edittexts
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         setDate.setOnClickListener(v -> {
             final Calendar calendar = Calendar.getInstance();
@@ -65,48 +73,64 @@ public class EditProfileActivity extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        /** RECIBIR EL OBJETO JSON DEL USUARIO A EDITAR */
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
         btnDone.setOnClickListener(v -> {
             name = etName.getText().toString();
             email = etEmail.getText().toString();
             password = etPassword.getText().toString();
             telefono = etTelefono.getText().toString();
-            if (MainActivity.typeUser.equals("A")){
+            if (MainActivity.typeUser){
                 lastname = etLastname.getText().toString();
-                nacimiento = Date.valueOf(etNacimiento.getText().toString());
-                adoptante = new Adoptante(telefono, "A", email, password, 0.2, 0.2, name, lastname, nacimiento);
 
-                try {
-                    usuario.accumulate("image", null);
-                    usuario.accumulate("mail", email);
-                    usuario.accumulate("telephone", telefono);
-                    //usuario.accumulate("adoptanteid", null);
-                    usuario.accumulate("nombre", name);
-                    usuario.accumulate("apellidos", lastname);
-                    usuario.accumulate("fecha_de_nac", nacimiento);
-                    updateAdoptante(usuario);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (TextUtils.isEmpty(name) || TextUtils.isEmpty(telefono) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(lastname) || TextUtils.isEmpty(etNacimiento.getText().toString())){
+                    final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+                    alertBuilder.setMessage("Ingresa los datos solicitados")
+                            .setCancelable(true)
+                            .setPositiveButton("aceptar", (dialog, which) -> {});
+                    inputAlert = alertBuilder.create();
+                    inputAlert.show();
+                    return;
+                }else {
+                    nacimiento = Date.valueOf(etNacimiento.getText().toString());
+                    adoptante = new Adoptante(telefono, true, email, password, 0.2, 0.2, name, lastname, nacimiento);
+                    try {
+                        usuario.accumulate("image", null);
+                        usuario.accumulate("mail", email);
+                        usuario.accumulate("password", password);
+                        usuario.accumulate("telephone", telefono);
+                        usuario.accumulate("nombre", name);
+                        usuario.accumulate("apellidos", lastname);
+                        usuario.accumulate("fecha_de_nac", nacimiento);
+                        updateAdoptante(usuario);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
-            if (MainActivity.typeUser.equals("R")){
+            if (!MainActivity.typeUser){
                 rfc = etRFC.getText().toString();
-                rescatista = new Rescatista(telefono, "R", email, password, 0.2, 0.2, name, rfc);
-                try {
-                    usuario.accumulate("image", null);
-                    usuario.accumulate("mail", email);
-                    usuario.accumulate("telephone", telefono);
-                    usuario.accumulate("nombre_ent", name);
-                    usuario.accumulate("rfc", rfc);
-                    updateRescatista(usuario);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+                if (TextUtils.isEmpty(name) || TextUtils.isEmpty(telefono) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(rfc)) {
+                    final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+                    alertBuilder.setMessage("Ingresa los datos solicitados")
+                            .setCancelable(true)
+                            .setPositiveButton("aceptar", (dialog, which) -> {
+                            });
+                    inputAlert = alertBuilder.create();
+                    inputAlert.show();
+                    return;
+                }else {
+                    rescatista = new Rescatista(telefono, false, email, password, 0.2, 0.2, name, rfc);
+                    try {
+                        usuario.accumulate("image", null);
+                        usuario.accumulate("mail", email);
+                        usuario.accumulate("password", password);
+                        usuario.accumulate("telephone", telefono);
+                        usuario.accumulate("nombre_ent", name);
+                        usuario.accumulate("rfc", rfc);
+                        updateRescatista(usuario);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             Toast.makeText(EditProfileActivity.this, "Usuario 'actualizado'", Toast.LENGTH_LONG).show();

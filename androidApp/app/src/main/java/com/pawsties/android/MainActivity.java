@@ -26,22 +26,25 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_LOCATION = 1001;
-    public static final String ADOPTANTE = "A";
-    public static final String RESCATISTA = "R";
+    public static final boolean ADOPTANTE = true;
+    public static final boolean RESCATISTA = false;
     BottomNavigationView navigationBar;
     LocationListener locationListener;
     LocationManager locationManager;
     AlertDialog gpsAlert = null;
-    public static String typeUser;
+    public static boolean typeUser;
     String activity_parent;
     Adoptante adoptante;
     Rescatista rescatista;
+    JSONObject usuarioJSON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +55,11 @@ public class MainActivity extends AppCompatActivity {
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
 
         Intent intent = getIntent();
-        typeUser = intent.getStringExtra("typeUser");
+        typeUser = intent.getBooleanExtra("typeUser", true);
         activity_parent = intent.getStringExtra("activity");
 
-        if (typeUser.equals(ADOPTANTE)){
+        /** igualar el objeto json del main con el de signin o signup segun sea el coso */
+        if (typeUser){//es adoptante
             getSupportActionBar().setTitle("Perfiles cercanos");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
             if (activity_parent.equals("up"))
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             //if (activity_parent.equals("in"))
                 //adoptante = SigninActivity.adoptante;
         }
-        if (typeUser.equals(RESCATISTA)) {
+        if (!typeUser) {//es rescatista
             getSupportActionBar().setTitle("Mis mascotas");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new PetsRescatistaFragment()).commit();
             if (activity_parent.equals("up"))
@@ -135,11 +139,11 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.nav_profiles:
                 //getSupportFragmentManager().beginTransaction().remove(selectFragment).commit();
-                if (typeUser.equals(ADOPTANTE)){
+                if (typeUser){
                     selectFragment = new ProfilesFragment();
                     getSupportActionBar().setTitle("Perfiles cercanos");
                 }
-                if (typeUser.equals(RESCATISTA)){
+                if (!typeUser){
                     selectFragment = new PetsRescatistaFragment();
                     getSupportActionBar().setTitle("Mis mascotas");
                 }

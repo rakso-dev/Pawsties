@@ -2,14 +2,17 @@ package com.pawsties.android;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -19,22 +22,35 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.sql.Date;
+import java.util.Calendar;
 
 public class SignupActivity extends AppCompatActivity {
     EditText etName, etLastname, etTelefono, etNacimiento, etEmail, etPassword, etRFC;
+    ImageButton setDate;
     RadioButton rbAdoptante, rbRescatista;
     RadioGroup rgType;
     Button registrarse;
     String telefono;
-    String name="", lastname="",  email="", password="", typeUser="", rfc="";
+    String name="";
+    String lastname="";
+    String email="";
+    String password="";
+    boolean typeUser;
+    String rfc="";
     Date nacimiento;
     LocationListener locationListener;
     LocationManager locationManager;
-    AlertDialog gpsAlert = null;
+    AlertDialog gpsAlert = null, inputAlert = null;
     double latitud, longitud;
+    int dia, mes, anho;
+    UserModel usuario;
     public static Adoptante adoptante;
     public static Rescatista rescatista;
+    public static JSONObject usuarioJSON = new JSONObject();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +69,7 @@ public class SignupActivity extends AppCompatActivity {
         rgType = findViewById(R.id.rgTipoUsuario);
         rbAdoptante = findViewById(R.id.rbAdoptante);
         rbRescatista = findViewById(R.id.rbRescatista);
+        setDate = findViewById(R.id.btnSetDateSU);
         registrarse = findViewById(R.id.btnOkSignup);
 
     }
@@ -70,38 +87,70 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
+        setDate.setOnClickListener(v -> {
+            final Calendar calendar = Calendar.getInstance();
+            dia = calendar.get(Calendar.DAY_OF_MONTH);
+            mes = calendar.get(Calendar.MONTH);
+            anho = calendar.get(Calendar.YEAR);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(SignupActivity.this, (view, year, month, dayOfMonth) ->
+                    etNacimiento.setText(year+"-"+(month+1)+"-"+dayOfMonth), anho, mes, dia);
+
+            datePickerDialog.show();
+        });
+
         registrarse.setOnClickListener(v -> {
             getLocation();
             name = etName.getText().toString();
             telefono = etTelefono.getText().toString();//NO DEBE DE ESTAR VACIO ESTE CAMPO
             email = etEmail.getText().toString();
             password = etPassword.getText().toString();
-            if (rgType.getCheckedRadioButtonId() != -1){
+            if (rgType.getCheckedRadioButtonId() == -1){
+                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+                alertBuilder.setMessage("Elige un tipo de usuario valido")
+                        .setCancelable(true)
+                        .setPositiveButton("aceptar", (dialog, which) -> {});
+                inputAlert = alertBuilder.create();
+                inputAlert.show();
+                return;
+            }else{
                 if (rgType.getCheckedRadioButtonId() == rbAdoptante.getId()) {
-                    typeUser = "A";
+                    typeUser = true;
                     lastname = etLastname.getText().toString();
-                    nacimiento = Date.valueOf(etNacimiento.getText().toString());
-                    adoptante = new Adoptante(telefono, typeUser, email, password, latitud, longitud, name, lastname, nacimiento);
-                    registro(adoptante);
+                    //valida la integridad de los datos ingresados
+                    if (TextUtils.isEmpty(name) || TextUtils.isEmpty(telefono) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(lastname) || TextUtils.isEmpty(etNacimiento.getText().toString())){
+                        final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+                        alertBuilder.setMessage("Ingresa los datos solicitados")
+                                .setCancelable(true)
+                                .setPositiveButton("aceptar", (dialog, which) -> {});
+                        inputAlert = alertBuilder.create();
+                        inputAlert.show();
+                        return;
+                    }else {
+                        nacimiento = Date.valueOf(etNacimiento.getText().toString());
+                        adoptante = new Adoptante(telefono, typeUser, email, password, latitud, longitud, name, lastname, nacimiento);
+                        registro(adoptante);
+                    }
                 }
                 if (rgType.getCheckedRadioButtonId() == rbRescatista.getId()) {
                     rfc = etRFC.getText().toString();
-                    typeUser = "R";
-                    rescatista = new Rescatista(telefono, typeUser, email, password, latitud, longitud, name, rfc);
-                    registro(rescatista);
+                    typeUser = false;
+                    if (TextUtils.isEmpty(name) || TextUtils.isEmpty(telefono) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(rfc)){
+                        final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+                        alertBuilder.setMessage("Ingresa los datos solicitados")
+                                .setCancelable(true)
+                                .setPositiveButton("aceptar", (dialog, which) -> {});
+                        inputAlert = alertBuilder.create();
+                        inputAlert.show();
+                        return;
+                    }else {
+                        rescatista = new Rescatista(telefono, typeUser, email, password, latitud, longitud, name, rfc);
+                        registro(rescatista);
+                    }
                 }
-            }else {
-                Toast.makeText(SignupActivity.this, "Por favor elige un tipo de usuario", Toast.LENGTH_SHORT).show();
-                return;
             }
             Toast.makeText(SignupActivity.this, "El usuario es "+typeUser, Toast.LENGTH_SHORT).show();
 
-//            if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
-//                Toast.makeText(SignupActivity.this, "Debes llenar todos los campos antes de continuar!!!", Toast.LENGTH_LONG).show();
-//            else if (password.length() < 8)
-//                Toast.makeText(SignupActivity.this, "La contraseña debe ser de almenos 8 caracteres", Toast.LENGTH_LONG).show();
-//            else
-            //registro(email, password);
         });
 
     }
@@ -147,6 +196,19 @@ public class SignupActivity extends AppCompatActivity {
     public void registro(Adoptante adoptante){
         /**aqui se va a hacer el registro del adoptante en la base de Azure*/
 
+        try {
+            usuarioJSON.accumulate("image", null);
+            usuarioJSON.accumulate("mail", adoptante.correo);
+            usuarioJSON.accumulate("password", adoptante.contrasena);
+            usuarioJSON.accumulate("telephone", adoptante.telefono);
+            usuarioJSON.accumulate("nombre", adoptante.nombre);
+            usuarioJSON.accumulate("apellidos", adoptante.apellidos);
+            usuarioJSON.accumulate("fecha_de_nac", adoptante.nacimiento);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        /** hacer el registro del objeto JSON*/
         //si todo es correcto, esta funcion va a lanzar el main activity
         launchMainActivity();
     }
@@ -154,6 +216,20 @@ public class SignupActivity extends AppCompatActivity {
     public void registro(Rescatista rescatista){
         /**aqui se va a hacer el registro del rescatista en la base de Azure*/
 
+        try {
+            usuarioJSON.accumulate("image", null);
+            usuarioJSON.accumulate("mail", rescatista.correo);
+            usuarioJSON.accumulate("password", rescatista.contrasena);
+            usuarioJSON.accumulate("telephone", rescatista.telefono);
+            usuarioJSON.accumulate("nombre_ent", rescatista.nombre);
+            usuarioJSON.accumulate("rfc", rescatista.rfc);
+            usuarioJSON.accumulate("latitude", rescatista.latitud);
+            usuarioJSON.accumulate("longitude", rescatista.longitud);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        /** hacer el registro del objeto JSON */
         //si todo es correcto, esta funcion va a lanzar el main activity
         launchMainActivity();
     }

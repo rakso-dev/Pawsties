@@ -151,7 +151,7 @@
         tools:ignore="MissingConstraints" />
 
     <ImageButton
-        android:id="@+id/btnSetDate"
+        android:id="@+id/btnSetDateEP"
         android:layout_width="42dp"
         android:layout_height="43dp"
         android:layout_marginTop="16dp"
