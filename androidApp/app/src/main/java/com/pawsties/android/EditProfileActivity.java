@@ -1,12 +1,20 @@
 package com.pawsties.android;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +28,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EditProfileActivity extends AppCompatActivity {
+    public static final int REQUEST_CODE_CAMERA = 1003;
+    public static final int REQUEST_CODE_READ_STORAGE = 1004;
+    int permission;
+    Intent intent;
     EditText etName, etLastname, etTelefono, etNacimiento, etEmail, etPassword, etRFC;
     FloatingActionButton btnDone;
-    ImageButton setDate;
+    ImageButton setDate, addPhoto, addImage;
+    ImageView image;
     String telefono;
     String name="", lastname="",  email="", password="", rfc="";
     Date nacimiento;
@@ -51,6 +64,9 @@ public class EditProfileActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.etContrasenaEP);
         etRFC = findViewById(R.id.etRFCep);
         setDate = findViewById(R.id.btnSetDateEP);
+        addPhoto = findViewById(R.id.ibAddPhotoEP);
+        addImage = findViewById(R.id.ibAddImageEP);
+        image = findViewById(R.id.imageViewEP);
         btnDone = findViewById(R.id.fbDoneEP);
 
         /** RECIBIR EL OBJETO JSON DEL USUARIO A EDITAR */
@@ -60,6 +76,28 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        addPhoto.setOnClickListener(v -> {
+            permission = checkSelfPermission(Manifest.permission.CAMERA);
+            if (permission != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new  String[] {Manifest.permission.CAMERA},
+                        REQUEST_CODE_CAMERA);
+                return;
+            }else {
+                takePhoto();
+            }
+        });
+
+        addImage.setOnClickListener(v -> {
+            permission = checkSelfPermission((Manifest.permission.READ_EXTERNAL_STORAGE));
+            if (permission != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_CODE_READ_STORAGE);
+                return;
+            }else {
+                choseImage();
+            }
+        });
 
         setDate.setOnClickListener(v -> {
             final Calendar calendar = Calendar.getInstance();
@@ -133,8 +171,63 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                 }
             }
+            if (image.getImageAlpha() != R.drawable.ic_baseline_image_24)
+                AccountFragment.picProfile.setImageAlpha(image.getImageAlpha());
+            AccountFragment.username.setText(name);
             Toast.makeText(EditProfileActivity.this, "Usuario 'actualizado'", Toast.LENGTH_LONG).show();
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (grantResults.length > 0){
+            if (requestCode == REQUEST_CODE_CAMERA){
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    takePhoto();
+                else
+                    Toast.makeText(EditProfileActivity.this, "Se necesita usar la camara para tomar una foto instantanea", Toast.LENGTH_LONG).show();
+
+            }
+            if (requestCode == REQUEST_CODE_READ_STORAGE){
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                    choseImage();
+                else
+                    Toast.makeText(EditProfileActivity.this, "Se necesita leer el almacenamiento para elegir una imagen existente", Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            Bitmap imgBitmap = (Bitmap) extras.get("data");
+            image.setImageBitmap(imgBitmap);
+        }
+
+        if (requestCode == REQUEST_CODE_READ_STORAGE && resultCode == RESULT_OK){
+            Uri img = data.getData();
+            image.setImageURI(img);
+        }
+    }
+
+    public void takePhoto(){
+        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_CODE_CAMERA);
+        }
+    }
+
+    public void choseImage(){
+        intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent, "Continuar con..."), REQUEST_CODE_READ_STORAGE);
     }
 
     public void updateAdoptante(JSONObject adoptanteJSON){

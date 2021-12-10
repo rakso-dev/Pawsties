@@ -6,12 +6,13 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/accountPicProfile"
         android:layout_width="match_parent"
         android:layout_height="324dp"
         app:srcCompat="@drawable/ic_baseline_account_circle_24" />
 
     <TextView
+        android:id="@+id/tvUserAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

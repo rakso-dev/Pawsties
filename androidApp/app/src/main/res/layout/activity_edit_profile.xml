@@ -140,14 +140,14 @@
         android:id="@+id/etNombreEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Nombre u organizacion"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewxd"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewEP"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
@@ -162,5 +162,37 @@
         app:layout_constraintTop_toBottomOf="@+id/etApellidosEP"
         app:srcCompat="@drawable/ic_baseline_date_range_24"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageViewEP"
+        android:layout_width="164dp"
+        android:layout_height="154dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewxd"
+        app:srcCompat="@drawable/ic_baseline_image_24" />
+
+    <ImageButton
+        android:id="@+id/ibAddPhotoEP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="46dp"
+        app:layout_constraintStart_toEndOf="@+id/imageViewEP"
+        app:layout_constraintTop_toBottomOf="@+id/textViewxd"
+        app:srcCompat="@drawable/ic_baseline_add_a_photo_24" />
+
+    <ImageButton
+        android:id="@+id/ibAddImageEP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/etNombreEP"
+        app:layout_constraintStart_toEndOf="@+id/imageViewEP"
+        app:layout_constraintTop_toBottomOf="@+id/ibAddPhotoEP"
+        app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
