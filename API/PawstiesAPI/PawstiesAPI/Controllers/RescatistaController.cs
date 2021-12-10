@@ -4,67 +4,81 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using PawstiesAPI.Business;
 
 namespace PawstiesAPI.Controllers
 {
     public class RescatistaController: ControllerBase
     {
-        private readonly pawstiesContext _context;
+        private readonly RescatistaService _service;
         private readonly ILogger<RescatistaController> _logger;
 
-        public RescatistaController(pawstiesContext context, ILogger<RescatistaController> logger)
+        public RescatistaController(RescatistaService service, ILogger<RescatistaController> logger)
         {
-            _context = context;
+            _service = service;
             _logger = logger;
         }
 
-        [HttpGet ("pawstiesAPI/rescatista/all")]
-        
+        /*
+        [HttpGet ("pawstiesAPI/rescatista")]
+        [ProducesResponseType (StatusCodes.Status200OK)]
         public IActionResult Get()
         {
-            var rescatista = _context.Rescatista;
+            var rescatista = _service.GetAll();
             return Ok(rescatista);
-        }
+        }*/
 
         [HttpGet ("pawstiesAPI/rescatista/{rescatistaID}")]
         [ProducesResponseType (StatusCodes.Status200OK, Type = typeof(Rescatistum))]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
         public IActionResult GetRescatista(int rescatistaID)
         {
-            Rescatistum rescatista = null;
-
             try
             {
-                rescatista = _context.Rescatista.Where(e => e.Rescatistaid == rescatistaID).FirstOrDefault();
-                return Ok(rescatista);
+                var rescatista = _service.GetRescatista(rescatistaID);
+                _logger.LogInformation($"access to Rescatista on {rescatista.Ort.Coordinate}");
+                return Ok( new {
+                    image = rescatista.Image,
+                    mail = rescatista.Mail,
+                    telephone = rescatista.Telephone,
+                    password = rescatista.Password,
+                    rescatistaid = rescatista.Rescatistaid,
+                    nombreEnt = rescatista.NombreEnt,
+                    rfc = rescatista.Rfc,
+                    latitude = rescatista.Ort.Coordinate.Y,
+                    longitude = rescatista.Ort.Coordinate.X
+                });
             } catch (Exception ex)
             {
                 _logger.LogError(ex, "Error during query to Rescatista table");
                 throw;
             }
         }
-    }
 
-    public interface DTO
-    {
-        public void Algo();
-    }
-
-    public class RescatistaDTO: DTO
-    {
-        public string Image { get; set; }
-        public string Mail { get; set; }
-        public string Telephone { get; set; }
-        public int Rescatistaid { get; set; }
-        public string NombreEnt { get; set; }
-        public string Rfc { get; set; }
-        public decimal Latitude { get; set; }
-        public decimal Longitude { get; set; }
-
-        public void Algo() {
-            
+        [HttpPost ("pawstiesAPI/rescatista")]
+        [ProducesResponseType (StatusCodes.Status200OK)]
+        [ProducesResponseType (StatusCodes.Status400BadRequest)]
+        [ProducesResponseType (StatusCodes.Status500InternalServerError)]
+        public IActionResult Save([FromBody] Rescatistum rescatista)
+        {
+            if(_service.SaveRescatista(rescatista) == true)
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
 
-        
+        [HttpPut ("pawstiesAPI/rescatista/{rescatistaid}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult UpdateRescatista(Rescatistum r, int rescatistaid)
+        {
+            if(_service.Update(r, rescatistaid) == true)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }

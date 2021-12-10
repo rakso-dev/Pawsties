@@ -91,6 +91,10 @@ namespace PawstiesAPI.Models
                     .HasMaxLength(13)
                     .HasColumnName("telephone")
                     .IsFixedLength(true);
+
+                entity.Property(e => e.Password)
+                .HasMaxLength(20)
+                .HasColumnName("password");
             });
 
             modelBuilder.Entity<Color>(entity =>
@@ -288,6 +292,10 @@ namespace PawstiesAPI.Models
                     .HasMaxLength(13)
                     .HasColumnName("telephone")
                     .IsFixedLength(true);
+
+                entity.Property(e => e.Password)
+                .HasMaxLength(20)
+                .HasColumnName("password");
             });
 
             modelBuilder.Entity<Talla>(entity =>
@@ -334,6 +342,10 @@ namespace PawstiesAPI.Models
                     .HasMaxLength(13)
                     .HasColumnName("telephone")
                     .IsFixedLength(true);
+
+                entity.Property(e => e.Password)
+                .HasMaxLength(20)
+                .HasColumnName("password");
             });
 
             OnModelCreatingPartial(modelBuilder);

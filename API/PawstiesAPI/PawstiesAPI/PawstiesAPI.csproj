@@ -21,5 +21,13 @@
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" />
     <None Remove="Serilog" />
+    <None Remove="Services\" />
+    <None Remove="Business\" />
+    <None Remove="Helper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Business\" />
+    <Folder Include="Helper\" />
   </ItemGroup>
 </Project>

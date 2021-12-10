@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PawstiesAPI.Models;
 using System;
+using PawstiesAPI.Helper;
+using PawstiesAPI.Services;
 
 namespace PawstiesAPI.Controllers
 {
@@ -12,10 +14,12 @@ namespace PawstiesAPI.Controllers
     {
         private readonly pawstiesContext _context;
         private readonly ILogger<MascotaController> _logger;
+        private readonly IMascotaService _service;
 
-        public MascotaController(pawstiesContext context, ILogger<MascotaController> logger)
+        public MascotaController(pawstiesContext context,IMascotaService service, ILogger<MascotaController> logger)
         {
             _context = context;
+            _service = service;
             _logger = logger;
         }
 
@@ -27,6 +31,16 @@ namespace PawstiesAPI.Controllers
             _logger.LogInformation("Calling method GetAllMascotas");
             var mascota = _context.Mascota;
             return Ok (mascota);
+        }
+
+        [HttpGet("pawstiesAPI/mascotas/get/{distance}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Mascotum>))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Get([FromBody] JSONPoint point, int distance)
+        {
+            _logger.LogInformation("Calling method GetAllMascotas");
+            var mascotas = _service.GetAll(point, distance);
+            return Ok(mascotas);
         }
 
         [HttpGet ("pawstiesAPI/mascotas/{petID}")]
