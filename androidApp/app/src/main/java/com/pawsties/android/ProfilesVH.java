@@ -10,6 +10,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProfilesVH extends RecyclerView.ViewHolder {
@@ -37,9 +41,17 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
 
         btnFav.setOnClickListener(v -> {
             petToChat = profile;
-            FavoritiesFragment.pets.add(petToChat);
-            Toast.makeText(v.getContext(), "Agregado a favoritos!!!", Toast.LENGTH_LONG).show();
+            //FavoritiesFragment.pets.add(petToChat);
             /**agregar a la BD el favorito de este VH para que persistan los datos */
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("usuario", "joeljp");
+            hashMap.put("nMascota", profile.name);
+
+            reference.child("Favoritos").push().setValue(hashMap);
+
+            Toast.makeText(v.getContext(), "Agregado a favoritos!!!", Toast.LENGTH_LONG).show();
         });
         btnNext.setOnClickListener(v -> {
             flag.set(1);

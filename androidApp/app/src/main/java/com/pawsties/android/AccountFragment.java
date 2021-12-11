@@ -29,6 +29,8 @@ public class AccountFragment extends Fragment {
         btnEditProfile = view.findViewById(R.id.btnEditProfile);
         username = view.findViewById(R.id.tvUserAccount);
 
+        /**recibir el json del perfil y los datos mostrarlos en el IV y TV*/
+
         btnEditProfile.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), EditProfileActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
     private Context context;
-    ArrayList<PetModel> pets;
+    ArrayList<PetFavModel> pets;
 
-    FavsAdapter (Context context, ArrayList<PetModel> pets) {
+    FavsAdapter (Context context, ArrayList<PetFavModel> pets) {
         this.context = context;
         this.pets = pets;
     }
@@ -31,12 +31,12 @@ class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
     @Override
     public void onBindViewHolder(@NonNull FavsListVH holder, int position) {
 
-        final PetModel pet = pets.get(position);
-        holder.bind(pet.pic, pet.name);
+        final PetFavModel pet = pets.get(position);
+        holder.bind(pet);
 
         holder.itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, ChatActivivty.class);
-                intent.putExtra("username", pet.name);
+                intent.putExtra("username", pet.nMascota);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
         });

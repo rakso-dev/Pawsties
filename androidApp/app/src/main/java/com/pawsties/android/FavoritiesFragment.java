@@ -2,6 +2,7 @@ package com.pawsties.android;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class FavoritiesFragment extends Fragment {
@@ -21,7 +28,7 @@ public class FavoritiesFragment extends Fragment {
     LinearLayoutManager linearLayoutManager;
     DividerItemDecoration dividerItemDecoration;
     private FavsAdapter adapter;
-    public static ArrayList<PetModel> pets = new ArrayList<>();
+    ArrayList<PetFavModel> pets;
     Activity activity;
 
     @Nullable
@@ -38,7 +45,7 @@ public class FavoritiesFragment extends Fragment {
         dividerItemDecoration = new DividerItemDecoration(getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        loadPets();
+        loadPets("joeljp");
 
         return view;
     }
@@ -52,15 +59,32 @@ public class FavoritiesFragment extends Fragment {
             return;
     }
 
-    private void loadPets(){
+    private void loadPets(String userId){
+        pets = new ArrayList<>();
 
-        adapter = new FavsAdapter (getContext(), pets);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Favoritos");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                pets.clear();
+                PetFavModel pet;
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    //Log.d("xdxdxd", snapshot1.getKey()+" - "+snapshot1.getValue().toString());
+                    pet = snapshot1.getValue(PetFavModel.class);
+                    if (pet.usuario.equals(userId))
+                        pets.add(pet);
 
-        /**
-         * aqui se tienen que cargar los datos de los perfiles FAVORITOS de la bd en azure
-         * */
+                    adapter = new FavsAdapter(getContext(), pets);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
 
-        recyclerView.setAdapter (adapter);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 }

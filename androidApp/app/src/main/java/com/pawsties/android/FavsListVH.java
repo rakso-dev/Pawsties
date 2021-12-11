@@ -1,6 +1,5 @@
 package com.pawsties.android;
 
-import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,10 +17,10 @@ class FavsListVH extends RecyclerView.ViewHolder {
         tvFavPetName = view.findViewById(R.id.tvFavPetName);
     }
 
-    void bind(Bitmap pic, String name) {
+    void bind(PetFavModel pet) {
         //ivFavPetPic.setImageBitmap(pic);
         ivFavPetPic.setImageResource(R.mipmap.ic_launcher_round);//quitar cuando se obtengan de la BD
-        tvFavPetName.setText(name);
+        tvFavPetName.setText(pet.nMascota);
     }
 }
 
