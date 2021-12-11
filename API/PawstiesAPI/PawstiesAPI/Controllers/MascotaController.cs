@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -50,15 +49,15 @@ namespace PawstiesAPI.Controllers
         public IActionResult GetMascota(int petID)
         {
             _logger.LogInformation($"Calling method GetMascota with petID {petID}", null);
-            var mascota = _context.Mascota.Where(e => e.Petid == petID).FirstOrDefault();
+            var mascota = _service.GetMascota(petID);
             if (mascota == null)
             {
-                return BadRequest("Unexistent petID");
+                return BadRequest("Inexistent petID");
             }
             return Ok(mascota);
         }
 
-        [HttpPut ("pawstiesAPI/mascota/{petid}")]
+        /*[HttpPut ("pawstiesAPI/mascota/{petid}")]
         [ProducesResponseType (StatusCodes.Status200OK)]
         [ProducesResponseType (StatusCodes.Status400BadRequest)]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
@@ -67,22 +66,11 @@ namespace PawstiesAPI.Controllers
             try
             {
                 Mascotum mascota = _context.Mascota.Where(e => e.Petid == petid).FirstOrDefault();
-                if (mascota == null)
+                if (pet == null)
                 {
                     return BadRequest();
                 }
-                mascota.Nombre = pet.Nombre;
-                mascota.Sexo = pet.Sexo;
-                mascota.Edad = pet.Edad;
-                mascota.RColor = pet.RColor;
-                mascota.Vaxxed = pet.Vaxxed;
-                mascota.RTemper = pet.RTemper;
-                mascota.Pelaje = pet.Pelaje;
-                mascota.Esterilizado = pet.Esterilizado;
-                mascota.Discapacitado = pet.Discapacitado;
-                mascota.RRescatista = pet.RRescatista;
-                mascota.Nombre = pet.Nombre;
-                mascota.Descripcion = pet.Descripcion;
+                
                 return Ok();
             }
             catch (Exception ex)
@@ -90,6 +78,6 @@ namespace PawstiesAPI.Controllers
                 _logger.LogError(ex, $"Error during Mascota update with petid = {petid}");
                 throw;
             }
-        }
+        }*/
     }
 }

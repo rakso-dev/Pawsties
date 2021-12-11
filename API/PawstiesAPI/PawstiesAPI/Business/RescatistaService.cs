@@ -45,7 +45,7 @@ namespace PawstiesAPI.Business
             {
                 //hacer un mapper para insercion de punto espacial
                 resc.Ort = new NetTopologySuite.Geometries.Point((double)resc.Longitude, (double)resc.Latitude);
-                _context.Add(resc);
+                _context.Rescatista.Add(resc);
                 _context.SaveChanges();
 
                 return true;

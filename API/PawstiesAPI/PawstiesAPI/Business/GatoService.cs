@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 using NetTopologySuite.Geometries;
 using PawstiesAPI.Helper;
@@ -9,12 +9,12 @@ using PawstiesAPI.Services;
 
 namespace PawstiesAPI.Business
 {
-    public class MascotaService: IMascotaService
+    public class GatoService: IGatoService
     {
         private readonly pawstiesContext _context;
-        private readonly ILogger<MascotaService> _logger;
-        
-        public MascotaService(pawstiesContext context, ILogger<MascotaService> logger, IJSONPoint point)
+        private readonly ILogger<GatoService> _logger;
+
+        public GatoService(pawstiesContext context, ILogger<GatoService> logger)
         {
             _context = context;
             _logger = logger;
@@ -28,7 +28,7 @@ namespace PawstiesAPI.Business
             }
             try
             {
-                var result = from e in _context.Mascota
+                var result = from e in _context.Gatos
                              join r in _context.Rescatista
                              on e.RRescatista equals r.Rescatistaid
                              where r.Ort.Distance(new Point(point.Longitude, point.Latitude)) <= distance
@@ -48,67 +48,71 @@ namespace PawstiesAPI.Business
                              };
 
                 return result;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error on method {nameof(GetAll)}");
                 throw;
             }
         }
 
-        public IEnumerable GetMascotaByRescatista(int rescatistaid)
+        public Gato GetGato(int id)
         {
             try
             {
-                var mascotas = _context.Mascota.Where(e => e.RRescatista == rescatistaid);
-                return mascotas;
-            } catch(Exception ex)
+                _logger.LogInformation($"Using method {nameof(GetGato)}");
+                Gato gato = _context.Gatos.Where(e => e.Petid == id).FirstOrDefault();
+                return gato;
+            }
+            catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error on method {nameof(GetMascotaByRescatista)}", rescatistaid);
+                _logger.LogError(ex, $"An error ocurred on method {nameof(GetGato)}", id);
                 throw;
             }
         }
 
-        public Mascotum GetMascota(int id)
+        public bool SaveGato(Gato cat)
         {
+            if (cat == null) return false;
             try
             {
-                _logger.LogInformation($"Using method {nameof (GetMascota)}");
-                Mascotum mascota = _context.Mascota.Where(e => e.Petid == id).FirstOrDefault();
-                return mascota;
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex, $"An error ocurred on method {nameof(GetMascota)}", id);
-                throw;
-            }
-        }
-
-        /*public bool UpdateMascota(Mascotum pet, int petid)
-        {
-            try
-            {
-                Mascotum mascota = _context.Mascota.Where(e => e.Petid == petid).FirstOrDefault();
-                mascota.Nombre = pet.Nombre;
-                mascota.Sexo = pet.Sexo;
-                mascota.Edad = pet.Edad;
-                mascota.RColor = pet.RColor;
-                mascota.Vaxxed = pet.Vaxxed;
-                mascota.RTemper = pet.RTemper;
-                mascota.Pelaje = pet.Pelaje;
-                mascota.Esterilizado = pet.Esterilizado;
-                mascota.Discapacitado = pet.Discapacitado;
-                mascota.RRescatista = pet.RRescatista;
-                mascota.Nombre = pet.Nombre;
-                mascota.Descripcion = pet.Descripcion;
+                _context.Gatos.Add(cat);
+                _context.SaveChanges();
                 return true;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
+                _logger.LogError(ex, $"Error on method {nameof(SaveGato)}");
                 throw;
             }
         }
 
-        public bool UpdateMascota(int id, Mascotum mascota)
+        public bool UpdateGato(int id, Gato gato)
         {
-            throw new NotImplementedException();
-        }*/
+            try
+            {
+                Gato cat = _context.Gatos.Where(e => e.Petid == id).FirstOrDefault();
+                if (cat == null) return false;
+                cat.Nombre = gato.Nombre;
+                cat.Sexo = gato.Sexo;
+                cat.Edad = gato.Edad;
+                cat.RColor = gato.RColor;
+                cat.Vaxxed = gato.Vaxxed;
+                cat.RTemper = gato.RTemper;
+                cat.Pelaje = gato.Pelaje;
+                cat.Esterilizado = gato.Esterilizado;
+                cat.Discapacitado = gato.Discapacitado;
+                //dog.RRescatista = perro.RRescatista;
+                cat.Nombre = gato.Nombre;
+                cat.Descripcion = gato.Descripcion;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error on method {nameof(UpdateGato)}");
+                throw;
+            }
+        }
     }
 }

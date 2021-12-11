@@ -8,8 +8,9 @@ namespace PawstiesAPI.Services
     public interface IMascotaService
     {
         IEnumerable GetAll(JSONPoint point, int distance);
+        IEnumerable GetMascotaByRescatista(int rescatistaid);
         Mascotum GetMascota(int id);
-        bool SaveMascota(Mascotum mascota);
-        bool UpdateMascota(int id, Mascotum mascota);
+        //bool SaveMascota(Mascotum pet, int petid);
+        //bool UpdateMascota(int id, Mascotum mascota);
     }
 }

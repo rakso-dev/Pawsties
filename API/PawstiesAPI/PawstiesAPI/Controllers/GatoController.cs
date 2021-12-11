@@ -1,31 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Collections;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PawstiesAPI.Helper;
 using PawstiesAPI.Models;
+using PawstiesAPI.Services;
 
 namespace PawstiesAPI.Controllers
 {
     public class GatoController: ControllerBase
     {
-        private readonly pawstiesContext _context;
+        private readonly IGatoService _service;
         private readonly ILogger<GatoController> _logger;
 
-        public GatoController(pawstiesContext context, ILogger<GatoController> logger)
+        public GatoController(IGatoService service, ILogger<GatoController> logger)
         {
-            _context = context;
+            _service = service;
             _logger = logger;
         }
 
-        [HttpGet ("pawstiesAPI/gato")]
-        [ProducesResponseType (StatusCodes.Status200OK, Type = typeof(IEnumerable<Gato>))]
+        [HttpGet ("pawstiesAPI/gato/get/{distance}")]
+        [ProducesResponseType (StatusCodes.Status200OK)]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromBody] JSONPoint point, int distance)
         {
             _logger.LogInformation("Calling GetAllGatos method");
-            var gatos = _context.Gatos;
+            var gatos = _service.GetAll(point, distance);
             return Ok(gatos);
         }
 
@@ -35,30 +36,37 @@ namespace PawstiesAPI.Controllers
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
         public IActionResult Get(int petid)
         {
-            _logger.LogInformation($"Calling method GetGato with petid{petid}");
-            Gato gato = _context.Gatos.Where(e => e.Petid == petid).FirstOrDefault();
-            if (gato == null)
+            _logger.LogInformation($"Calling method GetGato with petid {petid}");
+            Gato e = _service.GetGato(petid);
+            if (e == null)
             {
                 return BadRequest();
             }
-            return Ok(gato);
+            return Ok(new
+            {
+                petid = e.Petid,
+                nombre = e.Nombre,
+                sexo = e.Sexo,
+                rRescatista = e.RRescatista,
+                edad = (DateTime.Today - e.Edad).Days,
+                rColor = e.RColor,
+                vaxxed = e.Vaxxed,
+                rTemper = e.RTemper,
+                pelaje = e.Pelaje,
+                esterilizado = e.Esterilizado,
+                discapacitado = e.Discapacitado,
+                descripcion = e.Descripcion
+            });
         }
 
         [HttpPost ("pawstiesAPI/gato")]
         [ProducesResponseType (StatusCodes.Status200OK)]
+        [ProducesResponseType (StatusCodes.Status400BadRequest)]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
         public IActionResult SaveGato([FromBody] Gato gato)
         {
-            try
-            {
-                _context.Add(gato);
-                _context.SaveChanges();
-                return Ok();
-            } catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Insertion error on Gato {gato.Petid}");
-                throw;
-            }
+            if (!_service.SaveGato(gato)) return BadRequest();
+            return Ok();
         }
 
         [HttpPut ("pawstiesAPI/gato/{petid}")]
@@ -67,33 +75,8 @@ namespace PawstiesAPI.Controllers
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
         public IActionResult Update([FromBody] Gato gato, int petid)
         {
-            try
-            {
-                Gato cat = _context.Gatos.Where(e => e.Petid == petid).FirstOrDefault();
-                if (cat == null)
-                {
-                    return BadRequest();
-                }
-                cat.Nombre = gato.Nombre;
-                cat.Sexo = gato.Sexo;
-                cat.Edad = gato.Edad;
-                cat.RColor = gato.RColor;
-                cat.Vaxxed = gato.Vaxxed;
-                cat.RTemper = gato.RTemper;
-                cat.Pelaje = gato.Pelaje;
-                cat.Esterilizado = gato.Esterilizado;
-                cat.Discapacitado = gato.Discapacitado;
-                cat.RRescatista = gato.RRescatista;
-                cat.Nombre = gato.Nombre;
-                cat.Descripcion = gato.Descripcion;
-                _context.SaveChanges();
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error during Gato update with petid = {petid}");
-                throw;
-            }
+            if (!_service.UpdateGato(petid, gato)) return BadRequest();
+            return Ok();
         }
     }
 }

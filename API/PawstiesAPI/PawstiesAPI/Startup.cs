@@ -41,6 +41,9 @@ namespace PawstiesAPI
             //add custom services
             services.AddScoped<IRescatistaService, RescatistaService>();
             services.AddScoped<IMascotaService, MascotaService>();
+            services.AddScoped<IPerroService, PerroService>();
+            services.AddScoped<IGatoService, GatoService>();
+            services.AddScoped<IAdoptanteService, AdoptanteService>();
             services.AddScoped<IJSONPoint, JSONPoint>();
         }
 

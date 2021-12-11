@@ -79,4 +79,3 @@
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/ref/PawstiesAPI.dll
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.pdb
 /Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.genruntimeconfig.cache
-/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/Debug/net5.0/PawstiesAPI.csproj.AssemblyReference.cache
