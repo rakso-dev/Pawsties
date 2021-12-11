@@ -67,7 +67,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.firebase:firebase-core:latest-version'
     implementation 'com.google.firebase:firebase-auth:latest-version'
-    //implementation 'com.google.android.gms:play-services-auth:latest-version'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'//17.0.0
 
     //messaging (yt tut)
     //implementation 'androidx.support:support-v4:27.1.1'
@@ -76,7 +76,6 @@ dependencies {
     //implementation 'androidx.support:cardview-v7:latest-version'
     //implementation 'com.rengwuxian.materialedittext:library:latest-version'
 
-    //estas dos se me ocurrieron xd
-    //implementation 'android.support:v7:latest-version'
+    //implementation 'local_auth:0.6.1'
 
 }

@@ -31,6 +31,20 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\MARINA\Downloads\SingInWithGoogle.png" />
+                                                <entry key="opacityPercent" value="80" />
+                                                <entry key="trimmed" value="true" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
                                       <entry key="text">
                                         <value>
                                           <PersistentState>
@@ -57,6 +71,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\MARINA\Downloads\SingInWithGoogle.png" />
+                                      <entry key="outputName" value="sign_in_with_google" />
                                       <entry key="theme" value="CUSTOM" />
                                     </map>
                                   </option>
@@ -85,8 +102,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\MARINA\Downloads\Pawsties-centered\1.png" />
-                                                <entry key="scalingPercent" value="120" />
+                                                <entry key="imagePath" value="C:\Users\MARINA\Downloads\SingInWithGoogle.png" />
+                                                <entry key="scalingPercent" value="96" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -120,7 +137,11 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="56ddc0" />
+                                      <entry key="backgroundColor" value="fdfdfd" />
+                                      <entry key="generateLegacyIcon" value="false" />
+                                      <entry key="generatePlayStoreIcon" value="false" />
+                                      <entry key="generateRoundIcon" value="false" />
+                                      <entry key="outputName" value="sign_in_with_google" />
                                     </map>
                                   </option>
                                 </PersistentState>
