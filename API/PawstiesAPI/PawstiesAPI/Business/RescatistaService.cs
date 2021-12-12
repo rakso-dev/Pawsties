@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using System.Security.Claims;
-using Microsoft.AspNetCore.DataProtection;
+//using System.Security.Claims;
+//using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
+//using Microsoft.IdentityModel.Tokens;
 using NetTopologySuite.Geometries;
 using PawstiesAPI.Helper;
 using PawstiesAPI.Models;
@@ -67,7 +67,6 @@ namespace PawstiesAPI.Business
                 resc.Ort = new Point((double)resc.Longitude, (double)resc.Latitude);
                 _context.Rescatista.Add(resc);
                 _context.SaveChanges();
-
                 return true;
             } catch (Exception ex)
             {

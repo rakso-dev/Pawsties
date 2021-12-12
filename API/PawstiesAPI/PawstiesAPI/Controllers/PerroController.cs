@@ -66,7 +66,7 @@ namespace PawstiesAPI.Controllers
             return Ok();
         }
 
-        [HttpPost ("pawstiesAPI/perro/{petid}")]
+        [HttpPut ("pawstiesAPI/perro/{petid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

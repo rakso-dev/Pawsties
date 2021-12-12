@@ -1,17 +1,20 @@
 ﻿<Properties StartupConfiguration="{78B94B4F-7A70-4E02-AF59-EBDB4FD47027}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Controllers/RescatistaController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Business/PerroService.cs">
     <Files>
       <File FileName="PawstiesAPI/Services/IAdoptanteService.cs" Line="7" Column="6" />
-      <File FileName="PawstiesAPI/Business/AdoptanteService.cs" Line="39" Column="33" />
+      <File FileName="PawstiesAPI/Business/AdoptanteService.cs" />
       <File FileName="PawstiesAPI/Controllers/AdoptanteController.cs" Line="13" Column="7" />
-      <File FileName="PawstiesAPI/Program.cs" Line="18" Column="1" />
-      <File FileName="PawstiesAPI/Business/RescatistaService.cs" Line="23" Column="95" />
-      <File FileName="PawstiesAPI/Controllers/RescatistaController.cs" Line="75" Column="66" />
-      <File FileName="PawstiesAPI/Startup.cs" Line="109" Column="14" />
+      <File FileName="PawstiesAPI/Business/RescatistaService.cs" Line="7" Column="3" />
+      <File FileName="PawstiesAPI/Controllers/RescatistaController.cs" Line="17" Column="38" />
+      <File FileName="PawstiesAPI/Startup.cs" Line="51" Column="1" />
       <File FileName="PawstiesAPI/Helper/JwtSettings.cs" Line="6" Column="41" />
-      <File FileName="PawstiesAPI/Services/IRescatistaService.cs" Line="13" Column="56" />
-      <File FileName="PawstiesAPI/Business/UsuarioController.cs" Line="17" Column="11" />
-      <File FileName="PawstiesAPI/Business/AdopcionService.cs" Line="15" Column="10" />
+      <File FileName="PawstiesAPI/Services/IRescatistaService.cs" Line="12" Column="24" />
+      <File FileName="PawstiesAPI/Business/MascotaService.cs" />
+      <File FileName="PawstiesAPI/Business/AdopcionService.cs" />
+      <File FileName="PawstiesAPI/Services/IAdopcionService.cs" />
+      <File FileName="PawstiesAPI/Controllers/AdopcionController.cs" />
+      <File FileName="PawstiesAPI/Business/PerroService.cs" Line="74" Column="40" />
+      <File FileName="PawstiesAPI/Controllers/PerroController.cs" Line="67" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,12 +22,13 @@
           <Node name="PawstiesAPI" expanded="True">
             <Node name="PawstiesAPI" expanded="True">
               <Node name="Dependencies" expanded="True" />
-              <Node name="Business" expanded="True" />
-              <Node name="Controllers" expanded="True">
-                <Node name="RescatistaController.cs" selected="True" />
+              <Node name="Business" expanded="True">
+                <Node name="PerroService.cs" selected="True" />
               </Node>
+              <Node name="Controllers" expanded="True" />
               <Node name="Helper" expanded="True" />
               <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>
           </Node>

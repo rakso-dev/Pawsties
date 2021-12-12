@@ -5,15 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using PawstiesAPI.Business;
+using PawstiesAPI.Services;
 
 namespace PawstiesAPI.Controllers
 {
     public class RescatistaController: ControllerBase
     {
-        private readonly RescatistaService _service;
+        private readonly IRescatistaService _service;
         private readonly ILogger<RescatistaController> _logger;
 
-        public RescatistaController(RescatistaService service, ILogger<RescatistaController> logger)
+        public RescatistaController(IRescatistaService service, ILogger<RescatistaController> logger)
         {
             _service = service;
             _logger = logger;
