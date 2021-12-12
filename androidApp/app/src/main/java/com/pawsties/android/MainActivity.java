@@ -55,23 +55,25 @@ public class MainActivity extends AppCompatActivity {
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
 
         Intent intent = getIntent();
-        typeUser = intent.getBooleanExtra("typeUser", true);
-        activity_parent = intent.getStringExtra("activity");
+        if (intent != null){
+            typeUser = intent.getBooleanExtra("typeUser", true);
+            //activity_parent = intent.getStringExtra("activity");
+        }
 
         /** igualar el objeto json del main con el de signin o signup segun sea el coso */
         if (typeUser){//es adoptante
             getSupportActionBar().setTitle("Perfiles cercanos");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfilesFragment()).commit();
-            if (activity_parent.equals("up"))
-                adoptante = SignupActivity.adoptante;
+            //if (activity_parent.equals("up"))
+                //adoptante = SignupActivity.adoptante;
             //if (activity_parent.equals("in"))
                 //adoptante = SigninActivity.adoptante;
         }
         if (!typeUser) {//es rescatista
             getSupportActionBar().setTitle("Mis mascotas");
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new PetsRescatistaFragment()).commit();
-            if (activity_parent.equals("up"))
-                rescatista = SignupActivity.rescatista;
+            //if (activity_parent.equals("up"))
+                //rescatista = SignupActivity.rescatista;
             //if (activity_parent.equals("in"))
                 //rescatista = SigninActivity.rescatista;
         }

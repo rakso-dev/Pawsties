@@ -80,14 +80,13 @@ public class SigninActivity extends AppCompatActivity {
         });
 
         signWithGoogle.setOnClickListener(v -> {
-             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN)
-                     .requestIdToken("h")
+             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                     .requestIdToken("751265962071-e6gn0a3f2uq92i69cv2jj1v73h8anqh6.apps.googleusercontent.com")
                      .requestEmail()
                      .build();
 
              googleClient = GoogleSignIn.getClient(SigninActivity.this, gso);
 
-            typeUser = true;
              Intent googleIntent = googleClient.getSignInIntent();
              startActivityForResult(googleIntent, REQUEST_CODE_SIGN_WITH_GOOGLE);
         });
@@ -116,7 +115,7 @@ public class SigninActivity extends AppCompatActivity {
          * ESE SE PASARA AL LANZAR EL MAIN ACTIVITY,
          * SI NO ES ASI, INDICAR QUE LOS DATOS INGRESADOS SON INCORRECTOS (CON UN ALERT)
          * GUARDAR EL ESTADO DE USUARIO AUTENTICADO*/
-        typeUser = true;//EJEMPLO: esto lo tiene que recibir de la BD
+        //el typeuser lo tiene que recibir de la BD
         //typeUser = usuarioJSON.get("userType");
 
         //si todo es correcto, lanzara el main activity (poner el intento dentro de un condicional)
@@ -124,6 +123,7 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     public void launcMainActivity(){
+        typeUser = false;
         Intent intent = new Intent(SigninActivity.this, MainActivity.class);
         intent.putExtra("typeUser", typeUser);
         intent.putExtra("activity", "in");

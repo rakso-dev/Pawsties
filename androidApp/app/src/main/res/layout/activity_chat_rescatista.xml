@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#E6E6E6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatActivivty">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barlayout_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_700"
+            android:popupTheme="@style/Widget.AppCompat.PopupMenu"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+
+            <ImageView
+                android:id="@+id/profile_image_chat"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/username_chat"
+                android:textSize="15dp"
+                android:layout_marginLeft="25dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginStart="25dp"/>
+
+            <Button
+                android:id="@+id/btnRealizarAdopcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADOPCION"/>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMessages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rlMessage"
+        android:layout_below="@id/barlayout_chat" />
+
+    <RelativeLayout
+        android:id="@+id/rlMessage"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        android:padding="5dp">
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btnSend"
+            android:background="@android:color/transparent"
+            android:hint="Escribe tu mensaje" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_action_name" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

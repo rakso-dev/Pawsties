@@ -1,6 +1,7 @@
 package com.pawsties.android;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,16 +9,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,17 +32,34 @@ public class ChatActivivty extends AppCompatActivity {
     Toolbar toolbar;
     ImageView profile_pic;
     TextView username;
+    Button adoptar;
     ImageButton btn_send;
     EditText et_message;
     ArrayList<Message> messages;
     MessageAdapter msgAdapter;
     RecyclerView rvDisplayMessages;
     String user;
+    JSONObject adopcionjson;
+    AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat);
+        if (MainActivity.typeUser)
+            setContentView(R.layout.activity_chat);
+        if (!MainActivity.typeUser){
+            setContentView(R.layout.activity_chat_rescatista);
+            adoptar = findViewById(R.id.btnRealizarAdopcion);
+            adoptar.setOnClickListener(v -> {
+                final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+                alertBuilder.setMessage("Desea dar la mascota en adopcion a este usuario")
+                        .setCancelable(true)
+                        .setPositiveButton("sí", (dialog, which) -> {realizarAdopcion();})
+                        .setNegativeButton("no", ((dialog, which) -> {}));
+                alert = alertBuilder.create();
+                alert.show();
+            });
+        }
 
         toolbar = findViewById(R.id.toolbar_chat);
         //setSupportActionBar(toolbar);
@@ -106,5 +129,21 @@ public class ChatActivivty extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void realizarAdopcion(){
+        adopcionjson = new JSONObject();
+        try {
+            adopcionjson.accumulate("idMascota", "manchas");
+            adopcionjson.accumulate("idusuario", "joeljp");
+            adopcionjson.accumulate("idrescatista", "rakso");
+            adopcionjson.accumulate("fecha", System.currentTimeMillis());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        /** pasarle a la API un JSON con los datos de la adopcion */
+
+        Toast.makeText(ChatActivivty.this, "Adopcion realizada", Toast.LENGTH_LONG).show();
     }
 }
