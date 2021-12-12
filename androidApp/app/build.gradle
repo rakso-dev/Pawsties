@@ -76,6 +76,7 @@ dependencies {
     //implementation 'androidx.support:cardview-v7:latest-version'
     //implementation 'com.rengwuxian.materialedittext:library:latest-version'
 
-    //implementation 'local_auth:0.6.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'//2.1.0
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'//2.1.0
 
 }
