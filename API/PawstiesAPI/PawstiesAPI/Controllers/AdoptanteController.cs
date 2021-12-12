@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using PawstiesAPI.Services;
 
 namespace PawstiesAPI.Controllers
 {
+    //[Authorize]
     public class AdoptanteController: ControllerBase
     {
         private readonly IAdoptanteService _service;
@@ -41,6 +43,7 @@ namespace PawstiesAPI.Controllers
             return Ok(adoptante);
         }
 
+        [AllowAnonymous]
         [HttpPost ("pawstiesAPI/adoptante")]
         [ProducesResponseType (StatusCodes.Status200OK)]
         [ProducesResponseType (StatusCodes.Status400BadRequest)]

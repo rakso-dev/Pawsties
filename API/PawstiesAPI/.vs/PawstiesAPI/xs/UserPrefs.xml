@@ -1,10 +1,17 @@
 ﻿<Properties StartupConfiguration="{78B94B4F-7A70-4E02-AF59-EBDB4FD47027}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Controllers/AdoptanteController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PawstiesAPI/Controllers/RescatistaController.cs">
     <Files>
-      <File FileName="PawstiesAPI/Startup.cs" Line="10" Column="36" />
       <File FileName="PawstiesAPI/Services/IAdoptanteService.cs" Line="7" Column="6" />
-      <File FileName="PawstiesAPI/Business/AdoptanteService.cs" Line="4" Column="26" />
-      <File FileName="PawstiesAPI/Controllers/AdoptanteController.cs" Line="62" Column="81" />
+      <File FileName="PawstiesAPI/Business/AdoptanteService.cs" Line="39" Column="33" />
+      <File FileName="PawstiesAPI/Controllers/AdoptanteController.cs" Line="13" Column="7" />
+      <File FileName="PawstiesAPI/Program.cs" Line="18" Column="1" />
+      <File FileName="PawstiesAPI/Business/RescatistaService.cs" Line="23" Column="95" />
+      <File FileName="PawstiesAPI/Controllers/RescatistaController.cs" Line="75" Column="66" />
+      <File FileName="PawstiesAPI/Startup.cs" Line="109" Column="14" />
+      <File FileName="PawstiesAPI/Helper/JwtSettings.cs" Line="6" Column="41" />
+      <File FileName="PawstiesAPI/Services/IRescatistaService.cs" Line="13" Column="56" />
+      <File FileName="PawstiesAPI/Business/UsuarioController.cs" Line="17" Column="11" />
+      <File FileName="PawstiesAPI/Business/AdopcionService.cs" Line="15" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,8 +21,9 @@
               <Node name="Dependencies" expanded="True" />
               <Node name="Business" expanded="True" />
               <Node name="Controllers" expanded="True">
-                <Node name="AdoptanteController.cs" selected="True" />
+                <Node name="RescatistaController.cs" selected="True" />
               </Node>
+              <Node name="Helper" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True" />
             </Node>

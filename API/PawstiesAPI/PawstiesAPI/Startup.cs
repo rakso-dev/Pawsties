@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,9 @@ using Microsoft.EntityFrameworkCore;
 using PawstiesAPI.Services;
 using PawstiesAPI.Business;
 using PawstiesAPI.Helper;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
 
 namespace PawstiesAPI
 {
@@ -45,6 +49,49 @@ namespace PawstiesAPI
             services.AddScoped<IGatoService, GatoService>();
             services.AddScoped<IAdoptanteService, AdoptanteService>();
             services.AddScoped<IJSONPoint, JSONPoint>();
+
+            //extracting jwt secret from config file
+            /*var jwtSection = Configuration.GetSection("JwtSettings");
+            var jwtSettings = jwtSection.Get<JwtSettings>();
+            var key = System.Text.Encoding.ASCII.GetBytes(jwtSettings.Secret);
+
+
+            services.Configure<JwtSettings>(jwtSection);
+
+            //add JWT athentication
+            services.AddAuthentication(authOptions =>
+            {
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(bearerOptions =>
+            {
+                bearerOptions.RequireHttpsMetadata = false;
+                bearerOptions.SaveToken = true;
+                bearerOptions.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience= false
+                };
+            });*/
+
+            /*services.AddDataProtection()
+                .SetApplicationName("PawstiesAPI")
+                .SetDefaultKeyLifetime(TimeSpan.FromDays(14))
+                .UseCryptographicAlgorithms(
+                new AuthenticatedEncryptorConfiguration
+                {
+                    EncryptionAlgorithm = EncryptionAlgorithm.AES_256_CBC,
+                    ValidationAlgorithm = ValidationAlgorithm.HMACSHA256
+                }
+                );
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Adoptante", policy =>
+                    policy.RequireRole(""));
+            })*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,8 +105,8 @@ namespace PawstiesAPI
             }
 
             app.UseRouting();
-
-            app.UseAuthorization();
+           // app.UseAuthentication();
+           // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

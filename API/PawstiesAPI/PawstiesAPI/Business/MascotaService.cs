@@ -14,7 +14,7 @@ namespace PawstiesAPI.Business
         private readonly pawstiesContext _context;
         private readonly ILogger<MascotaService> _logger;
         
-        public MascotaService(pawstiesContext context, ILogger<MascotaService> logger, IJSONPoint point)
+        public MascotaService(pawstiesContext context, ILogger<MascotaService> logger)
         {
             _context = context;
             _logger = logger;
@@ -45,7 +45,8 @@ namespace PawstiesAPI.Business
                                  esterilizado = e.Esterilizado,
                                  discapacitado = e.Discapacitado,
                                  descripcion = e.Descripcion
-                             };
+                             };;
+                
 
                 return result;
             } catch (Exception ex)

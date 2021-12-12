@@ -35,6 +35,8 @@ namespace PawstiesAPI.Business
             try
             {
                 if (adoptante == null) return false;
+                Adoptante tmp = _context.Adoptantes.Where(e => e.Mail.Equals(adoptante.Mail)).FirstOrDefault();
+                if (tmp != null) return false;
                 _context.Adoptantes.Add(adoptante);
                 _context.SaveChanges();
                 return true;
