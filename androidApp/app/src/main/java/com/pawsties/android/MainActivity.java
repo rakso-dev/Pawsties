@@ -2,20 +2,12 @@ package com.pawsties.android;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,14 +17,18 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_LOCATION = 1001;
@@ -46,10 +42,13 @@ public class MainActivity extends AppCompatActivity {
     String activity_parent;
     Adoptante adoptante;
     Rescatista rescatista;
+    public static UserModel usuario;
     public static ArrayList<PetModel> profiles;
     public ArrayList<PerroModel> perros;
     public ArrayList<GatoModel> gatos;
     JSONObject usuarioJSON;
+    public static FirebaseUser firebaseUser;
+    public static DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +57,21 @@ public class MainActivity extends AppCompatActivity {
 
         navigationBar = findViewById(R.id.bottom_navigation_bar);
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseUser.getUid());
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                usuario = snapshot.getValue(UserModel.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         profiles = new ArrayList<>();
         perros = new ArrayList<>();
@@ -115,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        //pedir permiso de ubicacion
         int permision = checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION);
         if (permision != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{

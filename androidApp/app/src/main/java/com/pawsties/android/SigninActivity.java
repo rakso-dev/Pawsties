@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.internal.GoogleSignInOptionsExtensionParcelable;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONObject;
@@ -44,6 +47,7 @@ public class SigninActivity extends AppCompatActivity {
     public static Adoptante adoptante;
     public static Rescatista rescatista;
     public static JSONObject usuarioJSON;
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +60,8 @@ public class SigninActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.password_signin);
         ingresar = findViewById(R.id.btnOkSignin);
         signWithGoogle = findViewById(R.id.btnSignInGoogle);
+
+        auth = FirebaseAuth.getInstance();
 
     }
 
@@ -119,7 +125,17 @@ public class SigninActivity extends AppCompatActivity {
         //typeUser = usuarioJSON.get("userType");
 
         //si todo es correcto, lanzara el main activity (poner el intento dentro de un condicional)
-        launcMainActivity();
+
+        auth.signInWithEmailAndPassword(correo, contrasena)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful())
+                            launcMainActivity();
+                        else
+                            Toast.makeText(SigninActivity.this, "Autenticacion fallida!!!", Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 
     public void launcMainActivity(){

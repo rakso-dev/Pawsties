@@ -22,11 +22,20 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.HashMap;
 
 public class SignupActivity extends AppCompatActivity {
     EditText etName, etLastname, etTelefono, etNacimiento, etEmail, etPassword, etRFC;
@@ -51,6 +60,8 @@ public class SignupActivity extends AppCompatActivity {
     public static Adoptante adoptante;
     public static Rescatista rescatista;
     public static JSONObject usuarioJSON = new JSONObject();
+    FirebaseAuth auth;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,6 +89,10 @@ public class SignupActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        getLocation();
+
+        auth = FirebaseAuth.getInstance();
+
         int permision = checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION);
         if (permision != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{
@@ -100,7 +115,6 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         registrarse.setOnClickListener(v -> {
-            getLocation();
             name = etName.getText().toString();
             telefono = etTelefono.getText().toString();//NO DEBE DE ESTAR VACIO ESTE CAMPO
             email = etEmail.getText().toString();
@@ -128,7 +142,7 @@ public class SignupActivity extends AppCompatActivity {
                         return;
                     }else {
                         nacimiento = Date.valueOf(etNacimiento.getText().toString());
-                        adoptante = new Adoptante(telefono, typeUser, email, password, latitud, longitud, name, lastname, nacimiento);
+                        adoptante = new Adoptante(telefono, typeUser, email, latitud, longitud, name, lastname, nacimiento);
                         registro(adoptante);
                     }
                 }
@@ -144,7 +158,7 @@ public class SignupActivity extends AppCompatActivity {
                         inputAlert.show();
                         return;
                     }else {
-                        rescatista = new Rescatista(telefono, typeUser, email, password, latitud, longitud, name, rfc);
+                        rescatista = new Rescatista(telefono, typeUser, email, latitud, longitud, name, rfc);
                         registro(rescatista);
                     }
                 }
@@ -153,6 +167,13 @@ public class SignupActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        locationManager.removeUpdates(locationListener);
     }
 
     @Override
@@ -193,49 +214,106 @@ public class SignupActivity extends AppCompatActivity {
         longitud = MyLocationListener.longitude;
     }
 
-    public void registro(Adoptante adoptante){
-        /**aqui se va a hacer el registro del adoptante en la base de Azure*/
+    public void registro(Adoptante rAdoptante){
 
         try {
             usuarioJSON.accumulate("image", null);
-            usuarioJSON.accumulate("mail", adoptante.correo);
-            usuarioJSON.accumulate("password", adoptante.contrasena);
-            usuarioJSON.accumulate("telephone", adoptante.telefono);
-            usuarioJSON.accumulate("nombre", adoptante.nombre);
-            usuarioJSON.accumulate("apellidos", adoptante.apellidos);
-            usuarioJSON.accumulate("fecha_de_nac", adoptante.nacimiento);
+            usuarioJSON.accumulate("mail", rAdoptante.correo);
+            usuarioJSON.accumulate("telephone", rAdoptante.telefono);
+            usuarioJSON.accumulate("nombre", rAdoptante.nombre);
+            usuarioJSON.accumulate("apellidos", rAdoptante.apellidos);
+            usuarioJSON.accumulate("fecha_de_nac", rAdoptante.nacimiento);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        /** hacer el registro del objeto JSON*/
-        //si todo es correcto, esta funcion va a lanzar el main activity
-        launchMainActivity();
+        auth.createUserWithEmailAndPassword(rAdoptante.correo, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            FirebaseUser user = auth.getCurrentUser();
+                            assert user != null;
+                            String userid = user.getUid();
+
+                            reference = FirebaseDatabase.getInstance().getReference("Usuarios").child(userid);
+
+                            HashMap <String, Object> hashMap = new HashMap<>();
+                            hashMap.put("userid", userid);
+                            hashMap.put("nombre", rAdoptante.nombre+" "+rAdoptante.apellidos);
+                            hashMap.put("telefono", rAdoptante.telefono);
+                            hashMap.put("tipo", rAdoptante.tipo);
+                            hashMap.put("correo", rAdoptante.correo);
+                            hashMap.put("latitud", latitud);
+                            hashMap.put("longitud", longitud);
+
+                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                        launchMainActivity(userid, rAdoptante.nombre+" "+rAdoptante.apellidos);
+                                }
+                            });
+                        }else {
+                            Toast.makeText(SignupActivity.this, "No se pudo registrar el ususario :(", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
     }
 
-    public void registro(Rescatista rescatista){
-        /**aqui se va a hacer el registro del rescatista en la base de Azure*/
+    public void registro(Rescatista Rrescatista){
 
         try {
             usuarioJSON.accumulate("image", null);
-            usuarioJSON.accumulate("mail", rescatista.correo);
-            usuarioJSON.accumulate("password", rescatista.contrasena);
-            usuarioJSON.accumulate("telephone", rescatista.telefono);
-            usuarioJSON.accumulate("nombre_ent", rescatista.nombre);
-            usuarioJSON.accumulate("rfc", rescatista.rfc);
-            usuarioJSON.accumulate("latitude", rescatista.latitud);
-            usuarioJSON.accumulate("longitude", rescatista.longitud);
+            usuarioJSON.accumulate("mail", Rrescatista.correo);
+            usuarioJSON.accumulate("telephone", Rrescatista.telefono);
+            usuarioJSON.accumulate("nombre_ent", Rrescatista.nombre);
+            usuarioJSON.accumulate("rfc", Rrescatista.rfc);
+            usuarioJSON.accumulate("latitude", Rrescatista.latitud);
+            usuarioJSON.accumulate("longitude", Rrescatista.longitud);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        /** hacer el registro del objeto JSON */
-        //si todo es correcto, esta funcion va a lanzar el main activity
-        launchMainActivity();
+        auth.createUserWithEmailAndPassword(Rrescatista.correo, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            FirebaseUser user = auth.getCurrentUser();
+                            assert user != null;
+                            String userid = user.getUid();
+
+                            reference = FirebaseDatabase.getInstance().getReference("Usuarios").child(userid);
+
+                            HashMap <String, Object> hashMap = new HashMap<>();
+                            hashMap.put("userid", userid);
+                            hashMap.put("nombre", Rrescatista.nombre);
+                            hashMap.put("telefono", Rrescatista.telefono);
+                            hashMap.put("tipo", Rrescatista.tipo);
+                            hashMap.put("correo", Rrescatista.correo);
+                            hashMap.put("latitud", latitud);
+                            hashMap.put("longitud", longitud);
+
+                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                        launchMainActivity(userid, Rrescatista.nombre);
+                                }
+                            });
+                        }else {
+                            Toast.makeText(SignupActivity.this, "No se pudo registrar el ususario :(", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
 
-    public void launchMainActivity(){
+    public void launchMainActivity(String userid, String username){
         Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+        intent.putExtra("userid", userid);
+        intent.putExtra("username", username);
         intent.putExtra("typeUser", typeUser);
         intent.putExtra("activity", "up");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -3,20 +3,24 @@ package com.pawsties.android;
 import android.graphics.Bitmap;
 
 public class UserModel {
-    String telefono;
-    boolean tipo;//true si es adoptante, false si es rescatista
-    String correo;
-    String contrasena;
-    Bitmap foto;
-    double latitud;
-    double longitud;
+    public String userid;
+    public String nombre;
+    public String telefono;
+    public boolean tipo;//true si es adoptante, false si es rescatista
+    public String correo;
+    public double latitud;
+    public double longitud;
 
-    public UserModel(String telefono, boolean tipo, String correo, String contrasena, double latitud, double longitud) {
+    public UserModel(String nombre, String telefono, boolean tipo, String correo, double latitud, double longitud) {
+        this.nombre = nombre;
         this.telefono = telefono;
         this.tipo = tipo;
         this.correo = correo;
-        this.contrasena = contrasena;
         this.latitud = latitud;
         this.longitud = longitud;
+    }
+
+    public UserModel() {
+
     }
 }

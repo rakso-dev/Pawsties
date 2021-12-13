@@ -129,7 +129,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     return;
                 }else {
                     nacimiento = Date.valueOf(etNacimiento.getText().toString());
-                    adoptante = new Adoptante(telefono, true, email, password, 0.2, 0.2, name, lastname, nacimiento);
+                    adoptante = new Adoptante(telefono, true, email, 0.2, 0.2, name, lastname, nacimiento);
                     try {
                         usuario.accumulate("image", null);
                         usuario.accumulate("mail", email);
@@ -157,7 +157,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     inputAlert.show();
                     return;
                 }else {
-                    rescatista = new Rescatista(telefono, false, email, password, 0.2, 0.2, name, rfc);
+                    rescatista = new Rescatista(telefono, false, email, 0.2, 0.2, name, rfc);
                     try {
                         usuario.accumulate("image", null);
                         usuario.accumulate("mail", email);
