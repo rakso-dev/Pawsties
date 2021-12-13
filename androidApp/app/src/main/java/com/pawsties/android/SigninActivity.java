@@ -123,7 +123,7 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     public void launcMainActivity(){
-        typeUser = false;
+        typeUser = true;
         Intent intent = new Intent(SigninActivity.this, MainActivity.class);
         intent.putExtra("typeUser", typeUser);
         intent.putExtra("activity", "in");

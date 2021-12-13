@@ -1,6 +1,5 @@
 package com.pawsties.android;
 
-import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -36,8 +35,8 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
 
     AtomicInteger bind(PetModel profile){
         AtomicInteger flag = new AtomicInteger();
-        petName.setText(profile.name);
-        petDescription.setText(profile.description);
+        petName.setText(profile.Nombre);
+        petDescription.setText(profile.Descripcion);
 
         btnFav.setOnClickListener(v -> {
             petToChat = profile;
@@ -47,7 +46,7 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
 
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("usuario", "joeljp");
-            hashMap.put("nMascota", profile.name);
+            hashMap.put("nMascota", profile.Nombre);
 
             reference.child("Favoritos").push().setValue(hashMap);
 

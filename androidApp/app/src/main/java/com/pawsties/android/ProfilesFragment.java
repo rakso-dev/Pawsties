@@ -1,10 +1,12 @@
 package com.pawsties.android;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.app.Activity;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,9 +15,16 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ProfilesFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -25,6 +34,7 @@ public class ProfilesFragment extends Fragment {
     ArrayList<PerroModel> perros;
     ArrayList<GatoModel> gatos;
     Activity activity;
+    public Retrofit retrofit;
 
     @Nullable
     @Override
@@ -44,16 +54,17 @@ public class ProfilesFragment extends Fragment {
         gatos = new ArrayList<>();
 
         //ELEMENTO MASCOTA DE PRUEBA (borrar cuando se obtengan de la BD)
-        GatoModel profile = new GatoModel("michi", true, 2, 1, true, 2, false, false, false, 1, "un gato muy bonito xd");
-        PerroModel profile2 = new PerroModel("Firulais", true, 1, 3, true, 2, false, true, false, 1, "soy un perro xd", 0.5);
-        GatoModel profile3 = new GatoModel("manchas", false, 2, 2, true, 2, true, true, false, 1, "soy una gata de tejado");
-        perros.add(profile2);
-        gatos.add(profile);
-        gatos.add(profile3);
-        profiles.addAll(perros);
-        profiles.addAll(gatos);
+//        GatoModel profile = new GatoModel("michi", true, Date.valueOf("2020-09-23T00:00:00"), 1, true, 2, false, false, false, 1, "un gato muy bonito xd");
+//        PerroModel profile2 = new PerroModel("Firulais", true, Date.valueOf("2020-09-23T00:00:00"), 3, true, 2, false, true, false, 1, "soy un perro xd", 0.5);
+//        GatoModel profile3 = new GatoModel("manchas", false, Date.valueOf("2020-09-23T00:00:00"), 2, true, 2, true, true, false, 1, "soy una gata de tejado");
+//        perros.add(profile2);
+//        gatos.add(profile);
+//        gatos.add(profile3);
+//        profiles.addAll(perros);
+//        profiles.addAll(gatos);
         //=========================================================================
 
+        getById(3);
         loadProfiles();
 
         return view;
@@ -69,12 +80,111 @@ public class ProfilesFragment extends Fragment {
     }
 
     private void loadProfiles(){
+        retrofit = new Retrofit.Builder().baseUrl(getString(R.string.url_base_api))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        MascotasInterfaceAPI service = retrofit.create(MascotasInterfaceAPI.class);
+        Call<PetsRequestAPIModel> mascotas = service.loadProfiles();
+
+        mascotas.enqueue(new Callback<PetsRequestAPIModel>() {
+            @Override
+            public void onResponse(Call<PetsRequestAPIModel> call, Response<PetsRequestAPIModel> response) {
+                if (response.isSuccessful()){
+                    PetsRequestAPIModel petsRequest = response.body();
+                    ArrayList<PetModel> listaMascotas = petsRequest.mascotas;
+
+                    Log.i("list size", ""+listaMascotas.size());
+                    for (int i = 0; i < listaMascotas.size(); i++){
+                        PetModel p = listaMascotas.get(i);
+                        Log.i("RECIBIDA DE LA API", "Mascota: "+p.Nombre);
+                    }
+                }else {
+                    Toast.makeText(activity, "ERROR: "+response.errorBody(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PetsRequestAPIModel> call, Throwable t) {
+                Toast.makeText(activity, "ERROR: "+t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //Call<ArrayList<JSONObject>> call = MascotasInterfaceAPI.loadProfiles();
+
         adapter = new ProfilesAdapter(getContext(), profiles);
 
-        /**
-         * cargar perfiles cercanos de la BD en base a su latitud y longitud
-         * */
-
         recyclerView.setAdapter(adapter);
+    }
+
+    public void getByDistance(double latitude, double longitude){
+        retrofit = new Retrofit.Builder().baseUrl(getString(R.string.url_base_api))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        MascotasInterfaceAPI service = retrofit.create(MascotasInterfaceAPI.class);
+
+        JSONObject distance = new JSONObject();
+        try {
+            distance.accumulate("longitude", longitude);
+            distance.accumulate("latitude", longitude);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Call<PetModel> call = service.getByDistance(distance);
+
+        call.enqueue(new Callback<PetModel>() {
+            @Override
+            public void onResponse(Call<PetModel> call, Response<PetModel> response) {
+                try {
+                    if (response.isSuccessful()){
+                        PetModel p = response.body();
+                        //guardar/mostrar los datos de p
+                    }else {
+                        Toast.makeText(activity, "No existe la mascota", Toast.LENGTH_LONG).show();
+                    }
+                }catch (Exception e){
+                    Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PetModel> call, Throwable t) {
+                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getById(int petId){
+        retrofit = new Retrofit.Builder().baseUrl(getString(R.string.url_base_api))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        MascotasInterfaceAPI service = retrofit.create(MascotasInterfaceAPI.class);
+
+        Call<PetModel> call = service.getById(petId);
+
+        call.enqueue(new Callback<PetModel>() {
+            @Override
+            public void onResponse(Call<PetModel> call, Response<PetModel> response) {
+                try {
+                    if (response.isSuccessful()){
+                        //PetModel p = response.body();
+                        Log.i("RECIBIDA DE LA API", "ID Mascota: "+response.body().Petid);
+                    }else {
+                        Toast.makeText(activity, "No existe la mascota", Toast.LENGTH_LONG).show();
+                    }
+                }catch (Exception e){
+                    Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PetModel> call, Throwable t) {
+                Toast.makeText(activity, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }
