@@ -29,6 +29,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavig
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     String activity_parent;
     Adoptante adoptante;
     Rescatista rescatista;
+    public static ArrayList<PetModel> profiles;
+    public ArrayList<PerroModel> perros;
+    public ArrayList<GatoModel> gatos;
     JSONObject usuarioJSON;
 
     @Override
@@ -53,6 +58,21 @@ public class MainActivity extends AppCompatActivity {
 
         navigationBar = findViewById(R.id.bottom_navigation_bar);
         navigationBar.setOnNavigationItemSelectedListener(navigationListener);
+
+        profiles = new ArrayList<>();
+        perros = new ArrayList<>();
+        gatos = new ArrayList<>();
+
+        GatoModel profile = new GatoModel("michi", true, Date.valueOf("2020-09-23"), 1, true, 2, false, false, false, 1, "un gato muy bonito xd");
+        PerroModel profile2 = new PerroModel("Firulais", true, Date.valueOf("2020-09-23"), 3, true, 2, false, true, false, 1, "soy un perro xd", 0.5);
+        GatoModel profile3 = new GatoModel("manchas", false, Date.valueOf("2020-09-23"), 2, true, 2, true, true, false, 1, "soy una gata");
+        GatoModel profile4 = new GatoModel("Michifus", false, Date.valueOf("2021-10-25"), 3, true, 1, true, true, false, 1, "Soy un gato bebe que le gusta estar en casa y recibir carinitos");
+        perros.add(profile2);
+        gatos.add(profile);
+        gatos.add(profile3);
+        gatos.add(profile4);
+        profiles.addAll(perros);
+        profiles.addAll(gatos);
 
         Intent intent = getIntent();
         if (intent != null){

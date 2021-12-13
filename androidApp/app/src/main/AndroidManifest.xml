@@ -50,17 +50,14 @@
         <activity
             android:name=".ChatActivivty"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="locked" />
         <activity
             android:name=".AddPetActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="locked"/>
         <activity
             android:name=".EditProfileActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="locked"/>
     </application>
 

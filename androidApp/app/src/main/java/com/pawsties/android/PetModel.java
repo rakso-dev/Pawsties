@@ -31,4 +31,8 @@ public class PetModel {
         this.Rrescatista = rescatista;
         this.Descripcion = description;
     }
+
+    public PetModel(){
+
+    }
 }

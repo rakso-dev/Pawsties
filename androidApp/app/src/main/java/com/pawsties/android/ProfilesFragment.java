@@ -30,9 +30,6 @@ public class ProfilesFragment extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private ProfilesAdapter adapter;
-    ArrayList<PetModel> profiles;
-    ArrayList<PerroModel> perros;
-    ArrayList<GatoModel> gatos;
     Activity activity;
     public Retrofit retrofit;
 
@@ -49,22 +46,7 @@ public class ProfilesFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        profiles = new ArrayList<>();
-        perros = new ArrayList<>();
-        gatos = new ArrayList<>();
-
-        //ELEMENTO MASCOTA DE PRUEBA (borrar cuando se obtengan de la BD)
-//        GatoModel profile = new GatoModel("michi", true, Date.valueOf("2020-09-23T00:00:00"), 1, true, 2, false, false, false, 1, "un gato muy bonito xd");
-//        PerroModel profile2 = new PerroModel("Firulais", true, Date.valueOf("2020-09-23T00:00:00"), 3, true, 2, false, true, false, 1, "soy un perro xd", 0.5);
-//        GatoModel profile3 = new GatoModel("manchas", false, Date.valueOf("2020-09-23T00:00:00"), 2, true, 2, true, true, false, 1, "soy una gata de tejado");
-//        perros.add(profile2);
-//        gatos.add(profile);
-//        gatos.add(profile3);
-//        profiles.addAll(perros);
-//        profiles.addAll(gatos);
-        //=========================================================================
-
-        getById(3);
+        //getById(3);
         loadProfiles();
 
         return view;
@@ -80,11 +62,18 @@ public class ProfilesFragment extends Fragment {
     }
 
     private void loadProfiles(){
+
+        adapter = new ProfilesAdapter(getContext(), MainActivity.profiles);
+
+        recyclerView.setAdapter(adapter);
+    }
+
+    public void getMascotas(){
         retrofit = new Retrofit.Builder().baseUrl(getString(R.string.url_base_api))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MascotasInterfaceAPI service = retrofit.create(MascotasInterfaceAPI.class);
+        InterfaceAPI service = retrofit.create(InterfaceAPI.class);
         Call<PetsRequestAPIModel> mascotas = service.loadProfiles();
 
         mascotas.enqueue(new Callback<PetsRequestAPIModel>() {
@@ -110,11 +99,7 @@ public class ProfilesFragment extends Fragment {
             }
         });
 
-        //Call<ArrayList<JSONObject>> call = MascotasInterfaceAPI.loadProfiles();
-
-        adapter = new ProfilesAdapter(getContext(), profiles);
-
-        recyclerView.setAdapter(adapter);
+        //Call<ArrayList<JSONObject>> call = InterfaceAPI.loadProfiles();
     }
 
     public void getByDistance(double latitude, double longitude){
@@ -122,12 +107,12 @@ public class ProfilesFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MascotasInterfaceAPI service = retrofit.create(MascotasInterfaceAPI.class);
+        InterfaceAPI service = retrofit.create(InterfaceAPI.class);
 
         JSONObject distance = new JSONObject();
         try {
             distance.accumulate("longitude", longitude);
-            distance.accumulate("latitude", longitude);
+            distance.accumulate("latitude", latitude);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -161,7 +146,7 @@ public class ProfilesFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        MascotasInterfaceAPI service = retrofit.create(MascotasInterfaceAPI.class);
+        InterfaceAPI service = retrofit.create(InterfaceAPI.class);
 
         Call<PetModel> call = service.getById(petId);
 

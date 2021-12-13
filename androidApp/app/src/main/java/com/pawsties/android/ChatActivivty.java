@@ -22,9 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -38,13 +38,19 @@ public class ChatActivivty extends AppCompatActivity {
     ArrayList<Message> messages;
     MessageAdapter msgAdapter;
     RecyclerView rvDisplayMessages;
-    String user;
+    String mascota;
+    String sender;
     JSONObject adopcionjson;
     AlertDialog alert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        mascota = intent.getStringExtra("mascota");
+        sender = intent.getStringExtra("sender");
+
         if (MainActivity.typeUser)
             setContentView(R.layout.activity_chat);
         if (!MainActivity.typeUser){
@@ -54,7 +60,7 @@ public class ChatActivivty extends AppCompatActivity {
                 final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
                 alertBuilder.setMessage("Desea dar la mascota en adopcion a este usuario")
                         .setCancelable(true)
-                        .setPositiveButton("sí", (dialog, which) -> {realizarAdopcion();})
+                        .setPositiveButton("sí", (dialog, which) -> {realizarAdopcion(sender, mascota, Date.valueOf("2021-12-12"));})
                         .setNegativeButton("no", ((dialog, which) -> {}));
                 alert = alertBuilder.create();
                 alert.show();
@@ -78,20 +84,17 @@ public class ChatActivivty extends AppCompatActivity {
         btn_send = findViewById(R.id.btnSend);
         et_message = findViewById(R.id.etMessage);
 
-        //aqui se van a recibir los datos proveidos de la BD
-        Intent intent = getIntent();
-        user = intent.getStringExtra("username");
-        username.setText(user);
+        username.setText(mascota);
         profile_pic.setImageResource(R.mipmap.ic_launcher_round);
 
         btn_send.setOnClickListener(v -> {
             String message = et_message.getText().toString();
             if (!message.equals(""))
-                sendMessage("sender", user, message);/**aqui se le deben de pasar usuarios de la BD*/
+                sendMessage("sender", mascota, message);/**aqui se le deben de pasar usuarios de la BD*/
             et_message.setText("");
         });
 
-        loadMessages("sender", user);//parametros de prueba
+        loadMessages("sender", mascota);//parametros de prueba
     }
 
     private void sendMessage(String sender, String receiver, String message){
@@ -103,6 +106,19 @@ public class ChatActivivty extends AppCompatActivity {
         hashMap.put("message", message);
 
         reference.child("Chats").push().setValue(hashMap);
+    }
+
+    private void realizarAdopcion(String adoptante, String mascota, Date fecha){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("adoptante", adoptante);
+        hashMap.put("mascota", mascota);
+        hashMap.put("fecha", fecha);
+
+        reference.child("Adopciones").push().setValue(hashMap);
+
+        Toast.makeText(ChatActivivty.this, "Adopcion realizada", Toast.LENGTH_LONG).show();
     }
 
     private void loadMessages(String id, String user){
@@ -131,19 +147,4 @@ public class ChatActivivty extends AppCompatActivity {
         });
     }
 
-    public void realizarAdopcion(){
-        adopcionjson = new JSONObject();
-        try {
-            adopcionjson.accumulate("idMascota", "manchas");
-            adopcionjson.accumulate("idusuario", "joeljp");
-            adopcionjson.accumulate("idrescatista", "rakso");
-            adopcionjson.accumulate("fecha", System.currentTimeMillis());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        /** pasarle a la API un JSON con los datos de la adopcion */
-
-        Toast.makeText(ChatActivivty.this, "Adopcion realizada", Toast.LENGTH_LONG).show();
-    }
 }

@@ -36,7 +36,8 @@ class FavsAdapter extends RecyclerView.Adapter<FavsListVH> {
 
         holder.itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, ChatActivivty.class);
-                intent.putExtra("username", pet.nMascota);
+                intent.putExtra("mascota", pet.nMascota);
+                intent.putExtra("sender", "joeljp");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
         });
