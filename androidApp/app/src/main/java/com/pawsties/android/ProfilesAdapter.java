@@ -13,9 +13,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesVH> {
     private Context context;
-    private ArrayList<PetModel> profiles;
+    private ArrayList<PetViewModel> profiles;
 
-    public ProfilesAdapter(Context context, ArrayList<PetModel> profiles){
+    public ProfilesAdapter(Context context, ArrayList<PetViewModel> profiles){
         this.context = context;
         this.profiles = profiles;
     }
@@ -30,7 +30,7 @@ public class ProfilesAdapter extends RecyclerView.Adapter<ProfilesVH> {
 
     @Override
     public void onBindViewHolder(@NonNull ProfilesVH holder, int position) {
-        final PetModel profile = profiles.get(position);
+        final PetViewModel profile = profiles.get(position);
         AtomicInteger flag;//el atomic era para cambiar con el boton pero no funciono, pero tampoco trono la app ggg
         flag = holder.bind(profile);
         if (flag.equals(1))

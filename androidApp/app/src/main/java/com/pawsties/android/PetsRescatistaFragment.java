@@ -15,6 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -25,6 +30,7 @@ public class PetsRescatistaFragment extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private ProfilesAdapter adapter;
+    ArrayList<PetViewModel> pets;
     ArrayList<PetModel> profiles;
     ArrayList<PerroModel> perros;
     ArrayList<GatoModel> gatos;
@@ -54,9 +60,9 @@ public class PetsRescatistaFragment extends Fragment {
         gatos = new ArrayList<>();
 
         //ELEMENTO MASCOTA DE PRUEBA (borrar cuando se obtengan de la BD)
-        GatoModel profile = new GatoModel("michi", true, Date.valueOf("2020-09-23T00:00:00"), 1, true, 2, false, false, false, 1, "un gato muy bonito xd");
-        PerroModel profile2 = new PerroModel("Firulais", true, Date.valueOf("2020-09-23T00:00:00"), 3, true, 2, false, true, false, 1, "soy un perro xd", 0.5);
-        GatoModel profile3 = new GatoModel("manchas", false, Date.valueOf("2020-09-23T00:00:00"), 2, true, 2, true, true, false, 1, "soy una gata de tejado");
+        GatoModel profile = new GatoModel("michi", true, Date.valueOf("2020-09-23"), 1, true, 2, false, false, false, 1, "un gato muy bonito xd");
+        PerroModel profile2 = new PerroModel("Firulais", true, Date.valueOf("2020-09-23"), 3, true, 2, false, true, false, 1, "soy un perro xd", 0.5);
+        GatoModel profile3 = new GatoModel("manchas", false, Date.valueOf("2020-09-23"), 2, true, 2, true, true, false, 1, "soy una gata de tejado");
         perros.add(profile2);
         gatos.add(profile);
         gatos.add(profile3);
@@ -79,12 +85,32 @@ public class PetsRescatistaFragment extends Fragment {
     }
 
     private void loadProfiles(){
-        adapter = new ProfilesAdapter(getContext(), profiles);
+        pets = new ArrayList<>();
 
-        /**
-         * cargar perfiles cercanos de la BD en base a su latitud y longitud
-         * */
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Mascotas");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                pets.clear();
+                PetViewModel pet;
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    //Log.d("xdxdxd", snapshot1.getKey()+" - "+snapshot1.getValue().toString());
+                    pet = snapshot1.getValue(PetViewModel.class);
+                    pets.add(pet);
 
-        recyclerView.setAdapter(adapter);
+                }
+                adapter = new ProfilesAdapter(getContext(), pets);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //adapter = new ProfilesAdapter(getContext(), profiles);
+
+        //recyclerView.setAdapter(adapter);
     }
 }

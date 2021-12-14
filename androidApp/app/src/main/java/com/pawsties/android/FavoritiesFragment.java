@@ -45,7 +45,7 @@ public class FavoritiesFragment extends Fragment {
         dividerItemDecoration = new DividerItemDecoration(getContext(), linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        loadPets("joeljp");
+        loadPets(MainActivity.firebaseUser.getUid());
 
         return view;
     }
@@ -74,9 +74,9 @@ public class FavoritiesFragment extends Fragment {
                     if (pet.usuario.equals(userId))
                         pets.add(pet);
 
-                    adapter = new FavsAdapter(getContext(), pets);
-                    recyclerView.setAdapter(adapter);
                 }
+                adapter = new FavsAdapter(getContext(), pets);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override

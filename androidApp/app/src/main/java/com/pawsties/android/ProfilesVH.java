@@ -20,7 +20,6 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
     TextView petName;
     TextView petDescription;
     ImageButton btnBack, btnNext, btnFav;
-    PetModel petToChat;
 
     public ProfilesVH(@NonNull View itemView) {
         super(itemView);
@@ -33,20 +32,19 @@ public class ProfilesVH extends RecyclerView.ViewHolder {
         btnFav = itemView.findViewById(R.id.btnLike);
     }
 
-    AtomicInteger bind(PetModel profile){
+    AtomicInteger bind(PetViewModel profile){
         AtomicInteger flag = new AtomicInteger();
-        petName.setText(profile.Nombre);
-        petDescription.setText(profile.Descripcion);
+        petName.setText(profile.nombre);
+        petDescription.setText(profile.descripcion);
 
         btnFav.setOnClickListener(v -> {
-            petToChat = profile;
-            //FavoritiesFragment.pets.add(petToChat);
             /**agregar a la BD el favorito de este VH para que persistan los datos */
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
             HashMap<String, Object> hashMap = new HashMap<>();
-            hashMap.put("usuario", "joeljp");
-            hashMap.put("nMascota", profile.Nombre);
+            hashMap.put("usuario", MainActivity.firebaseUser.getUid());
+            hashMap.put("adoptante", MainActivity.firebaseUser.getDisplayName());
+            hashMap.put("nMascota", profile.nombre);
 
             reference.child("Favoritos").push().setValue(hashMap);
 

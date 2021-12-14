@@ -53,7 +53,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageVH> {
     public int getItemViewType(int position) {
         /**se tienen que obtener los usuarios de Azure*/
         //fuser = FirebaseAuth.getInstance().getCurrentUser();
-        if (messages.get(position).sender.equals("sender"/*fuser.getUid()*/))//el parametro que define el diseño de los mensajes
+        if (messages.get(position).sender.equals(MainActivity.firebaseUser.getUid()/*fuser.getUid()*/))//el parametro que define el diseño de los mensajes
             return MESSAGE_TYPE_SENT;
         else
             return MESSAGE_TYPE_RECEIVED;

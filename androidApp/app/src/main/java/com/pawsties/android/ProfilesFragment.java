@@ -15,6 +15,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +38,7 @@ public class ProfilesFragment extends Fragment {
     private ProfilesAdapter adapter;
     Activity activity;
     public Retrofit retrofit;
+    ArrayList<PetViewModel> pets;
 
     @Nullable
     @Override
@@ -62,10 +69,33 @@ public class ProfilesFragment extends Fragment {
     }
 
     private void loadProfiles(){
+        pets = new ArrayList<>();
 
-        adapter = new ProfilesAdapter(getContext(), MainActivity.profiles);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Mascotas");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                pets.clear();
+                PetViewModel pet;
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                    //Log.d("xdxdxd", snapshot1.getKey()+" - "+snapshot1.getValue().toString());
+                    pet = snapshot1.getValue(PetViewModel.class);
+                    pets.add(pet);
 
-        recyclerView.setAdapter(adapter);
+                }
+                adapter = new ProfilesAdapter(getContext(), pets);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //adapter = new ProfilesAdapter(getContext(), MainActivity.profiles);
+
+        //recyclerView.setAdapter(adapter);
     }
 
     public void getMascotas(){

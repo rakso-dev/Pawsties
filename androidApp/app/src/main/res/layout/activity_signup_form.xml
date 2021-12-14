@@ -12,8 +12,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.032"
-        app:layout_constraintStart_toEndOf="@+id/etFechaEP"
-        app:layout_constraintTop_toBottomOf="@+id/etApellidosEP"
+        app:layout_constraintStart_toEndOf="@+id/etFechaPet"
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcionPet"
         app:srcCompat="@drawable/ic_baseline_date_range_24"
         tools:ignore="MissingConstraints" />
 
@@ -46,7 +46,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etApellidosEP"
+        android:id="@+id/etDescripcionPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -55,7 +55,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etNombreEP"
+        app:layout_constraintTop_toBottomOf="@+id/etNombrePet"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -73,7 +73,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etFechaEP"
+        android:id="@+id/etFechaPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -82,7 +82,7 @@
         android:inputType="date"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etApellidosEP"
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcionPet"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -96,7 +96,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaEP"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaPet"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -114,7 +114,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/btnOkSignup"
+        android:id="@+id/btnDonePet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -157,7 +157,7 @@
         tools:ignore="MissingConstraints" />
 
     <RadioGroup
-        android:id="@+id/rgTipoUsuario"
+        android:id="@+id/rgTipoPet"
         android:layout_width="266dp"
         android:layout_height="53dp"
         android:orientation="horizontal"
@@ -167,16 +167,16 @@
         tools:ignore="MissingConstraints">
 
         <RadioButton
-            android:id="@+id/rbRescatista"
+            android:id="@+id/rbPerro"
             android:layout_width="107dp"
             android:layout_height="47dp"
             android:text="Rescatista"
-            app:layout_constraintStart_toEndOf="@+id/rbAdoptante"
+            app:layout_constraintStart_toEndOf="@+id/rbGato"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             tools:ignore="MissingConstraints" />
 
         <RadioButton
-            android:id="@+id/rbAdoptante"
+            android:id="@+id/rbGato"
             android:layout_width="113dp"
             android:layout_height="47dp"
             android:layout_marginStart="44dp"
@@ -186,7 +186,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/etNombreEP"
+        android:id="@+id/etNombrePet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -195,7 +195,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/rgTipoUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/rgTipoPet"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

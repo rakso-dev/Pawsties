@@ -35,7 +35,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etApellidosEP"
+        android:id="@+id/etDescripcionPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etNombreEP"
+        app:layout_constraintTop_toBottomOf="@+id/etNombrePet"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -64,7 +64,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etFechaEP"
+        android:id="@+id/etFechaPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -74,7 +74,7 @@
         android:editable="false"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etApellidosEP"
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcionPet"
         tools:ignore="Deprecated,MissingConstraints" />
 
     <EditText
@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaEP"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaPet"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -137,7 +137,7 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/etNombreEP"
+        android:id="@+id/etNombrePet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -158,8 +158,8 @@
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/etFechaEP"
-        app:layout_constraintTop_toBottomOf="@+id/etApellidosEP"
+        app:layout_constraintStart_toEndOf="@+id/etFechaPet"
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcionPet"
         app:srcCompat="@drawable/ic_baseline_date_range_24"
         tools:ignore="MissingConstraints" />
 
@@ -190,7 +190,7 @@
         android:layout_marginStart="9dp"
         android:layout_marginTop="11dp"
         android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/etNombreEP"
+        app:layout_constraintBottom_toTopOf="@+id/etNombrePet"
         app:layout_constraintStart_toEndOf="@+id/imageViewEP"
         app:layout_constraintTop_toBottomOf="@+id/ibAddPhotoEP"
         app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />

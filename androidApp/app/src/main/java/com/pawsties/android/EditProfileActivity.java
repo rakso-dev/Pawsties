@@ -56,10 +56,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Editar perfil");
 
-        etName = findViewById(R.id.etNombreEP);
-        etLastname = findViewById(R.id.etApellidosEP);
+        etName = findViewById(R.id.etNombrePet);
+        etLastname = findViewById(R.id.etDescripcionPet);
         etTelefono = findViewById(R.id.etTelefonoEP);
-        etNacimiento = findViewById(R.id.etFechaEP);
+        etNacimiento = findViewById(R.id.etFechaPet);
         etEmail = findViewById(R.id.etEmailEP);
         etPassword = findViewById(R.id.etContrasenaEP);
         etRFC = findViewById(R.id.etRFCep);

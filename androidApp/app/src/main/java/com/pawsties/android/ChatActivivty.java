@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -55,15 +56,30 @@ public class ChatActivivty extends AppCompatActivity {
             setContentView(R.layout.activity_chat);
         if (!MainActivity.typeUser){
             setContentView(R.layout.activity_chat_rescatista);
+            btn_send = findViewById(R.id.btnSend);
             adoptar = findViewById(R.id.btnRealizarAdopcion);
             adoptar.setOnClickListener(v -> {
                 final AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
                 alertBuilder.setMessage("Desea dar la mascota en adopcion a este usuario")
                         .setCancelable(true)
-                        .setPositiveButton("sí", (dialog, which) -> {realizarAdopcion(sender, mascota, Date.valueOf("2021-12-12"));})
+                        .setPositiveButton("sí", (dialog, which) -> {
+                            Time today = new Time(Time.getCurrentTimezone());
+                            today.setToNow();
+                            int dia = today.monthDay;
+                            int mes = today.month + 1;
+                            int anho = today.year;
+                            realizarAdopcion(sender, mascota, anho+"-"+mes+"-"+dia);
+                        })
                         .setNegativeButton("no", ((dialog, which) -> {}));
                 alert = alertBuilder.create();
                 alert.show();
+            });
+
+            btn_send.setOnClickListener(v -> {
+                String message = et_message.getText().toString();
+                if (!message.equals(""))
+                    sendMessage(sender, mascota, message);/**aqui se le deben de pasar usuarios de la BD*/
+                et_message.setText("");
             });
         }
 
@@ -90,11 +106,11 @@ public class ChatActivivty extends AppCompatActivity {
         btn_send.setOnClickListener(v -> {
             String message = et_message.getText().toString();
             if (!message.equals(""))
-                sendMessage("sender", mascota, message);/**aqui se le deben de pasar usuarios de la BD*/
+                sendMessage(sender, mascota, message);
             et_message.setText("");
         });
 
-        loadMessages("sender", mascota);//parametros de prueba
+        loadMessages(sender, mascota);
     }
 
     private void sendMessage(String sender, String receiver, String message){
@@ -108,7 +124,7 @@ public class ChatActivivty extends AppCompatActivity {
         reference.child("Chats").push().setValue(hashMap);
     }
 
-    private void realizarAdopcion(String adoptante, String mascota, Date fecha){
+    private void realizarAdopcion(String adoptante, String mascota, String fecha){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
         HashMap<String, Object> hashMap = new HashMap<>();

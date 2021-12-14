@@ -30,7 +30,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.sql.Date;
@@ -70,26 +69,24 @@ public class SignupActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Registro");
 
-        etName = findViewById(R.id.etNombreEP);
-        etLastname = findViewById(R.id.etApellidosEP);
+        etName = findViewById(R.id.etNombrePet);
+        etLastname = findViewById(R.id.etDescripcionPet);
         etTelefono = findViewById(R.id.etTelefonoEP);
-        etNacimiento = findViewById(R.id.etFechaEP);
+        etNacimiento = findViewById(R.id.etFechaPet);
         etEmail = findViewById(R.id.etEmailEP);
         etPassword = findViewById(R.id.etContrasenaEP);
         etRFC = findViewById(R.id.etRFCep);
-        rgType = findViewById(R.id.rgTipoUsuario);
-        rbAdoptante = findViewById(R.id.rbAdoptante);
-        rbRescatista = findViewById(R.id.rbRescatista);
+        rgType = findViewById(R.id.rgTipoPet);
+        rbAdoptante = findViewById(R.id.rbGato);
+        rbRescatista = findViewById(R.id.rbPerro);
         setDate = findViewById(R.id.btnSetDateSU);
-        registrarse = findViewById(R.id.btnOkSignup);
+        registrarse = findViewById(R.id.btnDonePet);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        getLocation();
 
         auth = FirebaseAuth.getInstance();
 
@@ -101,6 +98,8 @@ public class SignupActivity extends AppCompatActivity {
                     MainActivity.REQUEST_CODE_LOCATION);
             return;
         }
+
+        getLocation();
 
         setDate.setOnClickListener(v -> {
             final Calendar calendar = Calendar.getInstance();
@@ -115,6 +114,7 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         registrarse.setOnClickListener(v -> {
+            getLocation();
             name = etName.getText().toString();
             telefono = etTelefono.getText().toString();//NO DEBE DE ESTAR VACIO ESTE CAMPO
             email = etEmail.getText().toString();
@@ -216,17 +216,6 @@ public class SignupActivity extends AppCompatActivity {
 
     public void registro(Adoptante rAdoptante){
 
-        try {
-            usuarioJSON.accumulate("image", null);
-            usuarioJSON.accumulate("mail", rAdoptante.correo);
-            usuarioJSON.accumulate("telephone", rAdoptante.telefono);
-            usuarioJSON.accumulate("nombre", rAdoptante.nombre);
-            usuarioJSON.accumulate("apellidos", rAdoptante.apellidos);
-            usuarioJSON.accumulate("fecha_de_nac", rAdoptante.nacimiento);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         auth.createUserWithEmailAndPassword(rAdoptante.correo, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -263,18 +252,6 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void registro(Rescatista Rrescatista){
-
-        try {
-            usuarioJSON.accumulate("image", null);
-            usuarioJSON.accumulate("mail", Rrescatista.correo);
-            usuarioJSON.accumulate("telephone", Rrescatista.telefono);
-            usuarioJSON.accumulate("nombre_ent", Rrescatista.nombre);
-            usuarioJSON.accumulate("rfc", Rrescatista.rfc);
-            usuarioJSON.accumulate("latitude", Rrescatista.latitud);
-            usuarioJSON.accumulate("longitude", Rrescatista.longitud);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         auth.createUserWithEmailAndPassword(Rrescatista.correo, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

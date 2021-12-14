@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     Adoptante adoptante;
     Rescatista rescatista;
     public static UserModel usuario;
+    public static ArrayList<PetViewModel> pets;
     public static ArrayList<PetModel> profiles;
     public ArrayList<PerroModel> perros;
     public ArrayList<GatoModel> gatos;
