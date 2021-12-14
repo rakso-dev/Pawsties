@@ -64,23 +64,4 @@
         app:layout_constraintTop_toBottomOf="@+id/password_signin"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign in with Google"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignInGoogle" />
-
-    <ImageButton
-        android:id="@+id/btnSignInGoogle"
-        android:layout_width="245dp"
-        android:layout_height="69dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnOkSignin"
-        app:srcCompat="@drawable/common_google_signin_btn_text_dark_normal" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,6 @@ import org.json.JSONObject;
 public class SigninActivity extends AppCompatActivity {
     EditText etEmail, etPassword;
     Button ingresar;
-    ImageButton signWithGoogle;
     String email, password;
     boolean typeUser;
     AlertDialog inputAlert;
@@ -43,7 +42,6 @@ public class SigninActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     //LocalAuthentication localAuthentication;
     boolean biometric = false;
-    public static final int REQUEST_CODE_SIGN_WITH_GOOGLE = 100;
     public static Adoptante adoptante;
     public static Rescatista rescatista;
     public static JSONObject usuarioJSON;
@@ -59,7 +57,6 @@ public class SigninActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.email_signin);
         etPassword = findViewById(R.id.password_signin);
         ingresar = findViewById(R.id.btnOkSignin);
-        signWithGoogle = findViewById(R.id.btnSignInGoogle);
 
         auth = FirebaseAuth.getInstance();
 
@@ -85,46 +82,9 @@ public class SigninActivity extends AppCompatActivity {
                 iniciarSesion(email, password);
         });
 
-        signWithGoogle.setOnClickListener(v -> {
-             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                     .requestIdToken("751265962071-e6gn0a3f2uq92i69cv2jj1v73h8anqh6.apps.googleusercontent.com")
-                     .requestEmail()
-                     .build();
-
-             googleClient = GoogleSignIn.getClient(SigninActivity.this, gso);
-
-             Intent googleIntent = googleClient.getSignInIntent();
-             startActivityForResult(googleIntent, REQUEST_CODE_SIGN_WITH_GOOGLE);
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE_SIGN_WITH_GOOGLE){
-//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-//            try {
-//                googleAccount = task.getResult(ApiException.class);
-//            }catch (ApiException e){
-//                Toast.makeText(SigninActivity.this, "ERROR: "+e, Toast.LENGTH_LONG).show();
-//            }
-            launcMainActivity();
-        }
     }
 
     public void iniciarSesion(String correo, String contrasena){
-        /** INICIAR SESION CON LA INFROMACION DE LA BD DE AZURE */
-        //de acuerdo con la informacion, obtener el objeto JSON de ese usuario
-        //almacenar en el objeto correspondiente a el TIPO de usuario que regrese la BD
-        /** VALIDAR QUE DE LOS OBJETOS RECIBIDOS EL QUE COINCIDA CON EL CORREO Y CONTRASEÑA
-         * ESE SE PASARA AL LANZAR EL MAIN ACTIVITY,
-         * SI NO ES ASI, INDICAR QUE LOS DATOS INGRESADOS SON INCORRECTOS (CON UN ALERT)
-         * GUARDAR EL ESTADO DE USUARIO AUTENTICADO*/
-        //el typeuser lo tiene que recibir de la BD
-        //typeUser = usuarioJSON.get("userType");
-
-        //si todo es correcto, lanzara el main activity (poner el intento dentro de un condicional)
 
         auth.signInWithEmailAndPassword(correo, contrasena)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
