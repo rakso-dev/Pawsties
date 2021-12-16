@@ -1,43 +1,46 @@
 import logo from './logo.svg';
 import './App.css';
+import RescListMascotas from './Components/rescatista/RescListMascota';
+import RescatistaLogin from './Components/rescatista/RescatistaLogin';
+import EditarMascota from './Components/rescatista/EditarMascota';
 import React from 'react';
 
-class Component1 extends React.Component {
-  render () {
-    return (<h1>Component 1</h1>);
-  }
-}
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route
+} from 'react-router-dom'; 
 
-class Component2 extends React.Component {
-  render() {
-    return (<h1>Component 2</h1>);
-  }
-}
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Navbar, NavItem } from 'reactstrap';
 
-class App extends React.Component {
-  render () {
-    return (<Component1 />);
-  }
-}
-/*function App() {
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <Router>
+      <Container>
+        <Navbar expand="lg" className="navheader">
+          <div className="collapse navbar-collapse">
+            <ul className='navbar-nav mr-auto'>
+              <NavItem>
+                <Link to={'/RescListMascota'} className='nav-link'>Rescatista</Link>
+              </NavItem>
+              <NavItem>
+                Adoptante
+              </NavItem>
+            </ul>
+          </div>
+        </Navbar>
+      </Container>
+      <br />
+      <Switch>
+        <Route exact path='/RescListMascota' component={RescListMascotas} />
+        <Route exact path='/RescatistaLogin' component={RescatistaLogin} />
+        <Route exact path='/editpet/:id' component={EditarMascota} />
+      </Switch>
+    </Router>
   );
-}*/
+}
 
 export default App;
