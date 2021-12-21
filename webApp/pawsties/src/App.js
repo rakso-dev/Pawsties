@@ -3,6 +3,7 @@ import './App.css';
 import RescListMascotas from './Components/rescatista/RescListMascota';
 import RescatistaLogin from './Components/rescatista/RescatistaLogin';
 import EditarMascota from './Components/rescatista/EditarMascota';
+import ListMascotas from './Components/adoptante/ListMascota';
 import React from 'react';
 
 import {
@@ -27,7 +28,7 @@ function App(props) {
                 <Link to={'/RescListMascota'} className='nav-link'>Rescatista</Link>
               </NavItem>
               <NavItem>
-                Adoptante
+                <Link to={'/ListMascotas'} className='nav-link'>Adoptante</Link>
               </NavItem>
             </ul>
           </div>
@@ -38,6 +39,7 @@ function App(props) {
         <Route exact path='/RescListMascota' component={RescListMascotas} />
         <Route exact path='/RescatistaLogin' component={RescatistaLogin} />
         <Route exact path='/editpet/:id' component={EditarMascota} />
+        <Route exact path='/ListMascotas' component={ListMascotas} />
       </Switch>
     </Router>
   );

@@ -45,7 +45,7 @@ namespace PawstiesAPI.Business
                                  esterilizado = e.Esterilizado,
                                  discapacitado = e.Discapacitado,
                                  descripcion = e.Descripcion
-                             };;
+                             };
                 
 
                 return result;
@@ -60,7 +60,22 @@ namespace PawstiesAPI.Business
         {
             try
             {
-                var mascotas = _context.Mascota.Where(e => e.RRescatista == rescatistaid);
+                var mascotas = from e in _context.Mascota
+                               where e.RRescatista == rescatistaid
+                               select new
+                               {
+                                   petid = e.Petid,
+                                   nombre = e.Nombre,
+                                   sexo = e.Sexo,
+                                   edad = (DateTime.Today - e.Edad).Days,
+                                   rColor = e.RColor,
+                                   vaxxed = e.Vaxxed,
+                                   rTemper = e.RTemper,
+                                   pelaje = e.Pelaje,
+                                   esterilizado = e.Esterilizado,
+                                   discapacitado = e.Discapacitado,
+                                   descripcion = e.Descripcion
+                               };
                 return mascotas;
             } catch(Exception ex)
             {

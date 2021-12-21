@@ -20,8 +20,8 @@ namespace PawstiesAPI.Controllers
             _logger = logger;
         }
 
-        /*
-        [HttpGet ("pawstiesAPI/rescatista")]
+        
+        /*[HttpGet ("pawstiesAPI/rescatista")]
         [ProducesResponseType (StatusCodes.Status200OK)]
         public IActionResult Get()
         {
@@ -29,14 +29,14 @@ namespace PawstiesAPI.Controllers
             return Ok(rescatista);
         }*/
 
-        [HttpGet ("pawstiesAPI/rescatista/{id}")]
+        [HttpPut ("pawstiesAPI/rescatista")]
         [ProducesResponseType (StatusCodes.Status200OK, Type = typeof(Rescatistum))]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
-        public IActionResult GetRescatista(int id)//string id)
+        public IActionResult GetRescatista([FromBody] Rescatistum resc)//int id)//string id)
         {
             try
             {
-                var rescatista = _service.GetRescatista(id);
+                Rescatistum rescatista = _service.GetRescatista(resc);
                 _logger.LogInformation($"access to Rescatista on {rescatista.Ort.Coordinate}");
                 return Ok( new {
                     image = rescatista.Image,

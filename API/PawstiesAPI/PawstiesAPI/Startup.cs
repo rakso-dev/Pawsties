@@ -92,6 +92,16 @@ namespace PawstiesAPI
                 options.AddPolicy("Adoptante", policy =>
                     policy.RequireRole(""));
             })*/
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("MY_CORS", builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
+                });
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -105,6 +115,7 @@ namespace PawstiesAPI
             }
 
             app.UseRouting();
+            app.UseCors("MY_CORS");
            // app.UseAuthentication();
            // app.UseAuthorization();
 

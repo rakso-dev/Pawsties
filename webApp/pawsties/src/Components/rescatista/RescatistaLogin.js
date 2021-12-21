@@ -10,14 +10,11 @@ import {
     Button  } from 'reactstrap';
 
 class RescatistaLogin extends Component {
-    /*static propTypes = {
-        match: PropTypes.object.isRequired,
-        location: PropTypes.object.isRequired,
-        history: PropTypes.object.isRequ
-    }*/
+    
     constructor (props) {
         super(props);
         const prev = this.props.location.state.from
+        console.log(prev);
         this.state = {
             Mail: '',
             Password: '',
@@ -28,25 +25,25 @@ class RescatistaLogin extends Component {
     }
 
     doLogin() {
-        axios.get('http://localhots:5000/pawstiesAPI/rescatista',
+        axios.put('http://localhots:5000/pawstiesAPI/rescatista',
         {
             "mail": this.state.Mail,
             "password": this.state.Password
         }, {
             headers: {
-            'Content-type': 'application/json'
+                'Content-type': 'application/json'
             }
-        },).then(
+        }).then(
             (response) => {
                 if (response.status === 200){
                     const json = response.data;
                     localStorage.setItem("rescatistaid", json.rescatistaid);
                     console.log(this.state.Prev);
-                    this.history.push(this.state.Prev);
+                    this.props.history.push(this.state.Prev);
                 }
             },
             (error) => {
-                if (error.status === 400 || error.statud === 500) {
+                if (error.status === 400 || error.status === 500) {
                     this.setState (
                         {
                             error: true
@@ -87,7 +84,7 @@ class RescatistaLogin extends Component {
                             <Input type="password" name="Password" onChange={this.handleChange} value={this.state.Password} />
                         </FormGroup>
                         <Button>
-                            <Button block type="button" onClick={this.doLogin()}>
+                            <Button block type="button" onClick={ this.doLogin() }>
                                 login
                             </Button>
                         </Button>

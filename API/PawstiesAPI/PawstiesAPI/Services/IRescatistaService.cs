@@ -7,8 +7,8 @@ namespace PawstiesAPI.Services
 {
     public interface IRescatistaService
     {
-        IEnumerable GetAll(JSONPoint point, int distance);
-        Rescatistum GetRescatista(int rescatistaid);//string id);
+        //IEnumerable GetAll(JSONPoint point, int distance);
+        Rescatistum GetRescatista(Rescatistum resc);//int rescatistaid);//string id);
         bool SaveRescatista(Rescatistum resc);
         bool Update(Rescatistum resc, int resatistaid);//string id);
     }

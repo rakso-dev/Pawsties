@@ -11,7 +11,7 @@ class RescListMascotas extends Component {
         super(props);
         var rescatistaid = localStorage.getItem("rescatistaid");
         this.state = {
-            rescatistaid: 1,//rescatistaid,
+            rescatistaid: 1,// rescatistaid,
             items: [],
             isFetched: false
         }
@@ -32,7 +32,7 @@ class RescListMascotas extends Component {
                     })
                 }, 
                 (error) => {
-                    if (error.response === 400 || error.responde === 500) {
+                    if (error.response === 400 || error.response === 500) {
                         this.setState(
                             {
                                 rescatistaid: 0
@@ -112,7 +112,7 @@ class RescListMascotas extends Component {
                                     <td>{item.esterilizado ? "Si" : "No"}</td>
                                     <td>{item.discapacitado ? "Si" : "No"}</td>
                                     <td>{item.descripcion}</td>
-                                    <td><Button>Editar</Button></td>
+                                    <td><Link to={`/editpet/${item.petid}`}>Editar</Link></td>
                                 </tr> 
                             )
                         }

@@ -6,29 +6,29 @@ using PawstiesAPI.Models;
 using System;
 using PawstiesAPI.Helper;
 using PawstiesAPI.Services;
+using PawstiesAPI.Singletons;
 
 namespace PawstiesAPI.Controllers
 {
     public class MascotaController: ControllerBase
     {
-        private readonly pawstiesContext _context;
         private readonly ILogger<MascotaController> _logger;
         private readonly IMascotaService _service;
+        //private readonly ITallaSingleton _talla;
 
-        public MascotaController(pawstiesContext context,IMascotaService service, ILogger<MascotaController> logger)
+        public MascotaController(IMascotaService service, ILogger<MascotaController> logger)
         {
-            _context = context;
             _service = service;
             _logger = logger;
         }
 
-        [HttpGet ("pawstiesAPI/mascotas")]
+        [HttpGet ("pawstiesAPI/mascotas/rescatista/{rescatistaid}")]
         [ProducesResponseType (StatusCodes.Status200OK, Type = typeof(IEnumerable<Mascotum>))]
         [ProducesResponseType (StatusCodes.Status500InternalServerError)]
-        public IActionResult Get()
+        public IActionResult Get(int rescatistaid)
         {
             _logger.LogInformation("Calling method GetAllMascotas");
-            var mascota = _context.Mascota;
+            var mascota = _service.GetMascotaByRescatista(rescatistaid);
             return Ok (mascota);
         }
 

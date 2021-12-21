@@ -29,26 +29,29 @@ namespace PawstiesAPI.Business
 
         }
 
-        public IEnumerable GetAll(JSONPoint point, int distance)
+        /*
+        public IEnumerable GetAll(Rescatistum res)
         {
             try
             {
-                var rescatista = _context.Rescatista.Where(e => e.Ort.Distance(new Point(point.Longitude, point.Latitude)) <= distance);
+                var rescatista = _context.Rescatista.Where(e => e.Mail.Equals(res.Mail) && e.Password.Equals(res.Password)).FirstOrDefault();
                 return rescatista;
             } catch (Exception ex)
             {
                 _logger.LogError(ex, $"Error retieving restatistas on {nameof(GetAll)} method");
                 throw;
             }
-        }
+        }*/
 
-        public Rescatistum GetRescatista(int rescatistaid)//string id)
+        public Rescatistum GetRescatista(Rescatistum resc)//int rescatistaid)//string id)
         {
             try
             {
                 //var tmp = _protector.Unprotect(id);
                 //var rescatistaid = int.Parse(tmp);
-                Rescatistum rescatista = _context.Rescatista.Where(e => e.Rescatistaid == rescatistaid).FirstOrDefault();
+                //Rescatistum rescatista = _context.Rescatista.Where(e => e.Rescatistaid == rescatistaid).FirstOrDefault();
+                Rescatistum rescatista = _context.Rescatista.Where(e => e.Password.Equals(resc.Password) && e.Mail.Equals(resc.Mail)).FirstOrDefault();
+                rescatista.Password = "";
                 return rescatista;
             } catch (Exception ex)
             {

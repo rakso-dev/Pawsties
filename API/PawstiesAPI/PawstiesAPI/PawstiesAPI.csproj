@@ -30,10 +30,12 @@
     <None Remove="Serilog.AspNetCore" />
     <None Remove="Serilog.Sinks.ApplicationInsights" />
     <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Singletons\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
     <Folder Include="Business\" />
     <Folder Include="Helper\" />
+    <Folder Include="Singletons\" />
   </ItemGroup>
 </Project>
