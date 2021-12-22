@@ -19,7 +19,7 @@ class RescListMascotas extends Component {
 
     componentDidMount() {
         const rescatistaid = this.state.rescatistaid;
-        axios.get(`http://localhost:5000/pawstiesAPI/mascotas/rescatista/${rescatistaid}`, {
+        axios.get(`https://pawstiesapi.azurewebsites.net/pawstiesAPI/mascotas/rescatista/${rescatistaid}`, {
             headers: {
                 'Content-type': 'application/json'
             }

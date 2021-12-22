@@ -20,7 +20,7 @@ class ListMascotas extends Component {
         navigator.geolocation.getCurrentPosition(success => {
             const lat = success.coords.latitude;
             const long = success.coords.longitude;
-            axios.get(`http://localhost:5000/pawstiesAPI/mascotas/get/${this.state.distance}`, {
+            axios.get(`https://pawstiesapi.azurewebsites.net/pawstiesAPI/mascotas/get/${this.state.distance}`, {
                 latitude: lat,
                 longitude: long
             }, {
