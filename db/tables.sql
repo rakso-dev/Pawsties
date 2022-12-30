@@ -13,7 +13,7 @@ CREATE TABLE rescatista
     rfc varchar(13),
     latitude numeric,
     longitude numeric,
-    ort geography(Point,4326),
+    ---ort geography (Point,4326),
     CONSTRAINT pk_rescatista PRIMARY KEY (rescatistaid)
 )INHERITS (public.usuario);
 
