@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0ezizuT2CezN7y4b6yrFJwyGW8zeCem1MKq4BAqIrhUJS2pOtLloy54gCEh0nFwj5ajRkNMreHkdN+hX20CtKw==",
+  "dgSpecHash": "O6ucKlotxGC6SWphUpir32efDQLXut1AA6ZADIAx+6E1WJtxMUp8wOoRFeGQ7nG7jDj8lsW7SF0/b4yNrQ3o8Q==",
   "success": true,
   "projectFilePath": "F:\\Documentos\\INGENIERIA_INFORMATICA_TAREAS\\7to_semestre\\Projects\\Pawsties\\API\\PawstiesAPI\\PawstiesAPI\\PawstiesAPI.csproj",
   "expectedPackageFiles": [
@@ -63,11 +63,7 @@
     "C:\\Users\\joelj\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\joelj\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
     "C:\\Users\\joelj\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\joelj\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\joelj\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.12\\microsoft.netcore.app.host.win-x64.6.0.12.nupkg.sha512",
-    "C:\\Users\\joelj\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.12\\microsoft.aspnetcore.app.ref.6.0.12.nupkg.sha512",
-    "C:\\Users\\joelj\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.12\\microsoft.windowsdesktop.app.ref.6.0.12.nupkg.sha512",
-    "C:\\Users\\joelj\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.12\\microsoft.netcore.app.ref.6.0.12.nupkg.sha512"
+    "C:\\Users\\joelj\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }
