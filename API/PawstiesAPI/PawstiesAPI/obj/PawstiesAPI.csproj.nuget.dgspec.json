@@ -1,30 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/PawstiesAPI.csproj": {}
+    "F:\\Documentos\\INGENIERIA_INFORMATICA_TAREAS\\7to_semestre\\Projects\\Pawsties\\API\\PawstiesAPI\\PawstiesAPI\\PawstiesAPI.csproj": {}
   },
   "projects": {
-    "/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/PawstiesAPI.csproj": {
+    "F:\\Documentos\\INGENIERIA_INFORMATICA_TAREAS\\7to_semestre\\Projects\\Pawsties\\API\\PawstiesAPI\\PawstiesAPI\\PawstiesAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/PawstiesAPI.csproj",
+        "projectUniqueName": "F:\\Documentos\\INGENIERIA_INFORMATICA_TAREAS\\7to_semestre\\Projects\\Pawsties\\API\\PawstiesAPI\\PawstiesAPI\\PawstiesAPI.csproj",
         "projectName": "PawstiesAPI",
-        "projectPath": "/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/PawstiesAPI.csproj",
-        "packagesPath": "/Users/oskarbeltranmagana/.nuget/packages/",
-        "outputPath": "/Users/oskarbeltranmagana/Documents/GitHub/Pawsties/API/PawstiesAPI/PawstiesAPI/obj/",
+        "projectPath": "F:\\Documentos\\INGENIERIA_INFORMATICA_TAREAS\\7to_semestre\\Projects\\Pawsties\\API\\PawstiesAPI\\PawstiesAPI\\PawstiesAPI.csproj",
+        "packagesPath": "C:\\Users\\joelj\\.nuget\\packages\\",
+        "outputPath": "F:\\Documentos\\INGENIERIA_INFORMATICA_TAREAS\\7to_semestre\\Projects\\Pawsties\\API\\PawstiesAPI\\PawstiesAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/oskarbeltranmagana/.config/NuGet/NuGet.Config"
+          "C:\\Users\\joelj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -35,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -44,33 +46,33 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[7.0.1, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[7.0.1, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[7.0.1, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite": {
               "target": "Package",
-              "version": "[5.0.10, )"
+              "version": "[7.0.1, )"
             },
             "Serilog.AspNetCore": {
               "target": "Package",
-              "version": "[4.1.0, )"
+              "version": "[6.1.0, )"
             },
             "Serilog.Sinks.ApplicationInsights": {
               "target": "Package",
-              "version": "[3.1.0, )"
+              "version": "[4.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[6.4.0, )"
             }
           },
           "imports": [
@@ -79,10 +81,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.12, 6.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.12, 6.0.12]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.12, 6.0.12]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.12, 6.0.12]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -91,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

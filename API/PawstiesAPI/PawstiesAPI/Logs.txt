@@ -2628,3 +2628,27 @@ LIMIT 1
 2021-12-20 18:14:57.854 -06:00 [INF] Executed action PawstiesAPI.Controllers.PerroController.Get (PawstiesAPI) in 43.1874ms
 2021-12-20 18:14:57.863 -06:00 [INF] Executed endpoint 'PawstiesAPI.Controllers.PerroController.Get (PawstiesAPI)'
 2021-12-20 18:14:57.870 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/pawstiesAPI/perro/1 - - - 200 - application/json;+charset=utf-8 95.0389ms
+2023-01-01 23:34:48.510 -06:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-01 23:34:49.091 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/swagger - -
+2023-01-01 23:34:49.522 -06:00 [INF] Hosting environment: Development
+2023-01-01 23:34:49.543 -06:00 [INF] Content root path: F:\Documentos\INGENIERIA_INFORMATICA_TAREAS\7to_semestre\Projects\Pawsties\API\PawstiesAPI\PawstiesAPI
+2023-01-01 23:34:50.346 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/swagger/index.html - -
+2023-01-01 23:34:50.366 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:20920/swagger - - - 301 - - 1284.8672ms
+2023-01-01 23:34:52.363 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/swagger/swagger-ui.css - -
+2023-01-01 23:34:53.067 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/swagger/swagger-ui-bundle.js - -
+2023-01-01 23:34:53.121 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/_vs/browserLink - -
+2023-01-01 23:34:53.121 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:20920/swagger/index.html - - - 200 - text/html;charset=utf-8 2775.2056ms
+2023-01-01 23:34:53.173 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/_framework/aspnetcore-browser-refresh.js - -
+2023-01-01 23:34:53.238 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/swagger/swagger-ui-standalone-preset.js - -
+2023-01-01 23:34:53.249 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:20920/_framework/aspnetcore-browser-refresh.js - - - 200 11992 application/javascript;+charset=utf-8 73.5398ms
+2023-01-01 23:34:53.420 -06:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-01-01 23:34:53.453 -06:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-01-01 23:34:53.452 -06:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-01-01 23:34:53.531 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:20920/swagger/swagger-ui-standalone-preset.js - - - 200 311804 application/javascript 293.6937ms
+2023-01-01 23:34:53.685 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:20920/swagger/swagger-ui.css - - - 200 142933 text/css 1321.8753ms
+2023-01-01 23:34:53.758 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:20920/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 636.6772ms
+2023-01-01 23:34:53.820 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:20920/swagger/swagger-ui-bundle.js - - - 200 986342 application/javascript 752.9159ms
+2023-01-01 23:34:54.477 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/swagger/v1/swagger.json - -
+2023-01-01 23:34:54.659 -06:00 [INF] Request starting HTTP/1.1 GET http://localhost:20920/swagger/favicon-32x32.png - -
+2023-01-01 23:34:54.828 -06:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-01-01 23:34:54.846 -06:00 [INF] Request finished HTTP/1.1 GET http://localhost:20920/swagger/favicon-32x32.png - - - 200 628 image/png 186.8402ms
